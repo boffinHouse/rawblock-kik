@@ -1,0 +1,19 @@
+<script>
+    /** IMPORTANT CONFIGURATION! */
+    window.appGlobals = {
+        basePath: '',
+    };
+</script>
+
+<script>
+    (function (docElem) {
+        //polyfills
+        if (!Object.assign || !docElem.closest || !Array.prototype.includes || !String.prototype.includes || !window.cancelAnimationFrame || !Array.from || !Array.prototype.find) { //  || !docElem.before || !docElem.queryAll || !window.fetch
+            document.write('<script src="js/_polyfills.js"><\/script>');
+        }
+    })(document.documentElement);
+</script>
+
+
+
+<link href="css/styles.css" rel="stylesheet" />
