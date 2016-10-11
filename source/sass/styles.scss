@@ -7,13 +7,12 @@ Main Stylesheet
 // Functions / Mixins
 @import "../../node_modules/rawblock/sources/sass/helpers/index";
 
-// Variables
-@import "./settings/**/*.scss";
+//Settings
+@import "settings/**/*.scss";
 
 // Basic Formatting
 @import "normalize.css";
-@import "../../node_modules/rawblock/sources/sass/basics/rb_basics";
-@import "./basics/rb_utils_custom";
+@import "basics/rb_utils_custom";
 
 //
 //	Layout classes (.u-*)
@@ -29,4 +28,4 @@ Main Stylesheet
 ));
 
 // All Components
-@import "../components/**/*.scss !../components/**/tests/**/*.scss !../components/**/*.async.scss !../components/**/*.js.scss";
+@import "../components/**/*.scss !../components/**/tests/**/*.scss";

@@ -9,7 +9,6 @@ const gulp =  require('gulp');
 const plugins = require('gulp-load-plugins')();
 
 
-
 // Non-gulp modules
 plugins.path = require('path');
 //plugins.browserSync = require('browser-sync');
@@ -28,7 +27,7 @@ const paths = {
 
     // Assets
     assets: {
-        css: plugins.path.join(__dirname, 'source/scss'),
+        css: plugins.path.join(__dirname, 'source/sass'),
         js: plugins.path.join(__dirname, 'source/js'),
         fonts: plugins.path.join(__dirname, 'source/fonts'),
         media: plugins.path.join(__dirname, 'source/media')
@@ -46,12 +45,12 @@ const paths = {
 /**
  * Child tasks
  *
- *
  */
-plugins.getTaskModule = function(task) {
+plugins.getTaskModule = (task) => {
     return require(plugins.path.join(paths.tasks, task))(paths, gulp, plugins);
 };
 
+gulp.task('css', plugins.getTaskModule('css/css-default'));
 gulp.task('html', plugins.getTaskModule('html/html-default'));
 
 /**

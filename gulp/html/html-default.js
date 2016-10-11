@@ -12,47 +12,32 @@ module.exports = (paths, gulp, plugins) => {
     const assemble = require('assemble')();
     const extname = require('gulp-extname');
 
-    const config = {
-        files: {
-            pages: [
-                plugins.path.join(paths.html, 'pages/{,**/}*.hbs'),
-                plugins.path.join(paths.components, '{,**/}*.hbs')
-            ],
-            partials: {
-                templates: plugins.path.join(paths.html, '{,**/}*.hbs'),
-                components: plugins.path.join(paths.components, '{,**/}*.{hbs, md}'),
-            },
-            helpers: {
-                helpers: plugins.path.join(paths.base, '/helpers/handlebars.js')
-            },
-            data: {
-                templates: plugins.path.join(paths.html, 'data/**/*.{js,json}'),
-                modules: plugins.path.join(paths.components, '**/*.{json, js}')
-            },
-            moduleLayout: plugins.path.join(paths.html, 'layouts/modules_tpl.hbs')
-        }
-    };
-
     return () => {
-        //Parials
-        assemble.partials(config.files.partials.templates);
-        assemble.partials(config.files.partials.components);
 
-        assemble.layouts(plugins.path.join(paths.html, 'layouts/{,**/}*.hbs'))
+        //Layouts
+        assemble.layouts(plugins.path.join(paths.html, 'layouts/{,**/}*.hbs'));
 
+        //Partials
+        assemble.partials(plugins.path.join(paths.html, '{,**/}*.hbs'));
+        assemble.partials(plugins.path.join(paths.components, '{,**/}*.{hbs, md}'));
+
+        //Helpers
         assemble.helpers(require('handlebars-helpers')());
+        assemble.helpers(plugins.path.join(paths.html, 'helpers/{,**/}*.js'));
 
-        assemble.page('post.md', {content: 'This it a {{ title }}'});
-        assemble.render('post.md', {title: 'Home'}, (err, view) => {
-            console.log(view.content);
-        });
-        //return assemble
-        //    .src(config.files.pages)
-        //    //.toStream('pages')
-        //    .pipe(assemble.renderFile())
-        //    .pipe(extname())
-        //    .pipe(gulp.dest(paths.dev))
-        //;
+        //Data
+        assemble.data(plugins.path.join(paths.html, 'data/**/*.{js,json}'));
+        assemble.data(plugins.path.join(paths.components, '**/*.{json, js}'));
+
+        assemble.src([
+                plugins.path.join(paths.html, 'pages/{,**/}*.hbs'),
+            ])
+            //.toStream('pages')
+            .pipe(assemble.renderFile())
+            .pipe(extname())
+            .pipe(gulp.dest(paths.dev))
+        ;
     };
 
+    return assemble;
 };
