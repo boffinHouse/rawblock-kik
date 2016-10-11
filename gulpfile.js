@@ -15,6 +15,7 @@ plugins.path = require('path');
 plugins.runSequence = require('run-sequence'); //temporary solution until the release of gulp 4.0
 //plugins.eventStream = require('event-stream');
 
+
 // Shared paths
 const paths = {
 
@@ -50,8 +51,9 @@ plugins.getTaskModule = (task) => {
     return require(plugins.path.join(paths.tasks, task))(paths, gulp, plugins);
 };
 
-gulp.task('css', plugins.getTaskModule('css/css-default'));
-gulp.task('html', plugins.getTaskModule('html/html-default'));
+gulp.task('css', plugins.getTaskModule('css/sass'));
+gulp.task('cssmin', plugins.getTaskModule('css/cssmin'));
+gulp.task('html', plugins.getTaskModule('html/assemble'));
 
 /**
  * Utility tasks
@@ -70,16 +72,17 @@ gulp.task('clean', (fn) => {
  */
 
 //Task default
-gulp.task('default', function(fn) {
-    plugins.runSequence(['build', 'uglify', 'clean-css'], fn);
+gulp.task('default', (fn) => {
+    plugins.util.env.type = 'production';
+    plugins.runSequence(['build', 'cssmin',], fn);
 });
 
-gulp.task('build', ['clean'], function(fn) {
-    plugins.runSequence(['css', 'eslint','uglify:inline', 'js', 'html', 'media:copy', 'svgmin'], fn);
-});
+gulp.task('build', ['clean'], (fn) => {
+    plugins.runSequence(['css', 'html'], fn);
+})
 
 //Task used in development phase.
-gulp.task('dev', function(fn) {
-    plugins.runSequence('build', ['watch', 'browser-sync'], fn);
+gulp.task('dev', (fn) => {
+    plugins.runSequence(['build'], fn);
 });
 
