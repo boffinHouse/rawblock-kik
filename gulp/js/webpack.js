@@ -10,49 +10,13 @@
 module.exports = function(paths, gulp, plugins) {
     'use strict';
 
-    const webpack = require('webpack-stream');
+    const webpack = require('webpack');
     const gulpWebpack = require('webpack-stream');
-    const named = require('vinyl-named');
-
-    const webpackPlugins = [
-         //new webpack.optimize.DedupePlugin(),
-        //new webpack.optimize.CommonsChunkPlugin({
-        //    children: true,
-        //    async: true,
-        //    minSize: 10000,
-        //}),
-        //new webpack.optimize.CommonsChunkPlugin({
-        //    children: true,
-        //    async: true,
-        //    minSize: 3000,
-        //    minChunks: 3,
-        //}),
-        //new webpack.optimize.CommonsChunkPlugin({
-        //    children: true,
-        //    async: true,
-        //    minSize: 500,
-        //    minChunks: 6,
-        //}),
-        //new webpack.optimize.AggressiveMergingPlugin({
-        //    minSizeReduce: 3,
-        //    moveToParents: true,
-        //    entryChunkMultiplicator: 5,
-        //}),
-        //new webpack.optimize.AggressiveMergingPlugin({
-        //    minSizeReduce: 1.5,
-        //}),
-        //new webpack.DefinePlugin({
-        //    'process.env': {
-        //        'NODE_ENV': JSON.stringify(grunt.config.get('env')),
-        //    },
-        //}),
-    ];
 
     return function() {
         const isProduction = plugins.util.env.type == 'production';
 
         gulp.src([plugins.path.join(paths.assets.js, '_*.js')])
-            .pipe(named())
             .pipe(gulpWebpack(
                 {
                     cache: true,
@@ -96,12 +60,41 @@ module.exports = function(paths, gulp, plugins) {
                     devtool: isProduction ? '' : 'sourcemap',
                     watch: !isProduction,
                     debug: !isProduction,
-                    //output: {
-                    //    path: plugins.path.join(paths.dev, 'js/'),
-                    //},
-                    plugins: webpackPlugins,
+                    plugins: [
+                        new webpack.optimize.DedupePlugin(),
+                        new webpack.optimize.CommonsChunkPlugin({
+                            children: true,
+                            async: true,
+                            minSize: 10000,
+                        }),
+                        new webpack.optimize.CommonsChunkPlugin({
+                            children: true,
+                            async: true,
+                            minSize: 3000,
+                            minChunks: 3,
+                        }),
+                        new webpack.optimize.CommonsChunkPlugin({
+                            children: true,
+                            async: true,
+                            minSize: 500,
+                            minChunks: 6,
+                        }),
+                        new webpack.optimize.AggressiveMergingPlugin({
+                            minSizeReduce: 3,
+                            moveToParents: true,
+                            entryChunkMultiplicator: 5,
+                        }),
+                        new webpack.optimize.AggressiveMergingPlugin({
+                            minSizeReduce: 1.5,
+                        }),
+                        new webpack.DefinePlugin({
+                            'process.env': {
+                                'NODE_ENV': JSON.stringify(plugins.util.env.type),
+                            },
+                        }),
+                    ],
                 }
-            ), webpack)
+            ))
             .on('error', function swallowError (error) {
                 /* eslint-disable */
                 console.log(error.toString());
