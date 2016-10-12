@@ -95,6 +95,8 @@ module.exports = function(paths, gulp, plugins) {
                     ],
                 }
             ))
+            .pipe(isProduction ? plugins.uglify() : plugins.util.noop())
+            .pipe(isProduction ? plugins.rename({suffix: '.min'}) : plugins.util.noop())
             .on('error', function swallowError (error) {
                 /* eslint-disable */
                 console.log(error.toString());

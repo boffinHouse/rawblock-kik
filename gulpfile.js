@@ -56,6 +56,7 @@ gulp.task('watch', plugins.getTaskModule('watch'));
 gulp.task('html', plugins.getTaskModule('html/assemble'));
 gulp.task('js', plugins.getTaskModule('js/webpack'));
 
+
 /**
  * Utility tasks
  */
@@ -67,7 +68,11 @@ gulp.task('clean', (fn) => {
     ], fn);
 });
 
-
+gulp.task('uglify:inline', function() {
+    gulp.src(plugins.path.join(paths.src, 'js/_inlinehead-behavior.js'))
+        .pipe(plugins.uglify())
+        .pipe(gulp.dest(plugins.path.join(paths.dev, 'js/')));
+});
 /**
  * Main tasks
  */
@@ -75,11 +80,11 @@ gulp.task('clean', (fn) => {
 //Task default
 gulp.task('default', (fn) => {
     plugins.util.env.type = 'production';
-    plugins.runSequence(['build', 'cssmin',], fn);
+    plugins.runSequence(['build', 'cssmin', 'uglify',], fn);
 });
 
 gulp.task('build', ['clean'], (fn) => {
-    plugins.runSequence(['css', 'js', 'html',], fn);
+    plugins.runSequence(['css', 'js', 'uglify:inline', 'html',], fn);
 })
 
 //Task used in development phase.
