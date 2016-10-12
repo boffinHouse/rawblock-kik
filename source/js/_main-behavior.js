@@ -12,14 +12,8 @@ rb.isDebug = 1;
 //if webpack is used:
 __webpack_public_path__ = ASSETBASEPATH + 'js/';
 
-require('../../taskrunner/grunt/webpack/globloader!./glob.paths');
+require('../../gulp/js/webpack/globloader!./glob.paths');
 
-require('../../taskrunner/grunt/webpack/lazyglobloader!./lazyglob.paths');
+require('../../gulp/js/webpack/lazyglobloader!./lazyglob.paths');
 
 rb.$(rb.live.init);
-
-
-
-
-
-

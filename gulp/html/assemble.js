@@ -11,7 +11,7 @@ module.exports = (paths, gulp, plugins) => {
 
     const assemble = require('assemble')();
 
-    return function()  {
+    return function() {
 
         //Layouts
         assemble.layouts(plugins.path.join(paths.html, 'layouts/{,**/}*.hbs'));
@@ -30,7 +30,12 @@ module.exports = (paths, gulp, plugins) => {
 
         assemble.src([plugins.path.join(paths.html, 'pages/{,**/}*.hbs'),])
             //.toStream('pages')
-            .pipe(assemble.renderFile().on('error', (error) => {console.log(error.message + ' inside assemble')}))
+            .pipe(assemble.renderFile())
+            .on('error', function swallowError(error) {
+                /* eslint-disable */
+                console.log(error.toString() + ' inside assemble');
+                this.emit('end');
+            })
             .pipe(plugins.extname())
             .pipe(gulp.dest(paths.dev))
         ;

@@ -52,7 +52,9 @@ plugins.getTaskModule = (task) => {
 
 gulp.task('css', plugins.getTaskModule('css/sass'));
 gulp.task('cssmin', plugins.getTaskModule('css/cssmin'));
+gulp.task('watch', plugins.getTaskModule('watch'));
 gulp.task('html', plugins.getTaskModule('html/assemble'));
+gulp.task('js', plugins.getTaskModule('js/webpack'));
 
 /**
  * Utility tasks
@@ -77,11 +79,11 @@ gulp.task('default', (fn) => {
 });
 
 gulp.task('build', ['clean'], (fn) => {
-    plugins.runSequence(['css', 'html'], fn);
+    plugins.runSequence(['css', 'js', 'html',], fn);
 })
 
 //Task used in development phase.
 gulp.task('dev', (fn) => {
-    plugins.runSequence(['build'], fn);
+    plugins.runSequence('build', ['watch'], fn);
 });
 

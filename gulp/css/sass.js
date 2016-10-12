@@ -13,12 +13,13 @@ module.exports = function(paths, gulp, plugins) {
     const postcssImport = require('postcss-import');
 
     return function() {
+        const isProduction = plugins.util.env.type == 'production';
 
         gulp.src([plugins.path.join(paths.assets.css, 'styles.scss')])
 
             //Process Sass
             .pipe(plugins.sassGlob())
-            .pipe(plugins.util.env.type !== 'production' ? plugins.sourcemaps.init() : plugins.util.noop())
+            .pipe(isProduction ?  plugins.util.noop() : plugins.sourcemaps.init())
             .pipe(plugins.sass({
                 errLogToConsole: true,
                 style: 'compressed',

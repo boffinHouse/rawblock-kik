@@ -34,10 +34,12 @@
     "autoprefixer": "^6.5.0",
     "babel": "^6.5.2",
     "babel-core": "^6.17.0",
+    "babel-loader": "^6.2.5",
     "babel-preset-es2015": "^6.16.0",
     "babel-preset-es2015-loose": "^8.0.0",
     "babel-preset-es2016": "^6.16.0",
     "babel-preset-es2017": "^6.16.0",
+    "glob-expand": "^0.2.1",
     "gulp": "^3.9.0",
     "gulp-clean-css": "^2.0.13",
     "gulp-extname": "^0.2.2",
@@ -47,13 +49,15 @@
     "gulp-sass-glob": "^1.0.6",
     "gulp-sourcemaps": "^2.0.0",
     "gulp-util": "^3.0.7",
+    "gulp-watch": "^4.3.5",
     "handlebars-helpers": "^0.7.5",
     "path": "^0.12.7",
     "postcss-import": "^8.1.2",
-    "run-sequence": "^1.2.2"
+    "run-sequence": "^1.2.2",
+    "webpack": "^1.13.2",
+    "webpack-stream": "^3.2.0"
   },
   "keywords": [
-    "don't use 'rawblock' as keyword. handlebars-helpers is quite strange: https://github.com/assemble/handlebars-helpers/blob/v0.5.8/lib/helper-lib.js#L46-L60",
     "rawblock"
   ]
 }
