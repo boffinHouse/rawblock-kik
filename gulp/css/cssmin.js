@@ -9,7 +9,7 @@
 module.exports = function(paths, gulp, plugins) {
     'use strict';
 
-    return () => {
+    return function() {
 
         gulp.src([plugins.path.join(paths.dev, '/css/*.css'), '!/**/*.min.css'])
             .pipe(plugins.cleanCss({
@@ -20,7 +20,7 @@ module.exports = function(paths, gulp, plugins) {
             }))
             .pipe(gulp.dest(plugins.path.join(paths.dev, '/css/')))
         ;
-    }
+    };
 
     return gulp;
 };

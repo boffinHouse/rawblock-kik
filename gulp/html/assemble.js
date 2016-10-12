@@ -10,9 +10,8 @@ module.exports = (paths, gulp, plugins) => {
     'use strict';
 
     const assemble = require('assemble')();
-    const extname = require('gulp-extname');
 
-    return () => {
+    return function()  {
 
         //Layouts
         assemble.layouts(plugins.path.join(paths.html, 'layouts/{,**/}*.hbs'));
@@ -29,12 +28,10 @@ module.exports = (paths, gulp, plugins) => {
         assemble.data(plugins.path.join(paths.html, 'data/**/*.{js,json}'));
         assemble.data(plugins.path.join(paths.components, '**/*.{json, js}'));
 
-        assemble.src([
-                plugins.path.join(paths.html, 'pages/{,**/}*.hbs'),
-            ])
+        assemble.src([plugins.path.join(paths.html, 'pages/{,**/}*.hbs'),])
             //.toStream('pages')
-            .pipe(assemble.renderFile())
-            .pipe(extname())
+            .pipe(assemble.renderFile().on('error', (error) => {console.log(error.message + ' inside assemble')}))
+            .pipe(plugins.extname())
             .pipe(gulp.dest(paths.dev))
         ;
     };

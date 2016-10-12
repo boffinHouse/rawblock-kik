@@ -13,7 +13,6 @@ const plugins = require('gulp-load-plugins')();
 plugins.path = require('path');
 //plugins.browserSync = require('browser-sync');
 plugins.runSequence = require('run-sequence'); //temporary solution until the release of gulp 4.0
-//plugins.eventStream = require('event-stream');
 
 
 // Shared paths

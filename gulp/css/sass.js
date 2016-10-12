@@ -12,7 +12,7 @@ module.exports = function(paths, gulp, plugins) {
     const autoprefixer = require('autoprefixer');
     const postcssImport = require('postcss-import');
 
-    return () => {
+    return function() {
 
         gulp.src([plugins.path.join(paths.assets.css, 'styles.scss')])
 
@@ -37,7 +37,7 @@ module.exports = function(paths, gulp, plugins) {
             .pipe(plugins.sourcemaps.write('.'))
             .pipe(gulp.dest(plugins.path.join(paths.dev, 'css')))
         ;
-    }
+    };
 
     return gulp;
 };

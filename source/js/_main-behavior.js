@@ -1,6 +1,6 @@
 var ASSETBASEPATH = window.appGlobals && appGlobals.basePath || '';
 //load dom or jQuery
-require('rawblock/sources/js/libs//rb_$');
+require('rawblock/sources/js/libs/rb_$');
 
 require('rawblock/sources/js/libs/rb_main');
 
