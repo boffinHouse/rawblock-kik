@@ -8,12 +8,10 @@
 const gulp =  require('gulp');
 const plugins = require('gulp-load-plugins')();
 
-
 // Non-gulp modules
 plugins.path = require('path');
 //plugins.browserSync = require('browser-sync');
 plugins.runSequence = require('run-sequence'); //temporary solution until the release of gulp 4.0
-
 
 // Shared paths
 const paths = {
@@ -73,14 +71,14 @@ gulp.task('uglify:inline', function() {
         .pipe(plugins.uglify())
         .pipe(gulp.dest(plugins.path.join(paths.dev, 'js/')));
 });
+
 /**
  * Main tasks
  */
 
-//Task default
 gulp.task('default', (fn) => {
     plugins.util.env.type = 'production';
-    plugins.runSequence(['build', 'cssmin', 'uglify',], fn);
+    plugins.runSequence(['build', 'cssmin',], fn);
 });
 
 gulp.task('build', ['clean'], (fn) => {
@@ -91,4 +89,3 @@ gulp.task('build', ['clean'], (fn) => {
 gulp.task('dev', (fn) => {
     plugins.runSequence('build', ['watch'], fn);
 });
-
