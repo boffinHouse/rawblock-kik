@@ -10,7 +10,7 @@ const plugins = require('gulp-load-plugins')();
 
 // Non-gulp modules
 plugins.path = require('path');
-//plugins.browserSync = require('browser-sync');
+plugins.browserSync = require('browser-sync');
 plugins.runSequence = require('run-sequence'); //temporary solution until the release of gulp 4.0
 
 // Shared paths
@@ -53,6 +53,7 @@ gulp.task('cssmin', plugins.getTaskModule('css/cssmin'));
 gulp.task('watch', plugins.getTaskModule('watch'));
 gulp.task('html', plugins.getTaskModule('html/assemble'));
 gulp.task('js', plugins.getTaskModule('js/webpack'));
+gulp.task('browser-sync', plugins.getTaskModule('browser-sync'));
 
 
 /**
@@ -87,5 +88,10 @@ gulp.task('build', ['clean'], (fn) => {
 
 //Task used in development phase.
 gulp.task('dev', (fn) => {
-    plugins.runSequence('build', ['watch'], fn);
+    plugins.runSequence('build', ['watch', 'browser-sync'], fn);
+});
+
+gulp.task('testing', (fn) => {
+    plugins.util.env.type = 'testing';
+    plugins.runSequence('build', ['watch', 'browser-sync'], fn);
 });
