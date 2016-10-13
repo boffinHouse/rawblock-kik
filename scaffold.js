@@ -274,24 +274,25 @@ function copyFiles(fileGroups){
             (file.onlyIfData && !isData) ||
             fileGroups.indexOf(file.groupId) == -1
         ){return;}
-
+        
         installPath = path.join(baseInstallPath, replaceNames(file.file));
-        
-        console.log(installPath, '1');
-        
+
         if(fs.existsSync(installPath)) {
             console.log(installPath + ' already exists. No action.');
             return;
         }
+
+        content = replaceNames(fs.readFileSync(path.join(copyDir, file.file), 'utf8') || '');
         
-        // content = replaceNames(fs.readFileSync(path.join(copyDir, file.file)) || '');
-    
-        console.log(fs.readFileSync(path.join(copyDir, file.file)))
-        //fs.writeFileSync(installPath, content);
+        fs.outputFile(installPath, content, function(error) {
+            if(error) {
+                return console.log(error);
+            }
+        });
+        
     });
 
     console.log('Installed to: '+ baseInstallPath);
 }
-
 
 questionPreset();
