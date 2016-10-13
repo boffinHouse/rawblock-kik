@@ -1,30 +1,41 @@
-#RawBlock
-The worlds most flexible and efficient responsive component library to build modular HTML5 web interfaces.
+#RawBlock-kik
+The kickstarter for the worlds most flexible and efficient responsive component library to build modular HTML web interfaces: Rawblock.
 
 ##Prerequisites
-
-
+- Mac OS X, Windows, or Linux
+- Node.js [v4.6.0](https://nodejs.org/en/) or newer
+- npm v3.3 or newer (new to [npm](https://docs.npmjs.com/getting-started/what-is-npm)?)
+- Gulp installed global `npm install -g gulp`
 
 ##Getting Started
-This is what you have to do to start a project with RawBlock.
 
-- Download the [latest](https://github.com/boffinHouse/rawblock/archive/gh-pages.zip) version.
+1. Get the latest version (only if no project exists)
+Download the [kik](https://github.com/boffinHouse/rawblock-kik/archive/gh-pages.zip) or clone `git clone https://github.com/boffinHouse/rawblock-kik.git yourAppName` this repository.
 
-##Building
+2. Run npm install
+`npm install` : This will install both run-time project dependencies and developer tools listed in package.json file.
 
-Grunt build tasks:
+3. Run gulp commands
 
-- `grunt`: Deletes previously `dev` build, rebuilds templates (assemble, prettify html), rebuilds css (compiles sass to css, prefixes css), rebuilds JS (compiles ). Use in development phase.
-- `grunt dist`: Deletes previously `dist` build, rebuilds templates (assemble, prettify html), rebuilds css (compiles sass to css, prefixes css, minifies the css), rebuilds JS (compiles ). Use for distribution.
+    - `gulp` : Build & Optimize. Ready for deployment.
+    - `gulp dev` : Development. Watch for Changes & active Server
 
+        [Checkout](#) all available gulp commands
+
+##Directory Structure
+    ├── gulp
+    └── source
+        ├── components
+        ├── js
+        ├── media
+        ├── sass
+        └── templates
+            ├── data
+            ├── helpers
+            ├── layouts
+            ├── pages
+            └── partials
 
 ##LICENSE
-RawBlock is licensed under the MIT Open Source license. For more information, see the [LICENSE](https://github.com/boffinHouse/rawblock/blob/gh-pages/LICENSE) file in this repository.
+RawBlock-kik is licensed under the MIT Open Source license. For more information, see the [LICENSE](https://github.com/boffinHouse/rawblock-kik/blob/gh-pages/LICENSE) file in this repository.
 
-
-Setup
-
-//Assemble
-
-Install assemble global
-`npm i -g assemble`
