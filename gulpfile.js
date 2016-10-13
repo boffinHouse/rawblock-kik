@@ -83,12 +83,8 @@ gulp.task('default', (fn) => {
     plugins.runSequence(['build', 'cssmin',], fn);
 });
 
-gulp.task('build', ['clean'], (fn) => {
-    plugins.runSequence(['css', 'eslint', 'js', 'uglify:inline', 'html',], fn);
-})
-
-//Task used in development phase.
 gulp.task('dev', (fn) => {
+    plugins.util.env.type = 'development';
     plugins.runSequence('build', ['watch', 'browser-sync'], fn);
 });
 
@@ -96,3 +92,7 @@ gulp.task('testing', (fn) => {
     plugins.util.env.type = 'testing';
     plugins.runSequence('build', ['watch', 'browser-sync'], fn);
 });
+
+gulp.task('build', ['clean'], (fn) => {
+    plugins.runSequence(['css', 'eslint', 'js', 'uglify:inline', 'html',], fn);
+})

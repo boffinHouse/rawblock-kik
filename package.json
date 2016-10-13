@@ -26,6 +26,7 @@
     "test"
   ],
   "dependencies": {
+    "lazysizes": "^2.0.4",
     "normalize.css": "^5.0.0",
     "rawblock": "^0.7.3"
   },
@@ -40,6 +41,7 @@
     "babel-preset-es2016": "^6.16.0",
     "babel-preset-es2017": "^6.16.0",
     "browser-sync": "^2.17.3",
+    "fs-extra": "^0.30.0",
     "glob-expand": "^0.2.1",
     "gulp": "^3.9.0",
     "gulp-clean-css": "^2.0.13",
@@ -55,6 +57,7 @@
     "gulp-util": "^3.0.7",
     "gulp-watch": "^4.3.5",
     "handlebars-helpers": "^0.7.5",
+    "inquirer": "^1.2.2",
     "path": "^0.12.7",
     "postcss-import": "^8.1.2",
     "run-sequence": "^1.2.2",
