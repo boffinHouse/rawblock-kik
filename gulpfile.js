@@ -53,6 +53,7 @@ gulp.task('cssmin', plugins.getTaskModule('css/cssmin'));
 gulp.task('watch', plugins.getTaskModule('watch'));
 gulp.task('html', plugins.getTaskModule('html/assemble'));
 gulp.task('js', plugins.getTaskModule('js/webpack'));
+gulp.task('eslint', plugins.getTaskModule('js/eslint'));
 gulp.task('browser-sync', plugins.getTaskModule('browser-sync'));
 
 
@@ -83,7 +84,7 @@ gulp.task('default', (fn) => {
 });
 
 gulp.task('build', ['clean'], (fn) => {
-    plugins.runSequence(['css', 'js', 'uglify:inline', 'html',], fn);
+    plugins.runSequence(['css', 'eslint', 'js', 'uglify:inline', 'html',], fn);
 })
 
 //Task used in development phase.
