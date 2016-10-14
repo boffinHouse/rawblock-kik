@@ -13,7 +13,7 @@ module.exports = function(paths, gulp, plugins) {
     return function() {
         gulp.src([
             plugins.path.join(paths.assets.fonts, '/**/*'),
-            plugins.path.join(paths.assets.media, '/**/*.{jpg,png,svg,webp}'),
+            plugins.path.join(paths.assets.media, '/!(favicon)**/*.{jpg,png,svg,webp}'),
         ], {base: paths.src})
             .pipe(plugins.changed(paths.dev))
             .pipe(gulp.dest(paths.dev));

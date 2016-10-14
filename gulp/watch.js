@@ -26,12 +26,11 @@ module.exports = function(paths, gulp, plugins) {
             gulp.start('html');
         });
 
-        //plugins.watch([
-        //    plugins.path.join(paths.assets.fonts, '/**/*.{ttf,woff}'),
-        //    plugins.path.join(paths.assets.media, '/**/*'),
-        //    plugins.path.join(paths.components, '/**/*'),
-        //], function() {
-        //    gulp.start('media:copy');
-        //});
+        plugins.watch([
+           plugins.path.join(paths.assets.fonts, '/**/*'),
+           plugins.path.join(paths.assets.media, '/**/*'),
+        ], function() {
+           gulp.start('copy');
+        });
     };
 };

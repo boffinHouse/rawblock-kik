@@ -56,6 +56,7 @@ gulp.task('js', plugins.getTaskModule('js/webpack'));
 gulp.task('eslint', plugins.getTaskModule('js/eslint'));
 gulp.task('browser-sync', plugins.getTaskModule('browser-sync'));
 gulp.task('copy', plugins.getTaskModule('copy'));
+gulp.task('favicon', plugins.getTaskModule('favicon'));
 
 
 /**
@@ -95,5 +96,5 @@ gulp.task('testing', (fn) => {
 });
 
 gulp.task('build', ['clean'], (fn) => {
-    plugins.runSequence(['css', 'eslint', 'js', 'uglify:inline', 'html', 'copy'], fn);
+    plugins.runSequence(['copy', 'css', 'eslint', 'js', 'uglify:inline', 'html'], fn);
 })
