@@ -55,6 +55,7 @@ gulp.task('html', plugins.getTaskModule('html/assemble'));
 gulp.task('js', plugins.getTaskModule('js/webpack'));
 gulp.task('eslint', plugins.getTaskModule('js/eslint'));
 gulp.task('browser-sync', plugins.getTaskModule('browser-sync'));
+gulp.task('copy', plugins.getTaskModule('copy'));
 
 
 /**
@@ -94,5 +95,5 @@ gulp.task('testing', (fn) => {
 });
 
 gulp.task('build', ['clean'], (fn) => {
-    plugins.runSequence(['css', 'eslint', 'js', 'uglify:inline', 'html',], fn);
+    plugins.runSequence(['css', 'eslint', 'js', 'uglify:inline', 'html', 'copy'], fn);
 })
