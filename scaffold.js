@@ -1,19 +1,20 @@
-var fullName, fullUnderscoreName, name, upperName, isFull, isJs, isData;
+'use strict';
+let fullName, fullUnderscoreName, name, upperName, isFull, isJs, isData;
 
 const path = require('path');
 const inquirer = require('inquirer');
 const fs = require('fs-extra');
 
-var copyDir = '.scaffold/';
-var installDir = 'source/components/';
+const copyDir = '.scaffold/';
+const installDir = 'source/components/';
 
-var regName = /\{name}/g;
-var regFullName = /\{fullName}/g;
-var regFullUnderscoreName = /\{fullUnderscoreName}/g;
-var regUpperName = /\{Name}/g;
-var regRemove = /\{isJs}|\{isNoJs}|\{isData}|\{isNoData}/g;
+const regName = /\{name}/g;
+const regFullName = /\{fullName}/g;
+const regFullUnderscoreName = /\{fullUnderscoreName}/g;
+const regUpperName = /\{Name}/g;
+const regRemove = /\{isJs}|\{isNoJs}|\{isData}|\{isNoData}/g;
 
-var groups = [
+const groups = [
     {
         id: 'sass',
         name: 'SCSS file',
@@ -49,7 +50,8 @@ var groups = [
         name: 'Documentation (md and doc page)',
     },
 ];
-var files = [
+
+const files = [
     {
         groupId: 'jsTests',
         file: 'tests/funit/{name}-tests.html',
@@ -150,8 +152,8 @@ function replaceNames(str){
 }
 
 function handlePreset(answers){
-    var choices = [];
-    var handledChoices = {};
+    let choices = [];
+    let handledChoices = {};
 
     name = answers.name;
 
@@ -170,7 +172,7 @@ function handlePreset(answers){
     isData = isFull || answers.preset.indexOf('medium') != -1;
 
 
-    groups.forEach(function(item){
+    groups.forEach((item) => {
         if(handledChoices[item.id] || (!isJs && item.onlyIfJs) || (!isData && item.onlyIfData)){return;}
 
         handledChoices[item.id] = true;
@@ -187,12 +189,12 @@ function handlePreset(answers){
 
 function questionPreset(){
 
-    var questions = [
+    const questions = [
         {
             type: 'input',
             name: 'name',
             message: 'What is the name of your component?',
-            validate: function(value){
+            validate: (value) => {
                 return !!(value.match(/^[a-z_0-9]+$/)) || 'The name can only consist of latin letters.';
             },
         },
@@ -200,7 +202,7 @@ function questionPreset(){
             type: 'input',
             name: 'prefix',
             message: 'What prefix do you want to use? (type "-" for no namespace)',
-            default: function () { return 'rb'; },
+            default: () => { return 'rb'; },
         },
         {
             type: "list",
@@ -238,7 +240,7 @@ function questionPreset(){
         },
     ];
 
-    inquirer.prompt( questions).then(function( answers ) {
+    inquirer.prompt(questions).then( (answers) => {
         handlePreset(answers);
     });
 }
@@ -250,23 +252,23 @@ function checkoutScaffold(choices){
             message: 'Should we scaffold the following checked files for you?',
             name: 'fileGroups',
             choices: choices,
-            validate: function( answer ) {
+            validate: (answer) => {
                 if ( answer.length < 1 ) {
                     return 'You must choose at least one file group.';
                 }
                 return true;
             }
         }
-    ]).then(function( answers ) {
+    ]).then( ( answers ) => {
         copyFiles(answers.fileGroups);
     });
 }
 
 function copyFiles(fileGroups){
-    var baseInstallPath = path.join(installDir, fullUnderscoreName);
+    let baseInstallPath = path.join(installDir, fullUnderscoreName);
 
     files.forEach(function(file){
-        var content, installPath;
+        let content, installPath;
 
         if((file.onlyIfJs && !isJs) ||
             (file.onlyIfNoJs && isJs) ||
@@ -284,7 +286,7 @@ function copyFiles(fileGroups){
 
         content = replaceNames(fs.readFileSync(path.join(copyDir, file.file), 'utf8') || '');
         
-        fs.outputFile(installPath, content, function(error) {
+        fs.outputFile(installPath, content, (error) => {
             if(error) {
                 return console.log(error);
             }
