@@ -18,6 +18,4 @@ module.exports = function(paths, gulp, plugins) {
             .pipe(plugins.changed(paths.dev))
             .pipe(gulp.dest(paths.dev));
     };
-    
-    return gulp;
 };

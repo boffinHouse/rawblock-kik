@@ -10,6 +10,7 @@ module.exports = function(paths, gulp, plugins) {
     'use strict';
     
     return function() {
+        
         gulp.src([
                 plugins.path.join(paths.assets.js, '**/*.js'),
                 '!/**/vendor/**/*.js'
@@ -22,6 +23,4 @@ module.exports = function(paths, gulp, plugins) {
             .pipe(plugins.eslint.failAfterError())
         ;
     };
-    
-    return gulp;
 };

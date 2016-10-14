@@ -45,6 +45,4 @@ module.exports = function(paths, gulp, plugins) {
             .pipe(gulp.dest(appSrc))
         ;
     };
-    
-    return gulp;
 };

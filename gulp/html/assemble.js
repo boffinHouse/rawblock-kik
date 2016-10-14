@@ -40,6 +40,4 @@ module.exports = (paths, gulp, plugins) => {
             .pipe(gulp.dest(paths.dev))
         ;
     };
-
-    return assemble;
 };

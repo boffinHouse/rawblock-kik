@@ -39,6 +39,5 @@ module.exports = function(paths, gulp, plugins) {
             .pipe(gulp.dest(plugins.path.join(paths.dev, 'css')))
         ;
     };
-
-    return gulp;
+    
 };
