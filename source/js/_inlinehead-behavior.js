@@ -43,7 +43,7 @@
     //            fonts.forEach(function(font){
     //                font.load();
     //            });
-    //        }, 50);
+    //        });
     //    })([]);
     //}
 })(window);
