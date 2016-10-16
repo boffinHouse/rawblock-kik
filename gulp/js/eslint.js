@@ -8,16 +8,16 @@
  */
 module.exports = function(paths, gulp, plugins) {
     'use strict';
-    
+
     return function() {
-        
+
         gulp.src([
                 plugins.path.join(paths.assets.js, '**/*.js'),
-                '!/**/vendor/**/*.js'
+                '!/**/vendor/**/*.js',
             ])
             .pipe(plugins.eslint({
                 useEslintrc: true,
-                configFile: '.eslintrc'
+                configFile: '.eslintrc',
             }))
             .pipe(plugins.eslint.format())
             .pipe(plugins.eslint.failAfterError())

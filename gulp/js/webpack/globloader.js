@@ -4,7 +4,7 @@ var path = require('path');
 var regSplit = /\s+/gm;
 var expand = require('glob-expand');
 
-module.exports = function (content, sourceMap) {
+module.exports = function (content, _sourceMap) {
     var patterns = content.trim().split(regSplit);
     var files = expand(
         {

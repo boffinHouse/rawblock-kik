@@ -1,16 +1,16 @@
 "use strict";
 
-var path = require("path");
+var path = require('path');
 var regSplit = /\s+/gm;
 var expand = require('glob-expand');
 
-module.exports = function (content, sourceMap) {
+module.exports = function (content, _sourceMap) {
     var ret;
     var patterns = content.trim().split(regSplit);
     var files = expand(
         {
-            'cwd': path.dirname(this.resourcePath),
-            'filter': 'isFile'
+            cwd: path.dirname(this.resourcePath),
+            filter: 'isFile'
         },
         patterns
     );
@@ -39,13 +39,13 @@ module.exports = function (content, sourceMap) {
         extendModuleNames(fileName, moduleNames);
         extendModuleNames(dirName, moduleNames);
 
-        return "addImportHook(" + JSON.stringify(moduleNames) +", function(){\n" +
+        return 'addImportHook(' + JSON.stringify(moduleNames) +', function(){\n' +
             "    require('bundle!"  + file.replace(/\.js$/, '') + "');\n" +
-            "});"
+            '});'
         ;
     });
 
-    ret = "module.exports = (function(addImportHook){" + files.join("\n") + "})(rb.live.addImportHook);";
+    ret = 'module.exports = (function(addImportHook){' + files.join('\n') + '})(rb.live.addImportHook);';
 
     return ret;
 };

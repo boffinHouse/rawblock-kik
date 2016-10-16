@@ -5,7 +5,8 @@
         "modules": true
     },
     "env": {
-        "browser": true
+        "browser": true,
+        "shared-node-browser": true
     },
     "globals": {
         "module": false,
@@ -18,6 +19,12 @@
     "extends": ["eslint:recommended"],
     "rules": {
         "comma-dangle": [1, "always-multiline"],
-        "no-unused-vars": [2, { "argsIgnorePattern": "^_"}]
+        "no-unused-vars": [2, { "argsIgnorePattern": "^_", "args": "after-used", "varsIgnorePattern": "_"}],
+        "quotes": [2, "single", { "avoidEscape": true, "allowTemplateLiterals": true }],
+        "radix": [2],
+        "no-with": [1],
+        "no-useless-escape": [2],
+        "no-useless-concat": [2],
+        "no-useless-call": [2]
     }
 }

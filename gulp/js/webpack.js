@@ -55,7 +55,7 @@ module.exports = function(paths, gulp, plugins) {
                         ]
                     },
                     resolve: {
-                        alias: {}
+                        alias: {},
                     },
                     devtool: isProduction ? '' : 'source-map',
                     watch: !isProduction,
