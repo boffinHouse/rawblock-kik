@@ -65,6 +65,8 @@
     "inquirer": "~1.2.2",
     "path": "~0.12.7",
     "postcss-import": "~8.1.2",
+    "rb_template": "^0.1.0",
+    "rb_template-loader": "^0.1.0",
     "run-sequence": "~1.2.2",
     "webpack": "~1.13.2",
     "webpack-stream": "~3.2.0"

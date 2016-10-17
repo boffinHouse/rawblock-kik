@@ -45,14 +45,10 @@ module.exports = function(paths, gulp, plugins) {
                                 loader: 'style-loader!css-loader',
                             },
                             {
-                                test: /\.scss$/,
-                                loaders: ['style', 'css', 'sass'],
-                            },
-                            {
                                 test: /\.ejs/,
                                 loader: 'rb_template-loader',
-                            }
-                        ]
+                            },
+                        ],
                     },
                     resolve: {
                         alias: {},
