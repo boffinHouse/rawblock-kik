@@ -5,7 +5,7 @@ Main Stylesheet
 
 **********************************************************/
 // Functions / Mixins
-@import "rawblock";
+@import "../../node_modules/rawblock/sources/sass/helpers/index";
 
 //Settings
 @import "settings/**/*.scss";

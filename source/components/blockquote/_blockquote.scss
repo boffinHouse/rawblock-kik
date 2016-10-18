@@ -1,0 +1,86 @@
+/*
+ * Component: blockquote
+**********************************************************/
+
+
+// Variables
+//**********************************************************
+
+
+// Dependencies (Helpers)
+//**********************************************************
+
+
+//----------------------------------------------------------
+
+.mod_blockquote {
+    position: relative;
+    padding: rb-rem-calc(140px 60px 150px);
+    text-align: center;
+    color: $color-rome;
+
+    @include rb-respond-to((to: s)) {
+        padding: rb-rem-calc(80px 20px 80px);
+    }
+}
+
+.blockquote_hook {
+    position: relative;
+    z-index: 1;
+    margin: rb-rem-calc(0 0 50px);
+    font: italic 400 rb-em-calc(48px)/1.2 $font-serif;
+    color: $color-berlin;
+
+    @media (max-width: rb-rem-calc(400px)) {
+        font-size: rb-rem-calc(25px);
+    }
+
+    @media (min-width: rb-rem-calc(400px)) and (max-width: rb-rem-calc(1440px)) {
+        @include fluid-type-range(font-size, 30px, 48px, 400px, 1440px);
+    }
+
+    @include rb-respond-to(xl) {
+        @include fluid-type-range(font-size, 48px, 58px, 1441px, 1920px);
+    }
+
+    @include rb-respond-to(xxl) {
+        font-size: rb-rem-calc(58px);
+    }
+}
+
+.blockqoute_footer {
+    @include fluid-copytext;
+    color: $color-amsterdam;
+}
+
+.blockqoute_cite {
+    display: block;
+    margin: rb-rem-calc(0 0 10px);
+    font-weight: 600;
+    font-style: normal;
+    color: $color-berlin;
+}
+
+.blockquote_icon_open,
+.blockquote_icon_close {
+    position: absolute;
+    height: rb-rem-calc(80px);
+    width: rb-rem-calc(118px);
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    fill: currentColor;
+
+    @include rb-respond-to((to: s)) {
+        height: rb-rem-calc(60px);
+        width: rb-rem-calc(90px);
+    }
+}
+
+.blockquote_icon_open {
+    top: rb-rem-calc(0);
+}
+
+.blockquote_icon_close {
+    bottom: rb-rem-calc(0);
+}

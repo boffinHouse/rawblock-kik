@@ -21,6 +21,7 @@ const paths = {
     src: plugins.path.join(__dirname, 'source'),
     dev: plugins.path.join(__dirname, 'dev'),
     dist: plugins.path.join(__dirname, 'dist'),
+    doc: plugins.path.join(__dirname, 'docs'),
     tasks: plugins.path.join(__dirname, 'gulp'),
 
     // Assets
@@ -29,6 +30,7 @@ const paths = {
         js: plugins.path.join(__dirname, 'source/js'),
         fonts: plugins.path.join(__dirname, 'source/fonts'),
         media: plugins.path.join(__dirname, 'source/media')
+        //styleguide: plugins.path.join(__dirname, 'source/media')
     },
 
     // HTML templates, Components
@@ -51,12 +53,13 @@ plugins.getTaskModule = (task) => {
 gulp.task('css', plugins.getTaskModule('css/sass'));
 gulp.task('cssmin', plugins.getTaskModule('css/cssmin'));
 gulp.task('watch', plugins.getTaskModule('watch'));
-gulp.task('html', plugins.getTaskModule('html/assemble'));
+gulp.task('html', plugins.getTaskModule('html/html'));
 gulp.task('js', plugins.getTaskModule('js/webpack'));
 gulp.task('eslint', plugins.getTaskModule('js/eslint'));
 gulp.task('browser-sync', plugins.getTaskModule('browser-sync'));
 gulp.task('copy', plugins.getTaskModule('copy'));
 gulp.task('favicon', plugins.getTaskModule('favicon'));
+gulp.task('doc:html', plugins.getTaskModule('doc/doc-html'));
 
 
 /**

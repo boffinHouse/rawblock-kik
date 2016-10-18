@@ -1,0 +1,48 @@
+<section class="layout_section">
+    <div class="layout_section_inner">
+
+        <div class="u_column_group u_gutters">
+            <div class="u_size_33">
+                <ul class="doc_list">
+                    <li class="doc_list_item">
+                        <div class="doc_explain">
+                            <h3>Default Button (link)</h3>
+                        </div>
+                        {{#mergePathWithJSON "button#module" "title: 'Default Button'" }}
+                            {{> button/button }}
+                        {{/mergePathWithJSON}}
+                    </li>
+                    <li class="doc_list_item">
+                        <div class="doc_explain">
+                            <h3>Lined Button (link)</h3>
+                        </div>
+                        {{#mergePathWithJSON "button#module" "variant: 'var_line', title: 'Line Button'" }}
+                            {{> button/button }}
+                        {{/mergePathWithJSON}}
+                    </li>
+                </ul>
+            </div>
+            <div class="u_size_33">
+                <ul class="doc_list">
+                    <li class="doc_list_item">
+                        <div class="doc_explain">
+                            <h3>Default Button</h3>
+                        </div>
+                        {{#mergePathWithJSON "button#module" "title: 'Default Button',  link: ''" }}
+                            {{> button/button }}
+                        {{/mergePathWithJSON}}
+                    </li>
+                    <li class="doc_list_item">
+                        <div class="doc_explain">
+                            <h3>Lined Button</h3>
+                        </div>
+                        {{#mergePathWithJSON "button#module" "variant: 'var_line', title: 'Line Button', link: ''" }}
+                            {{> button/button }}
+                        {{/mergePathWithJSON}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</section>

@@ -1,0 +1,15 @@
+{{#if link }}
+    <a class="mod_button {{variant}}" {{#unless disabled }}href="{{ link }}"{{/unless}}>
+        <span class="button_text">{{ title }}</span>
+    </a>
+{{else }}
+    <button class="mod_button {{variant}}"
+        {{#isnt submit true}}
+            type="button"
+        {{/isnt}}
+        {{#if disabled}}
+            disabled="disabled"
+        {{/if}}>
+        <span class="button_text">{{ title }}</span>
+    </button>
+{{/if}}
