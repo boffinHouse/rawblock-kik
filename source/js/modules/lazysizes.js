@@ -24,7 +24,7 @@ function configureMediaQueries(){
 
 document.addEventListener('lazyunveilread', configureMediaQueries);
 
-document.addEventListener('lazyunveilread', function(e){
+document.addEventListener('lazyunveilread', (e)=> {
     const container = e.target;
     const module = container.getAttribute('data-module');
 
@@ -32,7 +32,7 @@ document.addEventListener('lazyunveilread', function(e){
         if(rb.getComponent && rb.ready.isDone){
             rb.getComponent(container, module);
         } else {
-            window.lazySizes.rAF(function(){
+            window.lazySizes.rAF(()=> {
                 container.classList.add(rbLiveClass);
             });
         }
