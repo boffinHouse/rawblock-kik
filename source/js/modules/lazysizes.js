@@ -9,6 +9,7 @@ const lazySizesConfig = window.lazySizesConfig || {};
 
 lazySizesConfig.hFac = 1;
 lazySizesConfig.constrainPixelDensity = true;
+lazySizesConfig.loadMode = 1;
 
 if(!window.lazySizesConfig){
     window.lazySizesConfig = lazySizesConfig;
@@ -28,7 +29,7 @@ document.addEventListener('lazyunveilread', function(e){
     const module = container.getAttribute('data-module');
 
     if(module) {
-        if(rb.getComponent){
+        if(rb.getComponent && rb.ready.isDone){
             rb.getComponent(container, module);
         } else {
             window.lazySizes.rAF(function(){
