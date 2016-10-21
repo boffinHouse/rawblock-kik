@@ -1,4 +1,8 @@
 {
   "title": "HELLO",
-  "link": "index.html"
+  "link": "index.html",
+  "items": [
+    {"test": "Hello"},
+    {"test": "bye"}
+  ]
 }

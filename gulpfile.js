@@ -99,5 +99,5 @@ gulp.task('testing', (fn) => {
 });
 
 gulp.task('build', ['clean'], (fn) => {
-    plugins.runSequence(['copy', 'css', 'eslint', 'js', 'uglify:inline', 'html'], fn);
+    plugins.runSequence(['copy', 'css', 'eslint', 'js', 'uglify:inline'], ['html'], fn);
 })
