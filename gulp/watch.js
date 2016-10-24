@@ -22,6 +22,7 @@ module.exports = function(paths, gulp, plugins) {
         //Watch for html/hbs changes
         plugins.watch([
             plugins.path.join(paths.html, '/**/*.{hbs,md,json}'),
+            plugins.path.join(paths.components, '/**/*.{hbs,md,json}'),
         ], function() {
             gulp.start('html');
         });

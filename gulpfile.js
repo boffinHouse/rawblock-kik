@@ -22,7 +22,7 @@ const paths = {
     src: plugins.path.join(__dirname, 'source'),
     dev: plugins.path.join(__dirname, 'dev'),
     dist: plugins.path.join(__dirname, 'dist'),
-    doc: plugins.path.join(__dirname, 'docs'),
+    doc: plugins.path.join(__dirname, 'dev/docs'),
     tasks: plugins.path.join(__dirname, 'gulp'),
 
     // Assets

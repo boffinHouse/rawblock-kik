@@ -12,8 +12,19 @@ module.exports = (paths, gulp, plugins) => {
     const assemble = require('assemble')();
     const fs = require('fs-extra');
     
-    function createHTML(pages, dest, isDocs) {
+    const createDocs = function(file) {
+        let docLayout;
+        const componentName = plugins.path.basename(file.path).replace(/\.[^.$]+$/, '');
+        const matchName = /(\$componentName)/g;
         
+        docLayout = fs.readFileSync(plugins.path.join(paths.html, 'partials/styleguide/styleguide.hbs'), 'utf8');
+        docLayout = docLayout.replace(matchName, componentName)
+    
+        file.contents = new Buffer(docLayout);
+    };
+    
+    function createHTML(pages, dest, isDocs) {
+  
         //Layouts
         assemble.layouts( plugins.path.join(paths.html, 'layouts/{,**/}*.hbs'));
     
@@ -23,30 +34,23 @@ module.exports = (paths, gulp, plugins) => {
 
         //Helpers
         assemble.helpers(require('handlebars-helpers')());
+        assemble.helper('markdown', require('helper-markdown'));
+        assemble.helper('md', require('helper-md'));
         assemble.helpers(plugins.path.join(paths.base, 'helpers/handlebars/**/*.js'));
 
         //Data
         assemble.data(plugins.path.join(paths.html, 'data/**/*.{js,json}'));
         assemble.data(plugins.path.join(paths.components, '**/*.{json, js}'));
 
-        return assemble.src([pages], {layout: 'default_tpl'})
-                       .pipe(!isDocs ? plugins.util.noop() : plugins.tap(function(file) {
-                           let docLayout;
-                           const componentName = plugins.path.basename(file.path).replace(/\.[^.$]+$/, '');
-                           const matchName = /(\$componentName)/g;
-    
-                           if(componentName.includes('variants')) {return;}
-                           console.log(pages);
-    
-                           docLayout = fs.readFileSync(plugins.path.join(paths.html, 'partials/styleguide.hbs'), 'utf8');
-    
-                           docLayout = docLayout.replace(matchName, componentName)
-    
-                           file.contents = new Buffer(docLayout);
-                           
-                       }))
+        return assemble.src([pages], {layout: 'styleguide_tpl'})
+                       .pipe(!isDocs ? plugins.util.noop() : plugins.tap(createDocs))
                        .pipe(plugins.rename(function(path) {
                            path.dirname = '';
+                           
+                           if(isDocs) {
+                               path.basename = 'doc_' + path.basename
+                           }
+                        
                        }))
                        .pipe(assemble.renderFile())
                        .on('error', function swallowError(error) {
@@ -67,8 +71,8 @@ module.exports = (paths, gulp, plugins) => {
                 false
             ),
             createHTML(
-                plugins.path.join(paths.components, '{,**/}*.hbs'),
-                paths.doc,
+                plugins.path.join(paths.components, '{,**/}!(examples)*.hbs'),
+                paths.dev,
                 true
             )
         ]);
