@@ -59,7 +59,7 @@ module.exports = (paths, gulp, plugins) => {
             ;
     }
     
-    return function() {
+    return () => {
         return plugins.eventStream.merge([
             createHTML(
                 plugins.path.join(paths.html, 'pages/{,**/}*.hbs'),

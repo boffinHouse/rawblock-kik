@@ -41,7 +41,7 @@ module.exports = function(paths, gulp, plugins) {
             ;
     }
 
-    return function() {
+    return () => {
         return plugins.eventStream.merge([
             createCSS(
                 [plugins.path.join(paths.assets.css, 'styles.scss')],
