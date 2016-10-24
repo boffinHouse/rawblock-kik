@@ -37,7 +37,7 @@ module.exports = function(paths, gulp, plugins) {
                        postcssImport(),
                    ]))
                    .pipe(plugins.sourcemaps.write('.'))
-                   .pipe(gulp.dest(plugins.path.join(paths.dev, 'css')))
+                   .pipe(gulp.dest(dest))
             ;
     }
 
