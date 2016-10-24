@@ -23,7 +23,7 @@ module.exports = (paths, gulp, plugins) => {
 
         //Helpers
         assemble.helpers(require('handlebars-helpers')());
-        assemble.helpers(plugins.path.join(paths.base, 'helpers/handlebars/{,**/}*.js'));
+        assemble.helpers(plugins.path.join(paths.base, 'helpers/handlebars/**/*.js'));
 
         //Data
         assemble.data(plugins.path.join(paths.html, 'data/**/*.{js,json}'));

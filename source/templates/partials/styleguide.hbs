@@ -9,6 +9,9 @@
     {{> $componentName }}
 {{/with}}
 
+
 <pre class="doc_code hljs"><code>{{{getTemplateCode 'source/components/$componentName/$componentName.hbs'}}}</code></pre>
 <pre class="doc_code hljs"><code>{{{getTemplateCode 'source/components/$componentName/_$componentName.scss'}}}</code></pre>
 {{!-- <pre class="doc_code hljs"><code>{{{getTemplateCode 'source/components/$componentName/$componentName.js'}}}</code></pre> --}}
+
+{{md 'source/components/$componentName/README.md'}}
