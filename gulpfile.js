@@ -11,6 +11,7 @@ const plugins = require('gulp-load-plugins')();
 // Non-gulp modules
 plugins.path = require('path');
 plugins.browserSync = require('browser-sync');
+plugins.eventStream = require('event-stream');
 plugins.runSequence = require('run-sequence'); //temporary solution until the release of gulp 4.0
 
 // Shared paths

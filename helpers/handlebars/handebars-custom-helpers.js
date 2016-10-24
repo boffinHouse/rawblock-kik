@@ -28,18 +28,27 @@ Handlebars.registerHelper('includeraw', function(src){
 
 Handlebars.registerHelper('getTemplateCode', function(filePath) {
     const matchMetaData = /---(\s*?.*?)*?---/g;
+    const regExtension = /\.([0-9a-z]+)(?:[\?#]|$)/i;
+    const getExtension = filePath.match(regExtension);
     let content = fs.readFileSync(filePath).toString();
-    
-    content = content.replace(matchMetaData, '').replace(/^\s/g,'');
-    
-    if(fileExisits(filePath)) {
-        return Highlight.highlight('html', content).value;
+    const highlightCode = function(fileContent, extension) {
+        if(extension) {
+            return Highlight.highlight(extension, fileContent).value;
+        } else {
+            console.log('No ')
+        }
     }
+    
+    if(getExtension[1] === 'hbs') {
+        content = content.replace(matchMetaData, '').replace(/^\s/g,'');
+    }
+    
+    return highlightCode(content, getExtension[1])
 });
 
 
 Handlebars.registerHelper('md', function(filePath) {
-
+    
     if(fileExisits(filePath)) {
         return marked(fs.readFileSync(filePath).toString());
     }
