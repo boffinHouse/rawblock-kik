@@ -13,25 +13,28 @@ $breakpoint-config: (
         grid-max-width: 77.5em //1240px
     ),
     xs: (
-        media: "(max-width: 35.5em)" //< 568px
+        media: "(max-width: 34.9999em)" //< 559px
     ),
     s: (
-        media: "(min-width: 35.5625em) and (max-width: 49.9375em)", //599px to 799px
+        media: "(min-width: 35em) and (max-width: 49.9999em)", //560px to 799px
         gutter: (
             vertical: 1.25em,
             horizontal: 1.25em
         )
     ),
     m: (
-        media: "(min-width: 50em) and (max-width: 67.4375em)", //800px to 1079px
+        media: "(min-width: 50em) and (max-width: 67.9999em)", //800px to 1087px
         order-size: 2
     ),
     l: (
-        media: "(min-width: 67.5em) and (max-width: 87.4375em)", //1080px to 1399px
+        media: "(min-width: 68em) and (max-width: 86.9999em)", //1088px to 1391px
     ),
     xl: (
-        media: "(min-width: 87.5em)" //> 1400px
-    )
+        media: "(min-width: 87em) and (max-width: 115.9999em)" //> 1392px to 1855px
+    ),
+    xxl: (
+        media: "(min-width: 116em)" //> 1856px
+    ),
 );
 $aside-breakpoints: ();
 
