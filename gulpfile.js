@@ -23,6 +23,7 @@ const paths = {
     dev: plugins.path.join(__dirname, 'dev'),
     dist: plugins.path.join(__dirname, 'dist'),
     doc: plugins.path.join(__dirname, 'dev/docs'),
+    helpers: plugins.path.join(__dirname, 'helpers'),
     tasks: plugins.path.join(__dirname, 'gulp'),
 
     // Assets

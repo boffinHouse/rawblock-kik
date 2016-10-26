@@ -17,7 +17,7 @@ module.exports = (paths, gulp, plugins) => {
         const componentName = plugins.path.basename(file.path).replace(/\.[^.$]+$/, '');
         const matchName = /(\$componentName)/g;
         
-        docLayout = fs.readFileSync(plugins.path.join(paths.html, 'partials/styleguide/styleguide.hbs'), 'utf8');
+        docLayout = fs.readFileSync(plugins.path.join(paths.helpers, 'styleguide/partials/styleguide.hbs'), 'utf8');
         docLayout = docLayout.replace(matchName, componentName)
     
         file.contents = new Buffer(docLayout);
@@ -27,10 +27,12 @@ module.exports = (paths, gulp, plugins) => {
   
         //Layouts
         assemble.layouts( plugins.path.join(paths.html, 'layouts/{,**/}*.hbs'));
+        assemble.layouts( plugins.path.join(paths.helpers, 'styleguide/layouts/{,**/}*.hbs'));
     
         //Partials
         assemble.partials(plugins.path.join(paths.html, '{,**/}*.hbs'));
         assemble.partials(plugins.path.join(paths.components, '{,**/}*.{hbs, md}'));
+        assemble.partials(plugins.path.join(paths.helpers, 'styleguide/{,**/}*.hbs'));
 
         //Helpers
         assemble.helpers(require('handlebars-helpers')());
@@ -42,12 +44,12 @@ module.exports = (paths, gulp, plugins) => {
         assemble.data(plugins.path.join(paths.html, 'data/**/*.{js,json}'));
         assemble.data(plugins.path.join(paths.components, '**/*.{json, js}'));
 
-        return assemble.src([pages], {layout: 'default_tpl'})
+        return assemble.src(pages, {layout: 'default_tpl'})
                        .pipe(!isDocs ? plugins.util.noop() : plugins.tap(createDocs))
                        .pipe(plugins.rename(function(path) {
                            path.dirname = '';
                            
-                           if(isDocs) {
+                           if(isDocs && !(path.basename == 'index')) {
                                path.basename = 'doc_' + path.basename
                            }
                         
@@ -66,12 +68,17 @@ module.exports = (paths, gulp, plugins) => {
     return () => {
         return plugins.eventStream.merge([
             createHTML(
-                plugins.path.join(paths.html, 'pages/{,**/}*.hbs'),
+                [
+                    plugins.path.join(paths.html, 'pages/{,**/}*.hbs'),
+                    plugins.path.join(paths.helpers, 'styleguide/pages/*.hbs'),
+                ],
                 paths.dev,
                 false
             ),
             createHTML(
-                plugins.path.join(paths.components, '{,**/}!(*_examples)*.hbs'),
+                [
+                    plugins.path.join(paths.components, '{,**/}!(*_examples)*.hbs'),
+                ],
                 paths.dev,
                 true
             )

@@ -48,7 +48,7 @@ module.exports = function(paths, gulp, plugins) {
                 plugins.path.join(paths.dev, 'css')
             ),
             createCSS(
-                [plugins.path.join(paths.assets.css, 'styleguide/styleguide.scss')],
+                [plugins.path.join(paths.helpers, 'styleguide/sass/styleguide.scss')],
                 plugins.path.join(paths.doc, 'css')
             )
         ])

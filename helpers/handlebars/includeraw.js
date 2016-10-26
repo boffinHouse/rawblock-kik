@@ -5,7 +5,7 @@ const helperUtils = require('./hb-utils');
 const util = require('util');
 
 Handlebars.registerHelper('includeraw', function(src){
-    if(!helperUtils(src)) {
+    if(!helperUtils.fileExisits(src)) {
         util.log('No file is found inside helper includeraw');
     }
     

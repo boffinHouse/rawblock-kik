@@ -14,7 +14,8 @@ module.exports = function(paths, gulp, plugins) {
         //Watch for css changes
         plugins.watch([
             plugins.path.join(paths.assets.css, '{,**/}*.scss'),
-            plugins.path.join(paths.components, '/**/*.scss'),
+            plugins.path.join(paths.components, '**/*.scss'),
+            plugins.path.join(paths.helpers, 'styleguide/**/*.scss'),
         ], function() {
             gulp.start('css');
         });
