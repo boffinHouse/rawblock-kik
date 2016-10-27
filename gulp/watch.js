@@ -15,7 +15,7 @@ module.exports = function(paths, gulp, plugins) {
         plugins.watch([
             plugins.path.join(paths.assets.css, '{,**/}*.scss'),
             plugins.path.join(paths.components, '{,**/}*.scss'),
-           // plugins.path.join(paths.helpers, 'styleguide/**/*.scss'),
+           plugins.path.join(paths.helpers, 'styleguide/sass/*.scss'),
         ], function() {
             gulp.start('css');
         });
