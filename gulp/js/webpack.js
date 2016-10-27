@@ -12,19 +12,15 @@ module.exports = function(paths, gulp, plugins) {
 
     const webpack = require('webpack');
     const gulpWebpack = require('webpack-stream');
-
-    return function() {
+    
+    function createJS(entry, dest) {
         const isProduction = plugins.util.env.type == 'production';
-
-        gulp.src([plugins.path.join(paths.assets.js, '_*.js')])
+    
+        return gulp.src([plugins.path.join(paths.assets.js, '_*.js')])
             .pipe(gulpWebpack(
                 {
                     cache: true,
-                    entry: {
-                        '_main-behavior': plugins.path.join(paths.assets.js, '_main-behavior.js'),
-                        '_crucial-behavior': plugins.path.join(paths.assets.js, '_crucial-behavior.js'),
-                        '_polyfills': plugins.path.join(paths.assets.js, '_polyfills.js'),
-                    },
+                    entry: entry,
                     output: {
                         filename: '[name].js',
                         chunkFilename: '[chunkhash].js',
@@ -98,7 +94,26 @@ module.exports = function(paths, gulp, plugins) {
                 console.log(error.toString());
                 this.emit('end');
             })
-            .pipe(gulp.dest(plugins.path.join(paths.dev, 'js')))
+            .pipe(gulp.dest(dest))
         ;
+    }
+
+    return () => {
+        plugins.eventStream.merge([
+           createJS(
+               {
+                   '_main-behavior': plugins.path.join(paths.assets.js, '_main-behavior.js'),
+                   '_crucial-behavior': plugins.path.join(paths.assets.js, '_crucial-behavior.js'),
+                   '_polyfills': plugins.path.join(paths.assets.js, '_polyfills.js'),
+               },
+               plugins.path.join(paths.dev, 'js')
+           ),
+           createJS(
+               {
+                   '_styleguide': plugins.path.join(paths.helpers, 'styleguide/js/_styleguide.js'),
+               },
+               plugins.path.join(paths.doc, 'js')
+           )
+       ]);
     };
 };

@@ -14,16 +14,17 @@ module.exports = function(paths, gulp, plugins) {
         //Watch for css changes
         plugins.watch([
             plugins.path.join(paths.assets.css, '{,**/}*.scss'),
-            plugins.path.join(paths.components, '**/*.scss'),
-            plugins.path.join(paths.helpers, 'styleguide/**/*.scss'),
+            plugins.path.join(paths.components, '{,**/}*.scss'),
+           // plugins.path.join(paths.helpers, 'styleguide/**/*.scss'),
         ], function() {
             gulp.start('css');
         });
 
         //Watch for html/hbs changes
         plugins.watch([
-            plugins.path.join(paths.html, '/**/*.{hbs,md,json}'),
-            plugins.path.join(paths.components, '/**/*.{hbs,md,json}'),
+            plugins.path.join(paths.html, '{,**/}*.{hbs,md,json}'),
+            plugins.path.join(paths.components, '{,**/}*.{hbs,md,json}'),
+            plugins.path.join(paths.helpers, 'styleguide/**/*.{hbs,md,json}'),
         ], function() {
             gulp.start('html');
         });
