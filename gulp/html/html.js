@@ -41,18 +41,13 @@ module.exports = (paths, gulp, plugins) => {
         assemble.helpers(plugins.path.join(paths.base, 'helpers/handlebars/**/*.js'));
 
         //Data
-        assemble.data(plugins.path.join(paths.html, 'data/**/*.{js,json}'));
+        assemble.data(plugins.path.join(paths.src, 'data/**/*.{js,json}'));
         assemble.data(plugins.path.join(paths.components, '**/*.{json, js}'));
 
         return assemble.src(pages, {layout: 'default_tpl'})
                        .pipe(!isDocs ? plugins.util.noop() : plugins.tap(createDocs))
                        .pipe(plugins.rename(function(path) {
                            path.dirname = '';
-                           
-                           if(isDocs && !(path.basename == 'index')) {
-                               path.basename = 'doc_' + path.basename
-                           }
-                        
                        }))
                        .pipe(assemble.renderFile())
                        .on('error', function swallowError(error) {
