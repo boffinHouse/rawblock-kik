@@ -6,14 +6,23 @@ const fs = require('fs-extra');
 const path = require('path');
 const fm = require('front-matter');
 
-Handlebars.registerHelper('navigation', function(filePaths) {
-    filePaths = filePaths.split(',');
-    let data = [];
-    filePaths.forEach((filePath) => {
+
+function arrayifyDir(dirs, fn) {
+    dirs = dirs.split(',');
+    
+    return dirs;
+}
+
+Handlebars.registerHelper('navigation', function(dirs) {
+    dirs = arrayifyDir(dirs);
+    
+    dirs.forEach((filePath) => {
         glob.sync(filePath).forEach((file, index) => {
             const pageHref = path.basename(file).replace('.hbs', '.html');
             const fileData = fs.readFileSync(file, 'utf8');
-            data.push(fm(fileData));
+            //data.push(fm(fileData));
+            
+            console.log(filePath);
     
             if(file.includes('components')) {
                 //console.log(pageHref, 'components');
@@ -26,6 +35,5 @@ Handlebars.registerHelper('navigation', function(filePaths) {
         });
     });
     
-    console.log(data.attributes)
     
 });
