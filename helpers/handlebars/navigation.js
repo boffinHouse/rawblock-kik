@@ -7,33 +7,40 @@ const path = require('path');
 const fm = require('front-matter');
 
 
-function arrayifyDir(dirs, fn) {
-    dirs = dirs.split(',');
+Handlebars.registerHelper('navigation', function(filesDirs, options) {
+    filesDirs = filesDirs.split(',');
+    let data = {
+        components: [],
+        pages: [],
+        styleguide: []
+    };
     
-    return dirs;
-}
-
-Handlebars.registerHelper('navigation', function(dirs) {
-    dirs = arrayifyDir(dirs);
+    function createData( file) {
+        const href = path.basename(file).replace('.hbs', '.html');
+        const fileData = fm(fs.readFileSync(file, 'utf8')).attributes;
+        const objData = {
+            title: fileData.title || fileData.component,
+            tracker: fileData.tracker || '',
+            href: href,
+        };
+        
+        if(!objData.title) {return;}
+        
+        if(file.includes('components')) {
+            data.components.push(objData);
+        } else if(file.includes('templates/pages')) {
+            data.pages.push(objData)
+        } else if(file.includes('styleguide/pages')) {
+            data.styleguide.push(objData)
+        } else {
+            console.log('Files are not correct')
+        }
+        
+    }
     
-    dirs.forEach((filePath) => {
-        glob.sync(filePath).forEach((file, index) => {
-            const pageHref = path.basename(file).replace('.hbs', '.html');
-            const fileData = fs.readFileSync(file, 'utf8');
-            //data.push(fm(fileData));
-            
-            console.log(filePath);
-    
-            if(file.includes('components')) {
-                //console.log(pageHref, 'components');
-            }
-            
-            if(file.includes('templates/pages')) {
-                //console.log(pageHref, 'pages');
-            }
-            
-        });
+    filesDirs.forEach((fileDir) => {
+        glob.sync(fileDir).forEach(createData);
     });
     
-    
+    return options.fn(data);
 });
