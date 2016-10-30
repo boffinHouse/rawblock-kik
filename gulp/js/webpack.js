@@ -92,7 +92,7 @@ module.exports = function(paths, gulp, plugins) {
             .on('error', function swallowError (error) {
                 /* eslint-disable */
                 console.log(error.toString());
-                this.emit('end');
+                ///this.emit('end');
             })
             .pipe(gulp.dest(dest))
         ;

@@ -1,6 +1,5 @@
 'use strict';
 const Handlebars = require('handlebars');
-const helperUtils = require('./hb-utils');
 const glob = require('glob');
 const fs = require('fs-extra');
 const path = require('path');
