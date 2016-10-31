@@ -12,10 +12,10 @@ module.exports = function(paths, gulp, plugins) {
 
     const webpack = require('webpack');
     const gulpWebpack = require('webpack-stream');
-    
+
     function createJS(entry, dest) {
         const isProduction = plugins.util.env.type == 'production';
-    
+
         return gulp.src([plugins.path.join(paths.assets.js, '_*.js')])
             .pipe(gulpWebpack(
                 {
@@ -32,7 +32,11 @@ module.exports = function(paths, gulp, plugins) {
                                 exclude: /node_modules/,
                                 loader: 'babel-loader',
                                 query: {
-                                    plugins: [],
+                                    plugins: [
+                                        ['transform-runtime', {
+                                            polyfill: false,
+                                        }]
+                                    ],
                                     presets: ['es2015-loose', 'es2016', 'es2017'],
                                 },
                             },
