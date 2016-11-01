@@ -24,8 +24,10 @@
     //    return support;
     //})();
 
-    docElem.classList.remove('no-js');
-    docElem.classList.add('js');
+    if(docElem.classList){
+        docElem.classList.remove('no-js');
+        docElem.classList.add('js');
+    }
 
     setTimeout(function(){
         var arrayProto = Array.prototype;
@@ -38,16 +40,9 @@
 
 
     //uncomment if you have crucial fonts placed above inline script
-    //if (document.fonts && document.fonts.forEach) {
-    //    (function(fonts){
-    //        document.fonts.forEach(function(font){
-    //            fonts.push(font);
-    //        });
-    //        setTimeout(function () {
-    //            fonts.forEach(function(font){
-    //                font.load();
-    //            });
-    //        });
-    //    })([]);
-    //}
+    // if (document.fonts && document.fonts.forEach) {
+    //     document.fonts.forEach(function(font){
+    //         font.load();
+    //     });
+    // }
 })(window);
