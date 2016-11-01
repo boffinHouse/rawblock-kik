@@ -40,7 +40,7 @@ const paths = {
     components: plugins.path.join(__dirname, 'source/components'),
 
     //Node modules
-    npm: plugins.path.join(__dirname, 'node_modules')
+    npm: plugins.path.join(__dirname, 'node_modules'),
 };
 
 
@@ -100,5 +100,5 @@ gulp.task('testing', (fn) => {
 });
 
 gulp.task('build', ['clean'], (fn) => {
-    plugins.runSequence( ['copy', 'css', 'eslint', 'uglify:inline', 'js',], ['html'], fn);
-})
+    plugins.runSequence( ['copy', 'css', 'eslint', 'uglify:inline', 'js'], ['html'], fn);
+});
