@@ -5,7 +5,7 @@ const path = require('path');
 const inquirer = require('inquirer');
 const fs = require('fs-extra');
 
-const copyDir = '.scaffold/';
+const copyDir = 'helpers/.scaffold/';
 const installDir = 'source/components/';
 
 const regName = /\{name}/g;
