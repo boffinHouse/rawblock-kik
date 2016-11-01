@@ -1,0 +1,27 @@
+/*
+ * Doc: navpanel
+**********************************************************/
+
+// Variables
+//**********************************************************
+
+
+//----------------------------------------------------------
+
+.doc-navpanel {
+    display: flex;
+    position: relative;
+}
+
+.doc-navpanel-frame {
+    width: 44px;
+    height: 100vh;
+    border-right: 1px solid #e0dede;
+    background: #dad6d5;
+    box-shadow: -1px 0 3px rgba(0,0,0,0.5);
+}
+
+.doc-navpanel-box {
+    width: 100%;
+}
+

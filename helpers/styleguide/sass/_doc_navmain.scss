@@ -1,0 +1,35 @@
+/*
+ * Doc: Mainnav
+**********************************************************/
+
+// Variables
+//**********************************************************
+
+
+//----------------------------------------------------------
+
+.doc-navmain-item {
+    font: 400 12px/1 $font-sans-serif;
+    color: #515151;
+    
+    &.is-first {
+        font-size: 15px
+    }
+}
+
+.doc-navmain-title {
+    padding: 10px 15px 5px;
+    font-size: 15px;
+    font-weight: 400;
+    color: #515151;
+}
+
+.doc-navmain-link {
+    display: block;
+    padding: 8px 15px;
+    color: #515151;
+    
+    //.doc-navmain-item.is-first & {
+    //    color: #f3f3f3;
+    //}
+}

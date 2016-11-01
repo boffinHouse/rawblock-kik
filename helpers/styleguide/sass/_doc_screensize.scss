@@ -1,0 +1,81 @@
+/*
+ * Doc: screensize
+**********************************************************/
+
+// Variables
+//**********************************************************
+
+
+//----------------------------------------------------------
+
+.doc-screensize {
+    width: 100%;
+    margin: 200px 0 auto;
+    border-top: 1px solid #eee;
+}
+
+.doc-screensize-item {
+    border-bottom: 1px solid #eee;
+}
+
+.doc-screensize-btn {
+    @include rb-hide-text;
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.doc-screensize-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    border: 1px solid $navpanel-icon-color;
+    pointer-events: none;
+    
+    [data-screensize="small"] & {
+        width: 10px;
+        height: 18px;
+    }
+    
+    [data-screensize="medium"] & {
+        width: 16px;
+        height: 24px;
+    }
+    
+    [data-screensize="large"] & {
+        width: 28px;
+        height: 22px;
+    }
+    
+    [data-screensize="fullsize"] & {
+        width: 28px;
+        height: 22px;
+        
+        &::after,
+        &::before {
+            content: "";
+            position: absolute;
+            top: -4px;
+            right: -4px;;
+            bottom: -4px;;
+            left: -4px;
+            background: #dad6d5;
+        }
+        
+        &::after {
+            width: 6px;
+            margin: 0 auto;
+        }
+        
+        &::before {
+            height: 6px;
+            margin: auto 0;
+        }
+    }
+}

@@ -1,0 +1,22 @@
+/*
+ * Doc: intro
+**********************************************************/
+
+// Variables
+//**********************************************************
+
+
+//----------------------------------------------------------
+
+.doc-intro {
+    margin: rb-rem-calc(0 0 80px);
+}
+
+.doc-intro-title {
+    margin: rb-rem-calc(0 0 20px);
+    font: 600 40px/1 $font-sans-serif;
+}
+.doc-intro-hook {
+    font: 400 24px/1 $font-sans-serif;
+    color: #222;
+}

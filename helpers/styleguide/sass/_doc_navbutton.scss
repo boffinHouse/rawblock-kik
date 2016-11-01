@@ -1,0 +1,85 @@
+/*
+ * Doc: navbutton
+**********************************************************/
+
+
+// Variables
+//**********************************************************
+
+$navbutton-icon-width: rb-rem-calc(18px);
+$navbutton-icon-height: rb-rem-calc(1px);
+
+//----------------------------------------------------------
+
+.doc-navbutton {
+    height: rb-rem-calc(48px);
+    width: 100%;
+    border: none;
+    padding: 0;
+    color: $navpanel-icon-color;
+    pointer-events: auto;
+    cursor: pointer;
+    background: transparent;
+    
+    &:focus {
+        outline: none;
+    }
+}
+
+.doc-navbutton-icon {
+    display: block;
+    position: relative;
+    width: $navbutton-icon-width;
+    height: rb-rem-calc(19px);
+    margin: auto;
+    overflow: hidden;
+    
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        width: 17px;
+        height: $navbutton-icon-height;
+        background: currentColor;
+        transition: transform 150ms ease-in;
+        transform-origin: right center;
+    }
+    
+    &::before {
+        top: rb-rem-calc(3px);
+        transform: translate3d(0, 0, 0);
+        
+        .doc-navbutton[aria-expanded="true"] & {
+            transform: rotate(-45deg);
+        }
+    }
+    
+    &::after {
+        bottom: rb-rem-calc(3px);
+        
+        .doc-navbutton[aria-expanded="true"] & {
+            transform: rotate(45deg);
+        }
+    }
+}
+
+.doc-navbutton-icon-line {
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 17px;
+    height: $navbutton-icon-height;
+    margin: auto;
+    background: currentColor;
+    transition: transform 280ms ease-in, opacity 280ms ease-out;
+    transform-origin: left center;
+    
+    .doc-navbutton[aria-expanded="true"] & {
+        opacity: 0;
+        transform: translate3d(100%, 0, 0);
+    }
+}
+

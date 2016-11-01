@@ -1,0 +1,72 @@
+/*
+ * Doc: page
+**********************************************************/
+
+// Variables
+//**********************************************************
+$doc-nav-width: 216px;
+
+//----------------------------------------------------------
+.doc-page {
+    overflow:hidden;
+}
+
+.doc-page-innerwrapper {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+}
+
+.doc-page-aside {
+    flex-shrink: 0;
+    width: $doc-nav-width;
+    height: 100vh;
+    overflow-x: hidden;
+    z-index: 1;
+    order: 2;
+    background: #dad6d5;
+}
+
+.doc-page-main {
+    display: flex;
+    position: relative;
+    flex-shrink: 0;
+    width: calc(100% - 40px);;
+    min-width: calc(100% - 40px);
+    z-index: 2;
+    background: #e6e6e6;
+    transition: min-width 300ms ease-out;
+    
+    &.is-open  {
+        min-width: 0;
+        flex: 1;
+    }
+}
+
+.doc-page-iframe {
+    display: block;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    margin: auto;
+    background: #fff;
+    transition: width 300ms ease-out, height 300ms ease-out;
+    
+    &[data-framesize="small"] {
+        width: 400px;
+    }
+    
+    &[data-framesize="medium"] {
+        width: 800px;
+        height: 600px;
+    }
+    
+    &[data-framesize="large"] {
+        width: 1024px;
+        height: 800px;
+    }
+    
+    &[data-framesize="fullsize"] {
+        width: 100%;
+    }
+}

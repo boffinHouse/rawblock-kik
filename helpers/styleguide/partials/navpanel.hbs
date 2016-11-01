@@ -1,0 +1,11 @@
+<div class="doc-navpanel">
+    <div class="doc-navpanel-frame">
+        {{> navbutton }}
+        {{> screensize }}
+    </div>
+    <div class="doc-navpanel-box">
+        {{#navigation "source/components/**/*.hbs, source/templates/pages/**/*.hbs" }}
+            {{> navmain }}
+        {{/navigation}}
+    </div>
+</div>

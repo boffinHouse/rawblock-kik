@@ -1,0 +1,38 @@
+<nav class="doc-navmain">
+    <ul class="doc-navmain-list">
+        {{#if pages}}
+            {{#each pages}}
+                {{#is title 'Index'}}
+                    <li class="doc-navmain-item is-first">
+                        <a href="{{ href }}" class="doc-navmain-link">{{ title }}</a>
+                    </li>
+                {{/is}}
+            {{/each}}
+            <li class="doc-navmain-item is-level-1">
+                <h3 class="doc-navmain-title">Pages</h3>
+                <ul class="doc-nav">
+                    {{#each pages}}
+                        {{#isnt title 'Index'}}
+                            <li class="doc-navmain-item">
+                                <a href="{{ href }}" class="doc-navmain-link">{{ title }}</a>
+                            </li>
+                        {{/isnt}}
+                    {{/each}}
+                </ul>
+            </li>
+        {{/if}}
+        {{#if components}}
+            <li class="doc-navmain-item is-level-1">
+                <h3 class="doc-navmain-title">Components</h3>
+                <ul class="doc-nav">
+                    {{#each components}}
+                        <li class="doc-navmain-item">
+                            <a href="{{ href }}" class="doc-navmain-link">{{ title }}</a>
+                        </li>
+                    {{/each}}
+                </ul>
+            </li>
+        {{/if}}
+    </ul>
+</nav>
+

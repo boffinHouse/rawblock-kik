@@ -1,0 +1,313 @@
+/*
+ * Doc: richtext
+**********************************************************/
+
+
+// Variables
+//**********************************************************
+$richtext-header-font: $header-font;
+$richtext-header-color: #333;
+$richtext-copy-fontsize: 16px;
+$richtext-copy-font: $font-sans-serif;
+$richtext-copy-color: #333;
+
+//----------------------------------------------------------
+
+.doc-richtext {
+    margin: rb-rem-calc(0 0 50px);
+}
+
+//Headers
+h1 {
+    .doc-richtext & {
+        margin: rb-rem-calc(0 0 25);
+        font: 600 rb-em-calc(40)/1 $richtext-header-font;
+        color: $richtext-header-color;
+    }
+}
+
+h2 {
+    .doc-richtext & {
+        margin: rb-rem-calc(0 0 10);
+        font: 400 rb-em-calc(24)/1 $richtext-header-font;
+        color: $richtext-header-color;
+    }
+}
+
+h3 {
+    .doc-richtext & {
+        margin: rb-rem-calc(0 0 10);
+        font: 400 rb-em-calc(24)/1 $richtext-header-font;
+        color: $richtext-header-color;
+    }
+}
+
+h4 {
+    .doc-richtext & {
+        margin: rb-rem-calc(0 0 10);
+        font: 400 rb-em-calc(18)/1.2 $richtext-header-font;
+        color: $richtext-header-color;
+    }
+}
+
+h5 {
+    .doc-richtext & {
+        margin: rb-rem-calc(0 0 10);
+        font: 400 rb-em-calc(16)/1.2 $richtext-header-font;
+        color: $richtext-header-color;
+    }
+}
+
+h6 {
+    .doc-richtext & {
+        margin: rb-rem-calc(0 0 10);
+        font: 400 rb-em-calc(14)/1.2 $richtext-header-font;
+        color: $richtext-header-color;
+    }
+}
+
+//Paragraph
+p {
+    .doc-richtext & {
+        margin: rb-rem-calc(0 0 30);
+        font: 400 rb-em-calc($richtext-copy-fontsize)/1.5 $richtext-copy-font;
+        color: $richtext-copy-color;
+    }
+}
+
+//Text align
+.richtext-align-right {
+    text-align: right;
+}
+
+.richtext-align-center {
+    text-align: center;
+}
+
+.richtext-align-justify {
+    text-align: justify;
+}
+
+.richtext-underline {
+    text-decoration: underline;
+}
+
+.richtext-strike {
+    text-decoration: line-through;
+}
+
+//Different Stylings
+a {
+    .doc-richtext & {
+        cursor: pointer;
+        color: #1a90bb;
+
+        &:hover,
+        &:focus {
+            text-decoration: underline;
+        }
+    }
+}
+
+strong,
+b {
+    .doc-richtext & {
+        font-weight: 600;
+    }
+}
+
+em,
+i {
+    .doc-richtext & {
+        font-style: italic;
+    }
+}
+
+code {
+    .doc-richtext & {
+        padding: 3px 7px;
+        font-size: 14px;
+        color: #008cd5;
+        border: 1px solid #c1c1c1;
+        background: #e8e8e8;
+    }
+}
+
+pre {
+    .doc-richtext & {
+        padding: 12px 10px;
+        border: 1px solid #c1c1c1;
+        background: #e8e8e8;
+
+        code {
+            padding: 0;
+            border: none;
+            background: inherit;
+        }
+    }
+}
+
+hr {
+    .doc-richtext & {
+        margin-bottom: 20px;
+        border: 2px solid #e6e6e6;
+    }
+}
+
+//List
+> ol,
+> ul {
+    .doc-richtext & {
+        margin: rb-rem-calc(0 0 30);
+        font: 400 rb-rem-calc($richtext-copy-fontsize)/1.3 $richtext-copy-font;
+        color: $richtext-copy-color;
+    }
+}
+
+ul {
+    .doc-richtext & {
+        ul,
+        ol {
+            margin-top: 6px;
+        }
+
+        > li {
+            position: relative;
+            margin-bottom: 10px;
+            padding-left: 20px;
+            line-height: 24px;
+
+            &::before {
+                position: absolute;
+                top: 8px;
+                left: 3px;
+                width: rb-rem-calc(6);
+                height: 6px;
+                content: "";
+                border-radius: 50%;
+                background: #666;
+            }
+        }
+    }
+}
+
+ol {
+    .doc-richtext & {
+        margin-left: 25px;
+        list-style: decimal;
+
+        ul,
+        ol {
+            margin-top: rb-rem-calc(6);
+        }
+
+        > li {
+            margin-bottom: rb-rem-calc(10);
+            list-style: decimal;
+        }
+    }
+}
+
+dl {
+    .doc-richtext & {
+        margin: rb-rem-calc(0 0 0 15px);
+    }
+}
+
+dt {
+    .doc-richtext & {
+        font: 600 rb-em-calc($richtext-copy-fontsize)/1.333 $richtext-copy-font;
+        color: $richtext-copy-color;
+    }
+}
+
+dd {
+    .doc-richtext & {
+        margin: 0;
+        font: 400 rb-em-calc($richtext-copy-fontsize)/1.333 $richtext-copy-font;
+        color: $richtext-copy-color;
+    }
+}
+
+//Blockquote
+blockquote {
+    .doc-richtext & {
+        margin: rb-rem-calc(0 0 40);
+        padding: rb-rem-calc(0 0 0 20px);
+        border-left: 5px solid #e5e5e5;
+
+
+        p {
+            position: relative;
+            font: italic 600 42px/52px serif;
+        }
+
+        cite {
+            font-style: normal;
+            color: #666;
+        }
+    }
+}
+
+//Table
+table {
+    .doc-richtext & {
+        width: 100%;
+        margin: rb-rem-calc(0 0 30);
+        font: 400 rb-em-calc($richtext-copy-fontsize)/1.5 $richtext-copy-font;
+    }
+}
+
+thead {
+    .doc-richtext & {
+        tr {
+            border-bottom: 2px solid #666;
+        }
+
+        th {
+            padding: rb-rem-calc(5px 20px);
+            text-align: left;
+            color: #666;
+        }
+    }
+}
+
+tbody {
+    .doc-richtext & {
+        tr {
+            border-bottom: 2px solid #666;
+        }
+
+        tr:nth-child(odd) {
+            background: #ddd;
+        }
+
+        tr:nth-child(even) {
+            background: #eee;
+        }
+
+        td,
+        th {
+            padding: rb-rem-calc(10 20);
+            font-size: 16px;
+            line-height: 24px;
+        }
+
+        td {
+            color: #666;
+            
+        }
+    }
+}
+
+tfoot {
+    .doc-richtext & {
+        td,
+        th {
+            padding: rb-rem-calc(10 20);
+            font-size: 16px;
+            line-height: 24px;
+            color: #1a90bb;
+        }
+    }
+}

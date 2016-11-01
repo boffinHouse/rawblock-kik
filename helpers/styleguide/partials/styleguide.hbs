@@ -1,0 +1,66 @@
+<article class="doc-articlemain">
+
+    <div class="doc-articlemain-section">
+        <header class="doc-intro">
+            <h1 class="doc-intro-title">{{ component }}</h1>
+            {{#if description }}
+                <p class="doc-intro-hook">{{ description }}</p>
+            {{/if}}
+        </header>
+
+        <section class="doc-articlemain-example">
+            {{#with $componentName.default }}
+                {{> $componentName }}
+            {{/with}}
+        </section>
+
+        <div class="doc-articlemain-box">
+
+            <div class="doc-tabs js-rb-live" data-module="tabs">
+                <ul class="doc-tabs-nav doc-tabs-btn-wrapper">
+                    <li class="doc-tabs-nav-item"><button type="button" class="doc-tabs-btn" {{#if open}}aria-expanded="true"{{/if}}>Markup</button></li>
+                    <li class="doc-tabs-nav-item"><button type="button" class="doc-tabs-btn">Sass</button></li>
+                </ul>
+                <div class="doc-tabs-panel-wrapper">
+                    <div class="doc-tabs-panel is-open">
+                        <div class="doc-tabs-content">
+                            {{#fileExist 'source/components/$componentName/$componentName.hbs'}}
+                                <pre class="doc_code hljs"><code>{{{getTemplateCode 'source/components/$componentName/$componentName.hbs'}}}</code></pre>
+                            {{/fileExist}}
+                        </div>
+                    </div>
+                    <div class="doc-tabs-panel">
+                        <div class="doc-tabs-content">
+                            {{#fileExist 'source/components/$componentName/_$componentName.scss'}}
+                                <pre class="doc_code hljs"><code>{{{getTemplateCode 'source/components/$componentName/_$componentName.scss'}}}</code></pre>
+                            {{/fileExist}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="doc-richtext">
+                {{#fileExist 'source/components/$componentName/README.md'}}
+                    {{md 'source/components/$componentName/README.md'}}
+                {{/fileExist}}
+            </div>
+        </div>
+        {{#fileExist 'source/components/$componentName/$componentName_examples.hbs'}}
+            {{> '$componentName_examples'}}
+        {{/fileExist}}
+    </div>
+</article>
+
+
+
+
+
+
+
+{{#fileExist 'source/components/$componentName/$componentName.js'}}
+<pre class="doc_code hljs"><code>{{{getTemplateCode 'source/components/$componentName/$componentName.js'}}}</code></pre>
+{{/fileExist}}
+
+
+
+

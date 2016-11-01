@@ -1,0 +1,86 @@
+/*
+ * Component: Tabs
+**********************************************************/
+
+
+// Variables
+//**********************************************************
+
+
+// JS-Config
+//**********************************************************
+$tabs-js-cfg: (
+    name: doc-tabs,
+    //animation: 'adaptHeight',
+    duration: 400,
+);
+
+
+//----------------------------------------------------------
+
+.doc-tabs {
+    @include rb-js-export($tabs-js-cfg);
+    @include rb-fx-panel(tabs, fade);
+    @include rb-fx-panel(tabs, slide);
+    width: 100%;
+    margin: rb-rem-calc(0 0 50px);
+}
+
+//Buttons
+.doc-tabs-nav {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.doc-tabs-item {
+    flex: 1;
+    margin: 0 0 -1px 1px;
+    text-align: center;
+
+    &:first-child {
+        margin-left: 0;
+    }
+}
+
+.doc-tabs-btn {
+    position: relative;
+    width: 100%;
+    padding: 10px;
+    touch-action: manipulation;
+    border: none;
+    border-top: 3px solid transparent;
+    background: #e7e7e7;
+
+    &:not(:disabled){
+        cursor: pointer;
+
+        &:hover,
+        &:focus {
+            background: #dfdfdf;
+        }
+    }
+    
+    &[aria-expanded="true"] {
+        z-index: 10;
+        border-color: #dc0f6e;
+        background: #fff;
+    }
+}
+
+.doc-tabs-panel-wrapper {
+    position: relative;
+    background: #fff;
+}
+
+.doc-tabs-panel {
+    display: none;
+
+    &.is-open {
+        display: block;
+    }
+}
+
+.doc-tabs-content {
+    padding: 20px;
+}
