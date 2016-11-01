@@ -41,7 +41,7 @@
 
             <div class="doc-richtext">
                 {{#fileExist 'source/components/$componentName/README.md'}}
-                    {{md 'source/components/$componentName/README.md'}}
+                    {{rbMarkdownFile 'source/components/$componentName/README.md'}}
                 {{/fileExist}}
             </div>
         </div>
@@ -50,11 +50,6 @@
         {{/fileExist}}
     </div>
 </article>
-
-
-
-
-
 
 
 {{#fileExist 'source/components/$componentName/$componentName.js'}}
