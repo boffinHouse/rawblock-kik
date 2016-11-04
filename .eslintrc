@@ -36,6 +36,7 @@
         "no-with": [1],
         "no-useless-escape": [2],
         "no-useless-concat": [2],
-        "no-useless-call": [2]
+        "no-useless-call": [2],
+        "semi": [2]
     }
 }

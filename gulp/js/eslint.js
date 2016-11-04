@@ -13,6 +13,7 @@ module.exports = function(paths, gulp, plugins) {
 
         gulp.src([
                 plugins.path.join(paths.assets.js, '**/*.js'),
+                plugins.path.join(paths.components, '**/*.js'),
                 '!/**/vendor/**/*.js',
             ])
             .pipe(plugins.eslint({
