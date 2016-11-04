@@ -37,7 +37,6 @@ module.exports = (paths, gulp, plugins) => {
         //Helpers
         assemble.helpers(require('handlebars-helpers')());
         assemble.helper('markdown', require('helper-markdown'));
-        assemble.helper('md', require('helper-md'));
         assemble.helpers(plugins.path.join(paths.base, 'helpers/handlebars/**/*.js'));
 
         //Data
