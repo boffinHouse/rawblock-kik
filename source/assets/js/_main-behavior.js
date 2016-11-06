@@ -13,10 +13,9 @@ rb.BezierEasing = BezierEasing;
 __webpack_public_path__ = ASSETBASEPATH + 'js/';
 
 
+require('../../../gulp/js/webpack/globloader!./glob.paths');
 
-require('../../gulp/js/webpack/globloader!./glob.paths');
-
-require('../../gulp/js/webpack/lazyglobloader!./lazyglob.paths');
+require('../../../gulp/js/webpack/lazyglobloader!./lazyglob.paths');
 
 if(window.lazySizesConfig){
     rb.ready.then(()=>{

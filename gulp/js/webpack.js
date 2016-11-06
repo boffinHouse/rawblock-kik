@@ -109,7 +109,7 @@ module.exports = function(paths, gulp, plugins) {
                    '_crucial-behavior': plugins.path.join(paths.assets.js, '_crucial-behavior.js'),
                    '_polyfills': plugins.path.join(paths.assets.js, '_polyfills.js'),
                },
-               plugins.path.join(paths.dev, 'js')
+               plugins.path.join(paths.devAssets, 'js')
            ),
            createJS(
                {

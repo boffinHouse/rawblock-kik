@@ -40,7 +40,7 @@ module.exports = (paths, gulp, plugins) => {
         assemble.helpers(plugins.path.join(paths.base, 'helpers/handlebars/**/*.js'));
 
         //Data
-        assemble.data(plugins.path.join(paths.src, 'data/**/*.{js,json}'));
+        assemble.data(plugins.path.join(paths.html, 'data/**/*.{js,json}'));
         assemble.data(plugins.path.join(paths.components, '**/*.{json, js}'));
 
         return assemble.src(pages, {layout: 'default_tpl'})

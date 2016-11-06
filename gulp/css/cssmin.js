@@ -11,14 +11,14 @@ module.exports = function(paths, gulp, plugins) {
 
     return function() {
 
-        gulp.src([plugins.path.join(paths.dev, '/css/*.css'), '!/**/*.min.css'])
+        gulp.src([plugins.path.join(paths.devAssets, 'css/*.css'), '!/**/*.min.css'])
             .pipe(plugins.cleanCss({
                 keepSpecialComments: false,
             }))
             .pipe(plugins.extname({
                 ext: '.min.css'
             }))
-            .pipe(gulp.dest(plugins.path.join(paths.dev, '/css/')))
+            .pipe(gulp.dest(plugins.path.join(paths.devAssets, 'css')))
         ;
     };
 };

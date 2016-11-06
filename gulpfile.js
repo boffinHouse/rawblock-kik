@@ -21,17 +21,17 @@ const paths = {
     base: __dirname,
     src: plugins.path.join(__dirname, 'source'),
     dev: plugins.path.join(__dirname, 'dev'),
-    dist: plugins.path.join(__dirname, 'dist'),
+    devAssets: plugins.path.join(__dirname, 'dev/assets'),
     doc: plugins.path.join(__dirname, 'dev/docs'),
     helpers: plugins.path.join(__dirname, 'helpers'),
     tasks: plugins.path.join(__dirname, 'gulp'),
 
     // Assets
     assets: {
-        css: plugins.path.join(__dirname, 'source/sass'),
-        js: plugins.path.join(__dirname, 'source/js'),
-        fonts: plugins.path.join(__dirname, 'source/fonts'),
-        media: plugins.path.join(__dirname, 'source/media')
+        css: plugins.path.join(__dirname, 'source/assets/sass'),
+        js: plugins.path.join(__dirname, 'source/assets/js'),
+        fonts: plugins.path.join(__dirname, 'source/assets/fonts'),
+        media: plugins.path.join(__dirname, 'source/assets/media')
         //styleguide: plugins.path.join(__dirname, 'source/media')
     },
 
@@ -75,9 +75,9 @@ gulp.task('clean', (fn) => {
 });
 
 gulp.task('uglify:inline', function() {
-    gulp.src(plugins.path.join(paths.src, 'js/_inlinehead-behavior.js'))
+    gulp.src(plugins.path.join(paths.assets.js, '_inlinehead-behavior.js'))
         .pipe(plugins.uglify())
-        .pipe(gulp.dest(plugins.path.join(paths.dev, 'js/')));
+        .pipe(gulp.dest(plugins.path.join(paths.devAssets, 'js')));
 });
 
 /**
