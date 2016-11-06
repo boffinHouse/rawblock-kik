@@ -1,21 +1,17 @@
-var ASSETBASEPATH = window.appGlobals && appGlobals.basePath || '';
+import 'rawblock/_$';
+import rb from 'rawblock/_main';
+import BezierEasing from 'bezier-easing';
+
+import 'rawblock/components/accordion';
+
+const ASSETBASEPATH = window.appGlobals && appGlobals.basePath || '';
 //load dom or jQuery
-require('rawblock/sources/js/libs/rb_$');
 
-require('rawblock/sources/js/libs/rb_main');
-
-rb.BezierEasing = require('bezier-easing');
-
-/* configuration */
-rb.isDebug = 1;
+rb.BezierEasing = BezierEasing;
 
 //if webpack is used:
 __webpack_public_path__ = ASSETBASEPATH + 'js/';
 
-
-require('rawblock/sources/components/rb_panel/rb_panel');
-require('rawblock/sources/components/rb_panelgroup/rb_panelgroup');
-require('rawblock/sources/components/rb_tabs/rb_tabs');
 
 
 require('../../gulp/js/webpack/globloader!./glob.paths');

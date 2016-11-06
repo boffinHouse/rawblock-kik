@@ -1,1 +1,2 @@
-require('rawblock/sources/js/_rb_polyfills');
+import 'rawblock/_polyfills';
+// import 'lazysizes/plugins/object-fit/ls.object-fit';

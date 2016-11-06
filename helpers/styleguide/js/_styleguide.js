@@ -1,3 +1,3 @@
 'use strict';
 
-import './modules/rb_screensizer'
+import './modules/rb_screensizer';

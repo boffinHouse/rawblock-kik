@@ -1,7 +1,8 @@
-require('lazysizes');
-require('lazysizes/plugins/respimg/ls.respimg');
-require('lazysizes/plugins/optimumx/ls.optimumx');
-//require('lazysizes/plugins/parent-fit/ls.parent-fit');
+import 'lazysizes';
+import 'lazysizes/plugins/respimg/ls.respimg';
+import 'lazysizes/plugins/optimumx/ls.optimumx';
+
+// require('lazysizes/plugins/parent-fit/ls.parent-fit');
 
 let rbLiveClass;
 const rb = window.rb;
@@ -38,3 +39,7 @@ document.addEventListener('lazyunveilread', (e)=> {
         }
     }
 });
+
+if(document.querySelector('.lazyload')){
+    lazySizes.init();
+}

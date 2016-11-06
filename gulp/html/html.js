@@ -8,27 +8,27 @@
  */
 module.exports = (paths, gulp, plugins) => {
     'use strict';
-    
+
     const assemble = require('assemble')();
     const fs = require('fs-extra');
-    
+
     const createDocs = function(file) {
         let docLayout;
         const componentName = plugins.path.basename(file.path).replace(/\.[^.$]+$/, '');
         const matchName = /(\$componentName)/g;
-        
+
         docLayout = fs.readFileSync(plugins.path.join(paths.helpers, 'styleguide/partials/styleguide.hbs'), 'utf8');
         docLayout = docLayout.replace(matchName, componentName)
-    
+
         file.contents = new Buffer(docLayout);
     };
-    
+
     function createHTML(pages, dest, isDocs) {
-  
+
         //Layouts
         assemble.layouts( plugins.path.join(paths.html, 'layouts/{,**/}*.hbs'));
         assemble.layouts( plugins.path.join(paths.helpers, 'styleguide/layouts/{,**/}*.hbs'));
-    
+
         //Partials
         assemble.partials(plugins.path.join(paths.html, '{,**/}*.hbs'));
         assemble.partials(plugins.path.join(paths.components, '{,**/}*.{hbs, md}'));
@@ -58,7 +58,7 @@ module.exports = (paths, gulp, plugins) => {
                        .pipe(gulp.dest(dest))
             ;
     }
-    
+
     return () => {
         return plugins.eventStream.merge([
             createHTML(
@@ -78,7 +78,7 @@ module.exports = (paths, gulp, plugins) => {
             )
         ]);
     };
-    
-    
+
+
 };
 

@@ -16,88 +16,87 @@ module.exports = function(paths, gulp, plugins) {
     function createJS(entry, dest) {
         const isProduction = plugins.util.env.type == 'production';
 
+        const config = {
+            cache: true,
+            entry: entry,
+            output: {
+                filename: '[name].js',
+                chunkFilename: '[chunkhash].js',
+            },
+            module: {
+                loaders: [
+                    {
+                        test: /\.jsx?$|\.es6$|\.es2015/,
+                        exclude: /node_modules\/(?!(rawblock)\/).*/,
+                        loader: 'babel-loader',
+                        query: {
+                            plugins: [
+                                ['transform-runtime', {
+                                    polyfill: false,
+                                }]
+                            ],
+                            presets: ['es2015-loose', 'es2016', 'es2017'],
+                        },
+                    },
+                    {
+                        test: /\.css$/,
+                        loader: 'style-loader!css-loader',
+                    },
+                    {
+                        test: /\.ejs/,
+                        loader: 'rb_template-loader',
+                    },
+                ],
+            },
+            resolve: {
+                alias: {},
+            },
+            devtool: isProduction ? '' : 'source-map',
+            watch: !isProduction,
+            debug: !isProduction,
+            plugins: [
+                new webpack.optimize.DedupePlugin(),
+                new webpack.optimize.CommonsChunkPlugin({
+                    children: true,
+                    async: true,
+                    minSize: 10000,
+                }),
+                new webpack.optimize.CommonsChunkPlugin({
+                    children: true,
+                    async: true,
+                    minSize: 3000,
+                    minChunks: 3,
+                }),
+                new webpack.optimize.CommonsChunkPlugin({
+                    children: true,
+                    async: true,
+                    minSize: 500,
+                    minChunks: 6,
+                }),
+                new webpack.optimize.AggressiveMergingPlugin({
+                    minSizeReduce: 3,
+                    moveToParents: true,
+                    entryChunkMultiplicator: 5,
+                }),
+                new webpack.optimize.AggressiveMergingPlugin({
+                    minSizeReduce: 1.5,
+                }),
+                new webpack.DefinePlugin({
+                    'process.env': {
+                        'NODE_ENV': JSON.stringify(plugins.util.env.type),
+                    },
+                }),
+            ],
+        };
+
         return gulp.src([plugins.path.join(paths.assets.js, '_*.js')])
-            .pipe(gulpWebpack(
-                {
-                    cache: true,
-                    entry: entry,
-                    output: {
-                        filename: '[name].js',
-                        chunkFilename: '[chunkhash].js',
-                    },
-                    module: {
-                        loaders: [
-                            {
-                                test: /\.jsx?$|\.es6$|\.es2015/,
-                                exclude: /node_modules/,
-                                loader: 'babel-loader',
-                                query: {
-                                    plugins: [
-                                        ['transform-runtime', {
-                                            polyfill: false,
-                                        }]
-                                    ],
-                                    presets: ['es2015-loose', 'es2016', 'es2017'],
-                                },
-                            },
-                            {
-                                test: /\.css$/,
-                                loader: 'style-loader!css-loader',
-                            },
-                            {
-                                test: /\.ejs/,
-                                loader: 'rb_template-loader',
-                            },
-                        ],
-                    },
-                    resolve: {
-                        alias: {},
-                    },
-                    devtool: isProduction ? '' : 'source-map',
-                    watch: !isProduction,
-                    debug: !isProduction,
-                    plugins: [
-                        new webpack.optimize.DedupePlugin(),
-                        new webpack.optimize.CommonsChunkPlugin({
-                            children: true,
-                            async: true,
-                            minSize: 10000,
-                        }),
-                        new webpack.optimize.CommonsChunkPlugin({
-                            children: true,
-                            async: true,
-                            minSize: 3000,
-                            minChunks: 3,
-                        }),
-                        new webpack.optimize.CommonsChunkPlugin({
-                            children: true,
-                            async: true,
-                            minSize: 500,
-                            minChunks: 6,
-                        }),
-                        new webpack.optimize.AggressiveMergingPlugin({
-                            minSizeReduce: 3,
-                            moveToParents: true,
-                            entryChunkMultiplicator: 5,
-                        }),
-                        new webpack.optimize.AggressiveMergingPlugin({
-                            minSizeReduce: 1.5,
-                        }),
-                        new webpack.DefinePlugin({
-                            'process.env': {
-                                'NODE_ENV': JSON.stringify(plugins.util.env.type),
-                            },
-                        }),
-                    ],
-                }
-            ))
-            .pipe(isProduction ? plugins.uglify() : plugins.util.noop())
-            .pipe(isProduction ? plugins.rename({suffix: '.min'}) : plugins.util.noop())
-            .on('error', function swallowError (error) {
+            .pipe(gulpWebpack(config).on('error', function swallowError (error) {
                 /* eslint-disable */
                 console.log(error.toString());
-                ///this.emit('end');
-            })
+                this.emit('end');
+            }))
+            .pipe(isProduction ? plugins.uglify() : plugins.util.noop())
+            .pipe(isProduction ? plugins.rename({suffix: '.min'}) : plugins.util.noop())
             .pipe(gulp.dest(dest))
         ;
     }
