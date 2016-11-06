@@ -1,13 +1,9 @@
 <nav class="doc-navmain">
     <ul class="doc-navmain-list">
+        <li class="doc-navmain-item is-first">
+            <a href="index" class="doc-navmain-link">Index</a>
+        </li>
         {{#if pages}}
-            {{#each pages}}
-                {{#is title 'Index'}}
-                    <li class="doc-navmain-item is-first">
-                        <a href="{{ href }}" class="doc-navmain-link">{{ title }}</a>
-                    </li>
-                {{/is}}
-            {{/each}}
             <li class="doc-navmain-item is-level-1">
                 <h3 class="doc-navmain-title">Pages</h3>
                 <ul class="doc-nav">
@@ -26,6 +22,18 @@
                 <h3 class="doc-navmain-title">Components</h3>
                 <ul class="doc-nav">
                     {{#each components}}
+                        <li class="doc-navmain-item">
+                            <a href="{{ href }}" class="doc-navmain-link">{{ title }}</a>
+                        </li>
+                    {{/each}}
+                </ul>
+            </li>
+        {{/if}}
+        {{#if styleguide}}
+            <li class="doc-navmain-item is-level-1">
+                <h3 class="doc-navmain-title">Components</h3>
+                <ul class="doc-nav">
+                    {{#each styleguide}}
                         <li class="doc-navmain-item">
                             <a href="{{ href }}" class="doc-navmain-link">{{ title }}</a>
                         </li>
