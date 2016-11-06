@@ -27,7 +27,7 @@ module.exports = function(paths, gulp, plugins) {
                 loaders: [
                     {
                         test: /\.jsx?$|\.es6$|\.es2015/,
-                        exclude: /node_modules/,
+                        exclude: /node_modules\/(?!(rawblock)\/).*/,
                         loader: 'babel-loader',
                         query: {
                             plugins: [

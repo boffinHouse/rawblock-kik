@@ -1,2 +1,2 @@
-require('rawblock/sources/js/libs/rb_crucial');
-require('./modules/lazysizes');
+import 'rawblock/_crucial';
+import './modules/lazysizes';

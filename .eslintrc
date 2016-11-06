@@ -6,7 +6,8 @@
     },
     "env": {
         "browser": true,
-        "shared-node-browser": true
+        "shared-node-browser": true,
+        "es6": true
     },
     "globals": {
         "module": false,
@@ -14,7 +15,8 @@
         "rb": false,
         "appGlobals": true,
         "lazySizes": false,
-        "__webpack_public_path__": true
+        "__webpack_public_path__": true,
+        "process": false
     },
     "extends": ["eslint:recommended"],
     "rules": {

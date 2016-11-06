@@ -1,6 +1,6 @@
-require('lazysizes');
-require('lazysizes/plugins/respimg/ls.respimg');
-require('lazysizes/plugins/optimumx/ls.optimumx');
+import 'lazysizes';
+import 'lazysizes/plugins/respimg/ls.respimg';
+import 'lazysizes/plugins/optimumx/ls.optimumx';
 
 // require('lazysizes/plugins/parent-fit/ls.parent-fit');
 
