@@ -30,10 +30,11 @@ module.exports = function(paths, gulp, plugins) {
                         exclude: /node_modules\/(?!(rawblock)\/).*/,
                         loader: 'babel-loader',
                         query: {
+                            compact: true,
                             plugins: [
                                 ['transform-runtime', {
                                     polyfill: false,
-                                }]
+                                }],
                             ],
                             presets: ['es2015-loose', 'es2016', 'es2017'],
                         },
