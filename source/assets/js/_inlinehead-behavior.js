@@ -41,7 +41,7 @@
 
         setTimeout(function () {
             loadJs(ASSETBASEPATH + 'assets/js/_main-behavior.js', true);
-        });
+        }, 9);
     });
 
     if (document.fonts && document.fonts.forEach) {
