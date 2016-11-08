@@ -28,23 +28,26 @@
         docElem.classList.remove('no-js');
         docElem.classList.add('js');
     }
-    
-    
-    
+
+
+
     setTimeout(function(){
         var arrayProto = Array.prototype;
         if (!Object.assign || !docElem.closest || !arrayProto.includes || !String.prototype.includes || !window.cancelAnimationFrame || !Array.from || !arrayProto.find) {
             loadJs(ASSETBASEPATH + 'assets/js/_polyfills.js', true);
         }
+
         loadJs(ASSETBASEPATH + 'assets/js/_crucial-behavior.js', true);
-        loadJs(ASSETBASEPATH + 'assets/js/_main-behavior.js', true);
+
+        setTimeout(function () {
+            loadJs(ASSETBASEPATH + 'assets/js/_main-behavior.js', true);
+        });
     });
-    
-    //uncomment if you have crucial fonts placed above inline script
-    // if (document.fonts && document.fonts.forEach) {
-    //     document.fonts.forEach(function(font){
-    //         font.load();
-    //     });
-    // }
-    
+
+    if (document.fonts && document.fonts.forEach) {
+        document.fonts.forEach(function(font){
+            font.load();
+        });
+    }
+
 })(window);
