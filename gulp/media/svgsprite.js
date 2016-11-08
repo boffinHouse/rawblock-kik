@@ -26,7 +26,6 @@ module.exports = function(paths, gulp, plugins) {
             .pipe(plugins.svgstore({
                 inlineSvg: true,
             }))
-           
             .pipe(gulp.dest(plugins.path.join(paths.assets.media, 'svg-sprite')))
         ;
     }

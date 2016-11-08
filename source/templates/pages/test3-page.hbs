@@ -1,12 +1,13 @@
 ---
 title: Testing 3
-layout: default_tpl.hbs
-
 ---
-<h2>{{ title }}</h2>
+{{#extend "layouts/default_tpl2"}}
 {{#content "sidebar"}}
-    <h2>some script hello</h2>
+    <h1>Hello</h1>
 {{/content}}
+{{/extend}}
 
-<h2>Yes script hello</h2>
+
+
+
 

@@ -23,9 +23,10 @@
             </header>
 
             <main class="page-main" id="main-content" role="main" tabindex="-1">
-                {% body %}
+                {{#block "sidebar"}}
+                {{/block}}
             </main>
-            {{#block "sidebar"}}{{/block}}
+
 
         </div>
 
