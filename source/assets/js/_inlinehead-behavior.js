@@ -33,6 +33,7 @@
 
     setTimeout(function(){
         var arrayProto = Array.prototype;
+
         if (!Object.assign || !docElem.closest || !arrayProto.includes || !String.prototype.includes || !window.cancelAnimationFrame || !Array.from || !arrayProto.find) {
             loadJs(ASSETBASEPATH + 'assets/js/_polyfills.js', true);
         }
@@ -41,7 +42,7 @@
 
         setTimeout(function () {
             loadJs(ASSETBASEPATH + 'assets/js/_main-behavior.js', true);
-        }, 9);
+        });
     });
 
     if (document.fonts && document.fonts.forEach) {
