@@ -1,20 +1,18 @@
-"use strict";
-
-var path = require('path');
-var regSplit = /\s+/gm;
-var expand = require('glob-expand');
+const path = require('path');
+const regSplit = /\s+/gm;
+const expand = require('glob-expand');
 
 module.exports = function (content, _sourceMap) {
-    var ret;
-    var patterns = content.trim().split(regSplit);
-    var files = expand(
+    let ret;
+    const patterns = content.trim().split(regSplit);
+    let files = expand(
         {
             cwd: path.dirname(this.resourcePath),
             filter: 'isFile'
         },
         patterns
     );
-    var extendModuleNames = function(name, moduleNames){
+    const extendModuleNames = function(name, moduleNames){
 
         ['', '_', '-'].forEach(function(sign){
             var tmp = name;
@@ -31,10 +29,10 @@ module.exports = function (content, _sourceMap) {
     };
 
     files = files.map(function(file){
-        var moduleNames = [];
-        var fileTmp = file.split('/');
-        var fileName = fileTmp[fileTmp.length - 1].split('.')[0];
-        var dirName = fileTmp[fileTmp.length - 2] || '';
+        const moduleNames = [];
+        const fileTmp = file.split('/');
+        const fileName = fileTmp[fileTmp.length - 1].split('.')[0];
+        const dirName = fileTmp[fileTmp.length - 2] || '';
 
         extendModuleNames(fileName, moduleNames);
         extendModuleNames(dirName, moduleNames);

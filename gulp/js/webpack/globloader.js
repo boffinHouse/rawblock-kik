@@ -1,15 +1,13 @@
-"use strict";
-
-var path = require('path');
-var regSplit = /\s+/gm;
-var expand = require('glob-expand');
+const path = require('path');
+const regSplit = /\s+/gm;
+const expand = require('glob-expand');
 
 module.exports = function (content, _sourceMap) {
-    var patterns = content.trim().split(regSplit);
-    var files = expand(
+    const patterns = content.trim().split(regSplit);
+    const files = expand(
         {
             'cwd': path.dirname(this.resourcePath),
-            'filter': 'isFile'
+            'filter': 'isFile',
         },
         patterns
     );

@@ -15,6 +15,42 @@ module.exports = function(paths, gulp, plugins) {
 
     function createJS(entry, dest) {
         const isProduction = plugins.util.env.type == 'production';
+        let webpackPlugins = [
+            new webpack.optimize.CommonsChunkPlugin({
+                children: true,
+                async: true,
+                minSize: 10000,
+            }),
+            new webpack.optimize.CommonsChunkPlugin({
+                children: true,
+                async: true,
+                minSize: 3000,
+                minChunks: 3,
+            }),
+            new webpack.optimize.CommonsChunkPlugin({
+                children: true,
+                async: true,
+                minSize: 500,
+                minChunks: 6,
+            }),
+            new webpack.optimize.AggressiveMergingPlugin({
+                minSizeReduce: 3,
+                moveToParents: true,
+                entryChunkMultiplicator: 5,
+            }),
+            new webpack.optimize.AggressiveMergingPlugin({
+                minSizeReduce: 1.5,
+            }),
+            new webpack.DefinePlugin({
+                'process.env': {
+                    'NODE_ENV': JSON.stringify(plugins.util.env.type),
+                },
+            }),
+        ];
+
+        if(isProduction){
+            webpackPlugins = [new webpack.optimize.DedupePlugin(), new webpack.optimize.UglifyJsPlugin()].concat(webpackPlugins);
+        }
 
         const config = {
             cache: true,
@@ -30,10 +66,11 @@ module.exports = function(paths, gulp, plugins) {
                         exclude: /node_modules\/(?!(rawblock)\/).*/,
                         loader: 'babel-loader',
                         query: {
+                            compact: true,
                             plugins: [
                                 ['transform-runtime', {
                                     polyfill: false,
-                                }]
+                                }],
                             ],
                             presets: ['es2015-loose', 'es2016', 'es2017'],
                         },
@@ -54,39 +91,7 @@ module.exports = function(paths, gulp, plugins) {
             devtool: isProduction ? '' : 'source-map',
             watch: !isProduction,
             debug: !isProduction,
-            plugins: [
-                new webpack.optimize.DedupePlugin(),
-                new webpack.optimize.CommonsChunkPlugin({
-                    children: true,
-                    async: true,
-                    minSize: 10000,
-                }),
-                new webpack.optimize.CommonsChunkPlugin({
-                    children: true,
-                    async: true,
-                    minSize: 3000,
-                    minChunks: 3,
-                }),
-                new webpack.optimize.CommonsChunkPlugin({
-                    children: true,
-                    async: true,
-                    minSize: 500,
-                    minChunks: 6,
-                }),
-                new webpack.optimize.AggressiveMergingPlugin({
-                    minSizeReduce: 3,
-                    moveToParents: true,
-                    entryChunkMultiplicator: 5,
-                }),
-                new webpack.optimize.AggressiveMergingPlugin({
-                    minSizeReduce: 1.5,
-                }),
-                new webpack.DefinePlugin({
-                    'process.env': {
-                        'NODE_ENV': JSON.stringify(plugins.util.env.type),
-                    },
-                }),
-            ],
+            plugins: webpackPlugins,
         };
 
         return gulp.src([plugins.path.join(paths.assets.js, '_*.js')])
@@ -95,7 +100,6 @@ module.exports = function(paths, gulp, plugins) {
                 console.log(error.toString());
                 this.emit('end');
             }))
-            .pipe(isProduction ? plugins.uglify() : plugins.util.noop())
             .pipe(isProduction ? plugins.rename({suffix: '.min'}) : plugins.util.noop())
             .pipe(gulp.dest(dest))
         ;
