@@ -61,7 +61,7 @@ gulp.task('eslint', plugins.getTaskModule('js/eslint'));
 gulp.task('browser-sync', plugins.getTaskModule('browser-sync'));
 gulp.task('copy', plugins.getTaskModule('copy'));
 gulp.task('favicon', plugins.getTaskModule('favicon'));
-gulp.task('svgstore', plugins.getTaskModule('media/svgstore'));
+gulp.task('svgsprite', plugins.getTaskModule('media/svgsprite'));
 
 
 /**
