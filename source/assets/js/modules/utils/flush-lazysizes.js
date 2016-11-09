@@ -1,5 +1,8 @@
 if(window.lazySizes){
-    lazySizes.rAF._lsFlush();
+    if(document.querySelector('.lazyload')){
+        lazySizes.init();
+        lazySizes.rAF._lsFlush();
+    }
 
     if(window.lazySizesConfig){
 
