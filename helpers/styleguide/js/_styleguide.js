@@ -1,3 +1,3 @@
-'use strict';
-
-import './modules/rb_screensizer';
+import './modules/screensizer';
+import './modules/pagechanger';
+import './modules/navtoggle';

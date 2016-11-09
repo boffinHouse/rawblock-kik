@@ -2,6 +2,6 @@ npm
 - highlight.js: maybe change with other highlight module.
 
 Todo
-- Create auto project navigation from hbs files
-- Create JS styleguide files
-- Style styleguide 
+- Create styleguide colors handlebars-helper and page
+- Create styleguid font-styles page
+- Create styleguide button to switch to basic templates

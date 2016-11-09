@@ -37,7 +37,7 @@ $doc-nav-width: 216px;
     background: #e6e6e6;
     transition: min-width 300ms ease-out;
     
-    &.is-open  {
+    .is-nav-open &  {
         min-width: 0;
         flex: 1;
     }
@@ -46,14 +46,13 @@ $doc-nav-width: 216px;
 .doc-page-iframe {
     display: block;
     position: relative;
-    height: 100%;
-    width: 100%;
     margin: auto;
     background: #fff;
-    transition: width 300ms ease-out, height 300ms ease-out;
+    transition: all 300ms ease-out;
     
     &[data-framesize="small"] {
         width: 400px;
+        height: 500px;
     }
     
     &[data-framesize="medium"] {
@@ -67,6 +66,7 @@ $doc-nav-width: 216px;
     }
     
     &[data-framesize="fullsize"] {
+        height: 100vh;
         width: 100%;
     }
 }

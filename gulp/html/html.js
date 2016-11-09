@@ -36,7 +36,7 @@ module.exports = (paths, gulp, plugins) => {
         assemble.layouts( plugins.path.join(paths.helpers, 'styleguide/layouts/**/*.hbs'));
 
         //Partials
-        assemble.partials(plugins.path.join(paths.html, '**/*.hbs'));
+        assemble.partials(plugins.path.join(paths.html, 'partials/**/*.hbs'));
         assemble.partials(plugins.path.join(paths.components, '**/*.{hbs, md}'));
         assemble.partials(plugins.path.join(paths.helpers, 'styleguide/**/*.hbs'));
         

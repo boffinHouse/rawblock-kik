@@ -70,6 +70,7 @@
     "gulp-watch": "~4.3.5",
     "handlebars": "~4.0.5",
     "handlebars-helpers": "~0.7.5",
+    "handlebars-layouts": "^3.1.4",
     "helper-markdown": "~0.2.1",
     "highlight.js": "~9.7.0",
     "inquirer": "~1.2.2",
