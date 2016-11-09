@@ -1,4 +1,7 @@
 ../components/**/*.js
-!../components/**/*.lazy.js
-!../components/**/tests/**/*.js
-!../components/**/*-tests.js
+../modules/**/*.js
+!./**/*.lazy.js
+!./**/*.customlazy.js
+!./**/tests/**/*.js
+!./<components**/*-tests.js
+

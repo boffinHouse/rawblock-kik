@@ -1,3 +1,4 @@
+import './modules/utils/flush-lazysizes';
 import 'rawblock/_$';
 import rb from 'rawblock/_main';
 import BezierEasing from 'bezier-easing';
@@ -16,15 +17,5 @@ __webpack_public_path__ = ASSETBASEPATH + 'js/';
 require('../../../gulp/js/webpack/globloader!./glob.paths');
 
 require('../../../gulp/js/webpack/lazyglobloader!./lazyglob.paths');
-
-if(window.lazySizesConfig){
-    rb.ready.then(()=>{
-        setTimeout(()=>{
-            if(window.lazySizesConfig.loadMode < 2){
-                window.lazySizesConfig.loadMode = 2;
-            }
-        }, 999);
-    });
-}
 
 rb.$(rb.live.init);

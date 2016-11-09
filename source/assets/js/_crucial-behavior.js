@@ -1,2 +1,4 @@
 import 'rawblock/_crucial';
-import './modules/lazysizes';
+
+require('../../../gulp/js/webpack/globloader!./crucialglob.paths');
+
