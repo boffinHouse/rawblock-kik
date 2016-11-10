@@ -1,46 +1,49 @@
-<nav class="doc-navmain">
-    <ul class="doc-navmain-list">
-        <li class="doc-navmain-item is-first">
-            <a href="index.html" class="doc-navmain-link">Index</a>
-        </li>
-        {{#if pages}}
-            <li class="doc-navmain-item is-level-1">
-                <h3 class="doc-navmain-title">Pages</h3>
-                <ul class="doc-nav">
-                    {{#each pages}}
-                        {{#isnt title 'Index'}}
+{{#navigation "source/components/**/*.hbs, source/templates/pages/**/*.hbs, helpers/styleguide/pages/**/*.hbs" }}
+    <nav class="doc-navmain">
+        <ul class="doc-navmain-list">
+            {{#isnt ../title "Index"}}
+                <li class="doc-navmain-item is-first">
+                    <a href="index.html" class="doc-navmain-link">Index</a>
+                </li>
+            {{/isnt}}
+            {{#if pages}}
+                <li class="doc-navmain-item is-level-1">
+                    <h3 class="doc-navmain-title">Pages</h3>
+                    <ul class="doc-nav">
+                        {{#each pages}}
+                            {{#isnt title 'Index'}}
+                                <li class="doc-navmain-item">
+                                    <a href="{{ href }}" class="doc-navmain-link">{{ title }}</a>
+                                </li>
+                            {{/isnt}}
+                        {{/each}}
+                    </ul>
+                </li>
+            {{/if}}
+            {{#if components}}
+                <li class="doc-navmain-item is-level-1">
+                    <h3 class="doc-navmain-title">Components</h3>
+                    <ul class="doc-nav">
+                        {{#each components}}
                             <li class="doc-navmain-item">
                                 <a href="{{ href }}" class="doc-navmain-link">{{ title }}</a>
                             </li>
-                        {{/isnt}}
-                    {{/each}}
-                </ul>
-            </li>
-        {{/if}}
-        {{#if components}}
-            <li class="doc-navmain-item is-level-1">
-                <h3 class="doc-navmain-title">Components</h3>
-                <ul class="doc-nav">
-                    {{#each components}}
-                        <li class="doc-navmain-item">
-                            <a href="{{ href }}" class="doc-navmain-link">{{ title }}</a>
-                        </li>
-                    {{/each}}
-                </ul>
-            </li>
-        {{/if}}
-        {{#if styleguide}}
-            <li class="doc-navmain-item is-level-1">
-                <h3 class="doc-navmain-title">Components</h3>
-                <ul class="doc-nav">
-                    {{#each styleguide}}
-                        <li class="doc-navmain-item">
-                            <a href="{{ href }}" class="doc-navmain-link">{{ title }}</a>
-                        </li>
-                    {{/each}}
-                </ul>
-            </li>
-        {{/if}}
-    </ul>
-</nav>
-
+                        {{/each}}
+                    </ul>
+                </li>
+            {{/if}}
+            {{#if styleguide}}
+                <li class="doc-navmain-item is-level-1">
+                    <h3 class="doc-navmain-title">Styleguide</h3>
+                    <ul class="doc-nav">
+                        {{#each styleguide}}
+                            <li class="doc-navmain-item">
+                                <a href="{{ href }}" class="doc-navmain-link">{{ title }}</a>
+                            </li>
+                        {{/each}}
+                    </ul>
+                </li>
+            {{/if}}
+        </ul>
+    </nav>
+{{/navigation}}

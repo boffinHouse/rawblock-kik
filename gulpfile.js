@@ -85,9 +85,9 @@ gulp.task('uglify:inline', function() {
  * Main tasks
  */
 
-gulp.task('default', (fn) => {
+gulp.task('default',  (fn) => {
     plugins.util.env.type = 'production';
-    plugins.runSequence(['build', 'cssmin',], fn);
+    plugins.runSequence(['build'], ['cssmin'], fn);
 });
 
 gulp.task('dev', (fn) => {
