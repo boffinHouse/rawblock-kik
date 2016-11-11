@@ -32,7 +32,6 @@ const paths = {
         js: plugins.path.join(__dirname, 'source/assets/js'),
         fonts: plugins.path.join(__dirname, 'source/assets/fonts'),
         media: plugins.path.join(__dirname, 'source/assets/media')
-        //styleguide: plugins.path.join(__dirname, 'source/media')
     },
 
     // HTML templates, Components
@@ -58,6 +57,7 @@ gulp.task('watch', plugins.getTaskModule('watch'));
 gulp.task('html', plugins.getTaskModule('html/html'));
 gulp.task('js', plugins.getTaskModule('js/webpack'));
 gulp.task('eslint', plugins.getTaskModule('js/eslint'));
+gulp.task('jsdoc', plugins.getTaskModule('js/jsdoc'));
 gulp.task('browser-sync', plugins.getTaskModule('browser-sync'));
 gulp.task('copy', plugins.getTaskModule('copy'));
 gulp.task('favicon', plugins.getTaskModule('favicon'));

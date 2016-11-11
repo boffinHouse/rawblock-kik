@@ -10,7 +10,10 @@ module.exports = (paths, gulp, plugins) => {
     'use strict';
     
     return (callback) => {
-        gulp.src(['README.md', './src/**/*.js'], {read: false})
-            .pipe(plugins.jsdoc(callback));
+        gulp.src([
+                'README.md',
+                plugins.path.join(paths.npm, 'rawblock/components/**/*.js'),
+            ], {read: false})
+            .pipe(plugins.jsdoc3(require('./jsdocConfig.json'), callback));
     }
 };
