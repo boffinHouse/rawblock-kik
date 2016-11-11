@@ -3,6 +3,8 @@ title: Colors
 layout: default_tpl.hbs
 ---
 
+<h1>{{ title }}</h1>
+
 {{#getColors 'source/assets/sass/settings/_color.scss'}}
         <ul class="u-column-group u-gutters">
             {{#each this}}
@@ -13,3 +15,5 @@ layout: default_tpl.hbs
             {{/each}}
         </ul>
 {{/getColors}}
+
+<!---->
