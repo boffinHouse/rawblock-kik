@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 const Handlebars = require('handlebars');
 const fs = require('fs-extra');
 const helperUtils = require('./hb-utils');

@@ -10,7 +10,7 @@ tmp
 bower_components
 visual-tests
 sources/components/**/tests/visual/visual-tests/results
-
+my-example
 .sass-cache
 .css
 

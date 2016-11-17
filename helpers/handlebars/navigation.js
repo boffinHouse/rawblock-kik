@@ -29,12 +29,9 @@ Handlebars.registerHelper('navigation', function(filesDirs, options) {
             data.components.push(objData);
         } else if(file.includes('templates/pages')) {
             data.pages.push(objData);
-        } else if(file.includes('styleguide/pages')) {
+        } else if(file.includes('styleguide/pages') && !file.includes('styleguide/pages/app')) {
             data.styleguide.push(objData);
-        } else {
-            console.log('Files are not correct');
         }
-
     }
 
     filesDirs.forEach((fileDir) => {
