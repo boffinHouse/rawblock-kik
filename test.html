@@ -1,0 +1,14 @@
+<form class="mainsearch">
+    <div class="mainsearch-inputfield js-rb-live" data-module="clearinput">
+        <input aria-label="Suchbegriff" class="mainsearch-input" />
+        <button type="button" class="mainsearch-clearbtn"></button>
+    </div>
+    <button class="mainsearch-submitbtn" type="submit">suchen</button>
+</form>
+<style>
+    .mainsearch-inputfield {
+    @include rb-js-export((
+    name: 'mainsearch'
+    ));
+    }
+</style>

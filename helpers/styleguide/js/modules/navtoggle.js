@@ -11,4 +11,6 @@ function navToggle(event) {
     event.preventDefault();
 }
 
-nav.addEventListener('click', navToggle, false);
+if(nav) {
+    nav.addEventListener('click', navToggle, false);
+}

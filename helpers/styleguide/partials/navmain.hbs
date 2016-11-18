@@ -1,8 +1,8 @@
 {{#navigation "source/components/**/*.hbs, source/templates/pages/**/*.hbs, helpers/styleguide/pages/**/*.hbs" }}
-    <nav class="doc-navmain">
+    <nav class="doc-navmain {{#is ../title "Index"}}is-index{{/is}}">
         <ul class="doc-navmain-list">
             {{#isnt ../title "Index"}}
-                <li class="doc-navmain-item is-first">
+                <li class="doc-navmain-item is-level-1">
                     <a href="index.html" class="doc-navmain-link">Index</a>
                 </li>
             {{/isnt}}
@@ -44,7 +44,7 @@
                     </ul>
                 </li>
             {{/if}}
-            <li class="doc-navmain-item is-first">
+            <li class="doc-navmain-item is-level-1">
                 <a href="docs/jsdocs/index.html" class="doc-navmain-link">JS Documentation</a>
             </li>
         </ul>

@@ -5,10 +5,10 @@
         {{> app_icons }}
         {{> head_assets }}
 
-        {{#if component}}
+        {{#or component styleguide}}
             {{!-- Styles only used in documentation component not live site --}}
             <link rel="stylesheet" href="docs/css/styleguide.css">
-        {{/if}}
+        {{/or}}
     </head>
     <body class="rb-page" {{#if schemaPage}}itemscope itemtype="https://schema.org/{{schemaPage}}"{{/if}}>
         <script> /* block CSS */ </script>
@@ -30,10 +30,6 @@
         </div>
 
         {{> body_assets}}
-        {{#if component}}
-            {{!-- JS only used in documentation component not live site --}}
-            <script src="docs/js/_styleguide.js"></script>
-        {{/if}}
     </body>
 
 </html>

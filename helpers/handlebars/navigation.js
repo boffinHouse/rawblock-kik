@@ -29,7 +29,7 @@ Handlebars.registerHelper('navigation', function(filesDirs, options) {
             data.components.push(objData);
         } else if(file.includes('templates/pages')) {
             data.pages.push(objData);
-        } else if(file.includes('styleguide/pages') && !file.includes('styleguide/pages/app')) {
+        } else if(file.includes('styleguide/pages') && !file.includes('styleguide/pages/app') && !file.includes('styleguide/pages/index')) {
             data.styleguide.push(objData);
         }
     }

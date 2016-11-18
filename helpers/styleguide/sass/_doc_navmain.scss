@@ -7,13 +7,30 @@
 
 
 //----------------------------------------------------------
+.doc-navmain-list {
+    
+    .doc-navmain.is-index & {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
 
 .doc-navmain-item {
     font: 400 12px/1 $font-sans-serif;
     color: #515151;
     
-    &.is-first {
-        font-size: 15px
+    &.is-level-1 {
+        font-size: 15px;
+    
+        .doc-navmain.is-index & {
+            font-size: 24px;
+            margin: 0 0 50px;
+        }
+    }
+    
+    .doc-navmain.is-index & {
+        width: 33.333%;
+        font-size: 18px;
     }
 }
 
@@ -22,6 +39,12 @@
     font-size: 15px;
     font-weight: 400;
     color: #515151;
+    
+    .doc-navmain.is-index & {
+        margin: 0 0 10px;
+        padding: 0;
+        font-size: 24px;
+    }
 }
 
 .doc-navmain-link {
@@ -29,7 +52,7 @@
     padding: 8px 15px;
     color: #515151;
     
-    //.doc-navmain-item.is-first & {
-    //    color: #f3f3f3;
-    //}
+    .doc-navmain.is-index & {
+        padding: 8px 0;
+    }
 }

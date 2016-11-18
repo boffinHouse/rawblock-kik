@@ -1,0 +1,28 @@
+---
+title: Index
+layout: default_tpl.hbs
+styleguide: true
+---
+<article class="doc-articlemain">
+
+    <div class="doc-articlemain-section">
+        <header class="doc-intro">
+            <h1 class="doc-intro-title">{{ title }}</h1>
+            {{#if description }}
+                <p class="doc-intro-hook">{{ description }}</p>
+            {{/if}}
+        </header>
+
+        <div class="doc-articlemain-box">
+            {{> navmain }}
+        </div>
+        <div class="doc-articlemain-box">
+            <div class="doc-richtext">
+                {{rbMarkdownFile 'README.md'}}
+            </div>
+        </div>
+    </div>
+
+</article>
+
+

@@ -4,10 +4,13 @@ const iframe = document.querySelector('.doc-page-iframe');
 function changeScreensize(event) {
     const screensizeData = event.target.getAttribute('data-screensize');
     
-    iframe.setAttribute('data-framesize', screensizeData);
-    
-    event.preventDefault();
+    if(event.target && screensizeData) {
+        iframe.setAttribute('data-framesize', screensizeData);
+        event.preventDefault();
+    }
 }
+
+console.log(screensize);
 
 screensize.addEventListener('click', changeScreensize, false);
 

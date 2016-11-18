@@ -1,19 +1,24 @@
 ---
 title: Colors
 layout: default_tpl.hbs
+styleguide: true
 ---
 
-<h1>{{ title }}</h1>
+<article class="doc-articlemain">
 
-{{#getColors 'source/assets/sass/settings/_color.scss'}}
-        <ul class="u-column-group u-gutters">
-            {{#each this}}
-                <li class="u-size-20" style="background: {{color}}; height: 200px;">
-                    <span>{{name}}    </span>
-                    <span>{{color}}</span>
-                </li>
-            {{/each}}
-        </ul>
-{{/getColors}}
-
-<!---->
+    <div class="doc-articlemain-section">
+        <h1>{{ title }}</h1>
+        <div class="doc-articlemain-box">
+            {{#getColors 'source/assets/sass/settings/_color.scss'}}
+                <ul class="u-column-group u-gutters">
+                    {{#each this}}
+                        <li class="u-size-20" style="background: {{color}}; height: 200px;">
+                            <span>{{name}}    </span>
+                            <span>{{color}}</span>
+                        </li>
+                    {{/each}}
+                </ul>
+            {{/getColors}}
+        </div>
+    </div>
+</article>
