@@ -39,10 +39,7 @@
         }
 
         loadJs(ASSETBASEPATH + 'assets/js/_crucial-behavior.js', true);
-
-        setTimeout(function () {
-            loadJs(ASSETBASEPATH + 'assets/js/_main-behavior.js', true);
-        });
+        loadJs(ASSETBASEPATH + 'assets/js/_main-behavior.js', true);
     });
 
     if (document.fonts && document.fonts.forEach) {
