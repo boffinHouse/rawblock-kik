@@ -1,8 +1,6 @@
 'use strict';
 
-const Handlebars = require('handlebars');
-
-Handlebars.registerHelper('mergeJSON', (function () {
+module.exports = (() => {
     var slice = [].slice;
     var toObj = function (json) {
         if (typeof json == 'string') {
@@ -35,4 +33,5 @@ Handlebars.registerHelper('mergeJSON', (function () {
         args.unshift({});
         return options.fn(_.merge.apply(_, args));
     };
-})());
+})();
+

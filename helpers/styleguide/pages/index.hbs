@@ -7,7 +7,9 @@ styleguide: true
 
     <div class="doc-articlemain-section">
         <header class="doc-intro">
-            <h1 class="doc-intro-title">{{ title }}</h1>
+            <h1 class="doc-intro-title">
+                {{ title }}  {{#with default}}{{project}}{{/with}}
+            </h1>
             {{#if description }}
                 <p class="doc-intro-hook">{{ description }}</p>
             {{/if}}

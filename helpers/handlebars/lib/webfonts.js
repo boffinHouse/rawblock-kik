@@ -1,17 +1,14 @@
-'use strict';
-
-const Handlebars = require('handlebars');
 const fs = require('fs-extra');
 const helperUtils = require('./hb-utils');
 
-Handlebars.registerHelper('webfonts', (file, options) => {
+module.exports = (file, options) => {
     let data = [];
-    const regVarSplit = /(\$.*?):(.*?);/g;
-    const content = fs.readFileSync(file).toString();
-    const sass = {
-        selector: /[^\{\}\s][^\{\};]*?(?=\s*\{)/,
-        property: /(\b|\B)[\w-]+(?=\s*:)/i
-    };
+    // const regVarSplit = /(\$.*?):(.*?);/g;
+    // const content = fs.readFileSync(file).toString();
+    // const sass = {
+    //     selector: /[^\{\}\s][^\{\};]*?(?=\s*\{)/,
+    //     property: /(\b|\B)[\w-]+(?=\s*:)/i
+    // };
     
     if(!helperUtils.fileExisits(file)) {return;}
     
@@ -29,4 +26,4 @@ Handlebars.registerHelper('webfonts', (file, options) => {
     // });
     
     return options.fn(data);
-});
+}

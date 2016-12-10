@@ -1,19 +1,17 @@
 'use strict';
-const Handlebars = require('handlebars');
 const glob = require('glob');
 const fs = require('fs-extra');
 const path = require('path');
 const fm = require('front-matter');
 
-
-Handlebars.registerHelper('navigation', function(filesDirs, options) {
+module.exports = (filesDirs, options) => {
     filesDirs = filesDirs.split(',');
     let data = {
         components: [],
         pages: [],
         styleguide: []
     };
-
+    
     function createData( file) {
         const href = path.basename(file).replace('.hbs', '.html');
         const fileData = fm(fs.readFileSync(file, 'utf8')).attributes;
@@ -22,9 +20,9 @@ Handlebars.registerHelper('navigation', function(filesDirs, options) {
             tracker: fileData.tracker || '',
             href: href,
         };
-
+        
         if(!objData.title) {return;}
-
+        
         if(file.includes('components')) {
             data.components.push(objData);
         } else if(file.includes('templates/pages')) {
@@ -33,10 +31,10 @@ Handlebars.registerHelper('navigation', function(filesDirs, options) {
             data.styleguide.push(objData);
         }
     }
-
+    
     filesDirs.forEach((fileDir) => {
         glob.sync(fileDir).forEach(createData);
     });
-
+    
     return options.fn(data);
-});
+};

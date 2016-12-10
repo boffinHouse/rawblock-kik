@@ -1,10 +1,7 @@
-'use strict';
-
-const Handlebars = require('handlebars');
 const fs = require('fs-extra');
 const Highlight = require('highlight.js');
 
-Handlebars.registerHelper('getTemplateCode', function(filePath) {
+module.exports = (filePath) => {
     const matchMetaData = /---(\s*?.*?)*?---/g;
     const regExtension = /\.([0-9a-z]+)(?:[?#]|$)/i;
     const getExtension = filePath.match(regExtension);
@@ -16,13 +13,14 @@ Handlebars.registerHelper('getTemplateCode', function(filePath) {
             console.log('Extension ' + extension + ' is incorrect');
         }
     };
-
+    
     if(getExtension[1] === 'hbs') {
         content = content.replace(matchMetaData, '').replace(/^\s/g,'');
     }
-
+    
     return highlightCode(content, getExtension[1]);
-});
+};
+
 
 
 

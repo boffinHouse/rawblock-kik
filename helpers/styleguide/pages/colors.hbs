@@ -9,7 +9,7 @@ styleguide: true
     <div class="doc-articlemain-section">
         <h1>{{ title }}</h1>
         <div class="doc-articlemain-box">
-            {{#getColors 'source/assets/sass/settings/_color.scss'}}
+            {{#colors 'source/assets/sass/settings/_color.scss'}}
                 <ul class="u-column-group u-gutters">
                     {{#each this}}
                         <li class="u-size-20" style="background: {{color}}; height: 200px;">
@@ -18,7 +18,7 @@ styleguide: true
                         </li>
                     {{/each}}
                 </ul>
-            {{/getColors}}
+            {{/colors}}
         </div>
     </div>
 </article>

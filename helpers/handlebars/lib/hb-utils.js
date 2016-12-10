@@ -1,9 +1,7 @@
- 'use strict';
-
- const fs = require('fs-extra');
- let utils = {};
+const fs = require('fs-extra');
+let utils = {};
  
- utils.fileExisits = function(filePath) {
+ utils.fileExisits = (filePath) => {
      try {
          return fs.statSync(filePath).isFile();
      }
@@ -11,5 +9,4 @@
          return false;
      }
  };
- 
  module.exports = utils;

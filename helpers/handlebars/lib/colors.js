@@ -1,10 +1,7 @@
-'use strict';
-
-const Handlebars = require('handlebars');
 const fs = require('fs-extra');
 const helperUtils = require('./hb-utils');
 
-Handlebars.registerHelper('getColors', (file, options) => {
+module.exports = function(file, options) {
     let data = [];
     const regVarSplit = /(\$.*?):(.*?);/g;
     const content = fs.readFileSync(file).toString();
@@ -26,4 +23,4 @@ Handlebars.registerHelper('getColors', (file, options) => {
     });
     
     return options.fn(data);
-});
+};
