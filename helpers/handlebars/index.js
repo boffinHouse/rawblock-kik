@@ -1,4 +1,6 @@
 const Handlebars = require('handlebars');
+const fs = require('fs-extra');
+const helpers = require('./lib');
 const helpers = {
     webfonts: require('./lib/webfonts'),
     colors: require('./lib/colors'),
@@ -10,11 +12,13 @@ const helpers = {
     rbMarkdownFile: require('./lib/rbMarkdownFile'),
 }
 
-module.exports = (() => {
-    for(let name in helpers) {
-        Handlebars.registerHelper(name, helpers[name]);
-    }
-})();
+console.log(helpers);
+
+// module.exports = (() => {
+//     for(let name in helpers) {
+//         Handlebars.registerHelper(name, helpers[name]);
+//     }
+// })();
 
 
 
