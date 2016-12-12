@@ -64,8 +64,9 @@ const files = [
     },
     {
         groupId: 'js',
-        file: '{fullUnderscoreName}.js',
+        file: '{fullUnderscoreName}.async.js',
         onlyIfJs: true,
+        createAsync: true,
     },
     {
         groupId: 'template',
