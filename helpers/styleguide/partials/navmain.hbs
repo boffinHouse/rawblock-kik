@@ -1,4 +1,4 @@
-{{#navigation "source/components/**/*.hbs, source/templates/pages/**/*.hbs, helpers/styleguide/pages/**/*.hbs" }}
+{{#navigation "{component: 'source/components/**/*.hbs'}, {pages: 'source/templates/pages/**/*.hbs}, {styleguide: 'helpers/styleguide/pages/**/*.hbs'" }}
     <nav class="doc-navmain {{#is ../title "Index"}}is-index{{/is}}">
         <ul class="doc-navmain-list">
             {{#isnt ../title "Index"}}
