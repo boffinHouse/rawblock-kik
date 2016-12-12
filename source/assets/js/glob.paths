@@ -3,5 +3,3 @@
 !./**/*.lazy.js
 !./**/*.customlazy.js
 !./**/tests/**/*.js
-!./<components**/*-tests.js
-

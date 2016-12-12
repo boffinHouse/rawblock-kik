@@ -9,16 +9,14 @@
 
 // JS Config
 //**********************************************************
-${name}-js-cfg: (
-    name: "{name}",
-);
+${name}-js-cfg: ();
 
 
 //----------------------------------------------------------
 
 
 .{fullName} {
-    @include rb-js-export(map_merge(${name}-js-cfg, (
-
-    )));
+    //@include rb-js-export(map_merge(${name}-js-cfg, (
+    //
+    //)));
 }
