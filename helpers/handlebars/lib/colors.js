@@ -1,7 +1,9 @@
 const fs = require('fs-extra');
-const helperUtils = require('./hb-utils');
+const helperUtils = require('./rb-utils');
 
-module.exports = function(file, options) {
+let helpers = module.exports;
+
+helpers.colors = function(file, options) {
     let data = [];
     const regVarSplit = /(\$.*?):(.*?);/g;
     const content = fs.readFileSync(file).toString();

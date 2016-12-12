@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = (() => {
     var slice = [].slice;
     var toObj = function (json) {

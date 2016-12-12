@@ -1,12 +1,9 @@
 const fs = require('fs-extra');
-const helperUtils = require('./hb-utils');
-const util = require('util');
+const helperUtils = require('./rb-utils');
 const Handlebars = require('handlebars');
 
 module.exports = function(src) {
-    if(!helperUtils.fileExisits(src)) {
-        util.log('No file is found inside helper includeraw');
+    if(helperUtils.fileExisits(src)) {
+        return new Handlebars.SafeString(fs.readFileSync(src));
     }
-    
-    return new Handlebars.SafeString(fs.readFileSync(src));
 };

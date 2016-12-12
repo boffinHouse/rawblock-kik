@@ -1,5 +1,5 @@
 const fs = require('fs-extra');
-const helperUtils = require('./hb-utils');
+const helperUtils = require('./rb-utils');
 const marked = require('marked');
 
 module.exports = (filePath) => {

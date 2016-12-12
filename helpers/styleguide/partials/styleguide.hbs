@@ -25,14 +25,14 @@
                     <div class="doc-tabs-panel is-open">
                         <div class="doc-tabs-content">
                             {{#fileExist 'source/components/$componentName/$componentName.hbs'}}
-                                <pre class="doc_code hljs"><code>{{{getTemplateCode 'source/components/$componentName/$componentName.hbs'}}}</code></pre>
+                                <pre class="doc_code hljs"><code>{{{codeExample 'source/components/$componentName/$componentName.hbs'}}}</code></pre>
                             {{/fileExist}}
                         </div>
                     </div>
                     <div class="doc-tabs-panel">
                         <div class="doc-tabs-content">
                             {{#fileExist 'source/components/$componentName/_$componentName.scss'}}
-                                <pre class="doc_code hljs"><code>{{{getTemplateCode 'source/components/$componentName/_$componentName.scss'}}}</code></pre>
+                                <pre class="doc_code hljs"><code>{{{codeExample 'source/components/$componentName/_$componentName.scss'}}}</code></pre>
                             {{/fileExist}}
                         </div>
                     </div>
@@ -53,7 +53,7 @@
 
 
 {{#fileExist 'source/components/$componentName/$componentName.js'}}
-<pre class="doc_code hljs"><code>{{{getTemplateCode 'source/components/$componentName/$componentName.js'}}}</code></pre>
+<pre class="doc_code hljs"><code>{{{codeExample 'source/components/$componentName/$componentName.js'}}}</code></pre>
 {{/fileExist}}
 
 

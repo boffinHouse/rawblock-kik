@@ -1,4 +1,3 @@
-'use strict';
 const glob = require('glob');
 const fs = require('fs-extra');
 const path = require('path');

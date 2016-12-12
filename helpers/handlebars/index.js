@@ -1,24 +1,15 @@
 const Handlebars = require('handlebars');
-const fs = require('fs-extra');
-const helpers = require('./lib');
-const helpers = {
-    webfonts: require('./lib/webfonts'),
-    colors: require('./lib/colors'),
-    fileExist: require('./lib/fileExist'),
-    getTemplateCode: require('./lib/getTemplateCode'),
-    includeraw: require('./lib/includeraw'),
-    mergeJSON: require('./lib/mergeJSON'),
-    navigation: require('./lib/navigation'),
-    rbMarkdownFile: require('./lib/rbMarkdownFile'),
-}
+const glob = require('glob');
+const path = require('path');
 
-console.log(helpers);
-
-// module.exports = (() => {
-//     for(let name in helpers) {
-//         Handlebars.registerHelper(name, helpers[name]);
-//     }
-// })();
+module.exports = function() {
+    glob.sync('./helpers/handlebars/lib/**/*.js').forEach((file) => {
+        let name = path.basename(file).replace(/\.[^/.]+$/, '');
+        let filePath = path.resolve(file);
+        
+        Handlebars.registerHelper(name, require(filePath));
+    });
+};
 
 
 
