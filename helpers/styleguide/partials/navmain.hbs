@@ -1,4 +1,4 @@
-{{#navigation "{component: 'source/components/**/*.hbs'}, {pages: 'source/templates/pages/**/*.hbs}, {styleguide: 'helpers/styleguide/pages/**/*.hbs'" }}
+{{#navigation "pages: source/templates/pages/**/*.hbs, components: source/components/**/*.hbs, styleguide:helpers/styleguide/pages/**/!(index)*.hbs" }}
     <nav class="doc-navmain {{#is ../title "Index"}}is-index{{/is}}">
         <ul class="doc-navmain-list">
             {{#isnt ../title "Index"}}
@@ -6,44 +6,18 @@
                     <a href="index.html" class="doc-navmain-link">Index</a>
                 </li>
             {{/isnt}}
-            {{#if pages}}
+            {{#each this}}
                 <li class="doc-navmain-item is-level-1">
-                    <h3 class="doc-navmain-title">Pages</h3>
+                    <h3 class="doc-navmain-title">{{this.title}}</h3>
                     <ul class="doc-nav">
-                        {{#each pages}}
-                            {{#isnt title 'Index'}}
-                                <li class="doc-navmain-item">
-                                    <a href="{{ href }}" class="doc-navmain-link">{{ title }}</a>
-                                </li>
-                            {{/isnt}}
-                        {{/each}}
-                    </ul>
-                </li>
-            {{/if}}
-            {{#if components}}
-                <li class="doc-navmain-item is-level-1">
-                    <h3 class="doc-navmain-title">Components</h3>
-                    <ul class="doc-nav">
-                        {{#each components}}
+                        {{#each this.items}}
                             <li class="doc-navmain-item">
                                 <a href="{{ href }}" class="doc-navmain-link">{{ title }}</a>
                             </li>
                         {{/each}}
                     </ul>
                 </li>
-            {{/if}}
-            {{#if styleguide}}
-                <li class="doc-navmain-item is-level-1">
-                    <h3 class="doc-navmain-title">Styleguide</h3>
-                    <ul class="doc-nav">
-                        {{#each styleguide}}
-                            <li class="doc-navmain-item">
-                                <a href="{{ href }}" class="doc-navmain-link">{{ title }}</a>
-                            </li>
-                        {{/each}}
-                    </ul>
-                </li>
-            {{/if}}
+            {{/each}}
             <li class="doc-navmain-item is-level-1">
                 <a href="docs/jsdocs/index.html" class="doc-navmain-link">JS Documentation</a>
             </li>

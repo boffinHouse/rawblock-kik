@@ -70,7 +70,7 @@ module.exports = (paths, gulp, plugins) => {
         return plugins.eventStream.merge([
             createHTML(
                 [
-                    plugins.path.join(paths.html, 'pages/{,**/}*.hbs'),
+                    plugins.path.join(paths.html, 'pages/**/*.hbs'),
                     plugins.path.join(paths.helpers, 'styleguide/pages/*.hbs'),
                 ],
                 paths.dev,
