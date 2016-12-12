@@ -87,6 +87,7 @@ gulp.task('uglify:inline', function() {
 
 //todo: add style lint
 gulp.task('lint', ['eslint']);
+gulp.task('test', ['jstest']);
 
 gulp.task('default',  (fn) => {
     plugins.util.env.type = 'production';
