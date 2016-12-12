@@ -3,7 +3,8 @@
     "allowUnknownTags": true
   },
   "opts": {
-    "destination": "./dev/docs/jsdocs"
+    "destination": "./dev/docs/jsdocs",
+    "tutorials": "./node_modules/rawblock/tutorials/js"
   },
   "plugins": [
     "plugins/markdown"
@@ -14,7 +15,7 @@
     "default": {
       "outputSourceFiles": true
     },
-    "path": "jsdoc-oblivion",
+    "path": "ink-docstrap",
     "theme": "cerulean",
     "navType": "vertical",
     "linenums": true,

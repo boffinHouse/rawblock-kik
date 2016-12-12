@@ -42,5 +42,4 @@ document.addEventListener('lazyunveilread', (e)=> {
 
 if(document.querySelector('.lazyload')){
     lazySizes.init();
-    lazySizes.rAF._lsFlush();
 }

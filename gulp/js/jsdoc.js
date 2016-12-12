@@ -8,12 +8,16 @@
  */
 module.exports = (paths, gulp, plugins) => {
     'use strict';
-    
+
     return (callback) => {
+        const opts = require('./jsdocConfig.json');
+
         gulp.src([
                 'README.md',
                 plugins.path.join(paths.npm, 'rawblock/components/**/*.js'),
+                plugins.path.join(paths.npm, 'rawblock/utils/**/*.js'),
+                plugins.path.join(paths.npm, 'rawblock/_main.js'),
             ], {read: false})
-            .pipe(plugins.jsdoc3(require('./jsdocConfig.json'), callback));
+            .pipe(plugins.jsdoc3(opts, callback));
     }
 };

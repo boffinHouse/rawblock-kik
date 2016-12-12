@@ -57,12 +57,12 @@ gulp.task('watch', plugins.getTaskModule('watch'));
 gulp.task('html', plugins.getTaskModule('html/html'));
 gulp.task('js', plugins.getTaskModule('js/webpack'));
 gulp.task('eslint', plugins.getTaskModule('js/eslint'));
+gulp.task('jstest', plugins.getTaskModule('js/karma'));
 gulp.task('jsdoc', plugins.getTaskModule('js/jsdoc'));
 gulp.task('browser-sync', plugins.getTaskModule('browser-sync'));
 gulp.task('copy', plugins.getTaskModule('copy'));
 gulp.task('favicon', plugins.getTaskModule('favicon'));
 gulp.task('svgsprite', plugins.getTaskModule('media/svgsprite'));
-
 
 /**
  * Utility tasks
@@ -84,6 +84,10 @@ gulp.task('uglify:inline', function() {
 /**
  * Main tasks
  */
+
+//todo: add style lint
+gulp.task('lint', ['eslint']);
+gulp.task('test', ['jstest']);
 
 gulp.task('default',  (fn) => {
     plugins.util.env.type = 'production';

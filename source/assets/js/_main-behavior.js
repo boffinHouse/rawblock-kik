@@ -3,6 +3,11 @@ import 'rawblock/_$';
 import rb from 'rawblock/_main';
 import BezierEasing from 'bezier-easing';
 
+//remove modules if you don't need them:
+import 'rawblock/utils/rb_keyboardfocus';
+import 'rawblock/utils/rb_focus-within';
+import 'rawblock/utils/rb_click-area';
+
 import 'rawblock/components/accordion';
 
 const ASSETBASEPATH = window.appGlobals && appGlobals.basePath || '';

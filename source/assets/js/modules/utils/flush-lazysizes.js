@@ -1,23 +1,17 @@
 if(window.lazySizes){
-    if(document.querySelector('.lazyload')){
-        lazySizes.init();
-        lazySizes.rAF._lsFlush();
-    }
+    const setLoadPriority = ()=>{
+        if(window.lazySizesConfig.loadMode < 2){
+            window.lazySizesConfig.loadMode = 2;
+        }
+    };
 
-    if(window.lazySizesConfig){
+    lazySizes.rAF._lsFlush();
 
-        const setLoadPriority = ()=>{
-            if(window.lazySizesConfig.loadMode < 2){
-                window.lazySizesConfig.loadMode = 2;
-            }
-        };
-
-        setTimeout(()=>{
-            if(window.lazySizesConfig.loadMode < 2 && window.rb && rb.ready){
-                rb.ready.then(()=>{
-                    setTimeout(setLoadPriority, 999);
-                });
-            }
-        }, 9);
-    }
+    setTimeout(()=>{
+        if(window.lazySizesConfig.loadMode < 2 && window.rb && rb.ready){
+            rb.ready.then(()=>{
+                setTimeout(setLoadPriority, 2000);
+            });
+        }
+    }, 9);
 }
