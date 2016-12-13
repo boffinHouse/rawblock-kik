@@ -9,16 +9,16 @@ module.exports = (data, options) => {
     let sectionData;
     data = data.replace(removeWhitespace, '');
     data = data.split(',');
-    
+
     data.forEach((item) => {
         item = item.split(':');
-    
+
         sectionData = {
             title: item[0],
-            items: []
-        }
-        
-        glob.sync(item[1]).forEach((file, index) => {
+            items: [],
+        };
+
+        glob.sync(item[1]).forEach((file, _index) => {
             const href = path.basename(file).replace('.hbs', '.html');
             const fileData = fm(fs.readFileSync(file, 'utf8')).attributes;
             const objData = {
@@ -26,17 +26,17 @@ module.exports = (data, options) => {
                 tracker: fileData.tracker || '',
                 href: href,
             };
-            
+
             if(objData.title) {
                 sectionData.items.push(objData);
             }
         });
-    
+
         newData.push(sectionData);
     });
-    
+
     return options.fn(newData);
-}
+};
 
 
 
