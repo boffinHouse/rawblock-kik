@@ -1,4 +1,4 @@
-../components/**/*.js
+../../components/**/*.js
 ../modules/**/*.js
 !./**/*.lazy.js
 !./**/*.customlazy.js
