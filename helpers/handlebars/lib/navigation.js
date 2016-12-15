@@ -15,10 +15,10 @@ module.exports = (data, options) => {
     
         sectionData = {
             title: item[0],
-            items: []
-        }
+            items: [],
+        };
         
-        glob.sync(item[1]).forEach((file, index) => {
+        glob.sync(item[1]).forEach((file, _index) => {
             const href = path.basename(file).replace('.hbs', '.html');
             const fileData = fm(fs.readFileSync(file, 'utf8')).attributes;
             const objData = {

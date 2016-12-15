@@ -7,8 +7,6 @@
  * @returns {Function} Return Module
  */
 module.exports = (paths, gulp, plugins) => {
-    'use strict';
-    
     const assemble = require('assemble')();
     const engine = require('engine-assemble');
     const layouts = require('handlebars-layouts');
@@ -30,7 +28,6 @@ module.exports = (paths, gulp, plugins) => {
         assemble.engine('hbs', engine);
         assemble.helpers(layouts(engine.Handlebars));
         
-
         //Layouts
         assemble.layouts( plugins.path.join(paths.html, 'layouts/**/*.hbs'));
         assemble.layouts( plugins.path.join(paths.helpers, 'styleguide/layouts/**/*.hbs'));
@@ -39,7 +36,6 @@ module.exports = (paths, gulp, plugins) => {
         assemble.partials(plugins.path.join(paths.html, 'partials/**/*.hbs'));
         assemble.partials(plugins.path.join(paths.components, '**/*.{hbs, md}'));
         assemble.partials(plugins.path.join(paths.helpers, 'styleguide/**/*.hbs'));
-        
         
         //Helpers
         assemble.helpers(require('handlebars-helpers')());

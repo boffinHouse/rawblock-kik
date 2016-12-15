@@ -10,8 +10,6 @@ function changeScreensize(event) {
     }
 }
 
-console.log(screensize);
-
 screensize.addEventListener('click', changeScreensize, false);
 
 
