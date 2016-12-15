@@ -36,7 +36,7 @@ module.exports = (data, options) => {
     });
     
     return options.fn(newData);
-}
+};
 
 
 

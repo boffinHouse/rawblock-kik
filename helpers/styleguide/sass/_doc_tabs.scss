@@ -7,21 +7,9 @@
 //**********************************************************
 
 
-// JS-Config
-//**********************************************************
-$tabs-js-cfg: (
-    name: doc-tabs,
-    //animation: 'adaptHeight',
-    duration: 400,
-);
-
-
 //----------------------------------------------------------
 
 .doc-tabs {
-    @include rb-js-export($tabs-js-cfg);
-    @include rb-fx-panel(tabs, fade);
-    @include rb-fx-panel(tabs, slide);
     width: 100%;
     margin: rb-rem-calc(0 0 50px);
 }
@@ -60,7 +48,7 @@ $tabs-js-cfg: (
             background: #dfdfdf;
         }
     }
-    
+
     &[aria-expanded="true"] {
         z-index: 10;
         border-color: #dc0f6e;

@@ -5,7 +5,7 @@ if(window.lazySizes){
         }
     };
 
-    lazySizes.rAF._lsFlush();
+    lazySizes.init();
 
     setTimeout(()=>{
         if(window.lazySizesConfig.loadMode < 2 && window.rb && rb.ready){

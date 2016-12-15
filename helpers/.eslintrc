@@ -16,6 +16,7 @@
         "no-console": 0,
         "comma-dangle": [1, "always-multiline"],
         "no-unused-vars": [2, { "argsIgnorePattern": "^_", "args": "after-used", "varsIgnorePattern": "_"}],
-        "quotes": [2, "single", { "avoidEscape": true, "allowTemplateLiterals": true }]
+        "quotes": [2, "single", { "avoidEscape": true, "allowTemplateLiterals": true }],
+        "semi": [2]
     }
 }
