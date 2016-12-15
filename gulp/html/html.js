@@ -17,7 +17,7 @@ module.exports = (paths, gulp, plugins) => {
         const componentName = plugins.path.basename(file.path).replace(/\.[^.$]+$/, '');
         const matchName = /(\$componentName)/g;
 
-        docLayout = fs.readFileSync(plugins.path.join(paths.helpers, 'styleguide/partials/styleguide.hbs'), 'utf8');
+        docLayout = fs.readFileSync(plugins.path.join(paths.helpers, 'styleguide/templates/partials/doc_component.hbs'), 'utf8');
         docLayout = docLayout.replace(matchName, componentName)
 
         file.contents = new Buffer(docLayout);
@@ -30,7 +30,7 @@ module.exports = (paths, gulp, plugins) => {
         
         //Layouts
         assemble.layouts( plugins.path.join(paths.html, 'layouts/**/*.hbs'));
-        assemble.layouts( plugins.path.join(paths.helpers, 'styleguide/layouts/**/*.hbs'));
+        assemble.layouts( plugins.path.join(paths.helpers, 'styleguide/templates/layouts/**/*.hbs'));
 
         //Partials
         assemble.partials(plugins.path.join(paths.html, 'partials/**/*.hbs'));
@@ -67,21 +67,19 @@ module.exports = (paths, gulp, plugins) => {
             createHTML(
                 [
                     plugins.path.join(paths.html, 'pages/**/*.hbs'),
-                    plugins.path.join(paths.helpers, 'styleguide/pages/*.hbs'),
+                    plugins.path.join(paths.helpers, 'styleguide/templates/pages/*.hbs'),
                 ],
                 paths.dev,
                 false
             ),
             createHTML(
                 [
-                    plugins.path.join(paths.components, '{,**/}!(*_examples)*.hbs'),
+                    plugins.path.join(paths.components, '**/!(*_examples)*.hbs'),
                 ],
                 paths.dev,
                 true
             )
         ]);
     };
-
-
 };
 

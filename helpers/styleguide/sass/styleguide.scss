@@ -4,11 +4,17 @@ Styleguide Stylesheet
 ----------------------------------------------------------
 
 **********************************************************/
+// Normalize
+@import "normalize.css";
+
+// Rawblock helpers (mixins, functions, basics);
 @import "../../../node_modules/rawblock/helpers";
+@import "../../../node_modules/rawblock/basics";
 
 // Variables
 @import "variables";
 
 //Styles
-@import "doc_basics.scss";
-@import "**/*.scss";
+@import "../components/**/*.scss";
+
+
