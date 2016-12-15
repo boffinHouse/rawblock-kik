@@ -170,7 +170,7 @@ function questionPreset(){
             type: 'input',
             name: 'prefix',
             message: 'What prefix do you want to use? (type "-" for no namespace)',
-            default: () => { return 'rb'; },
+            default: () => { return '-'; },
         },
         {
             type: 'list',
