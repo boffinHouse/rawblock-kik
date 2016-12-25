@@ -6,4 +6,4 @@ module.exports = (filePath, options) => {
     } else {
         return options.inverse(this);
     }
-}
+};

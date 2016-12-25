@@ -1,6 +1,9 @@
 module.exports = (() => {
-    var slice = [].slice;
-    var toObj = function (json) {
+    const _ = require('lodash');
+
+    const slice = [].slice;
+
+    const toObj = function (json) {
         if (typeof json == 'string') {
             try {
                 json = json.trim();
@@ -17,18 +20,20 @@ module.exports = (() => {
         }
         return json;
     };
-    
+
+
     return function () {
-        var args = slice.call(arguments);
-        var options = args.pop();
-        
+        let args = slice.call(arguments);
+        const options = args.pop();
+
         args = args.map(toObj);
-        
+
         if (args.length == 1 && this) {
             args.unshift(this || options.data);
         }
-        
+
         args.unshift({});
+
         return options.fn(_.merge.apply(_, args));
     };
 })();
