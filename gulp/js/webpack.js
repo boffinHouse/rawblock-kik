@@ -15,6 +15,7 @@ module.exports = function(paths, gulp, plugins) {
 
     function createJS(entry, dest) {
         const isProduction = plugins.util.env.type == 'production';
+
         let webpackPlugins = [
             new webpack.optimize.CommonsChunkPlugin({
                 children: true,
@@ -100,7 +101,7 @@ module.exports = function(paths, gulp, plugins) {
                 console.log(error.toString());
                 this.emit('end');
             }))
-            .pipe(isProduction ? plugins.rename({suffix: '.min'}) : plugins.util.noop())
+            // .pipe(isProduction ? plugins.rename({suffix: '.min'}) : plugins.util.noop())
             .pipe(gulp.dest(dest))
         ;
     }

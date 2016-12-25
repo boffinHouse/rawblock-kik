@@ -17,19 +17,19 @@
         <div class="doc-articlemain-box">
 
             {{#fileExist 'source/components/$componentName/$componentName.hbs'}}
-                {{setContextVar .. 'hasHbs' true}}
+                {{setContextVar ../this 'hasHbs' true}}
             {{/fileExist}}
             {{#fileExist 'source/components/$componentName/_$componentName.scss'}}
-                {{setContextVar .. 'hasScss' true}}
+                {{setContextVar ../this 'hasScss' true}}
             {{/fileExist}}
             {{#fileExist 'source/components/$componentName/$componentName.js'}}
-                {{setContextVar .. 'hasJs' true}}
+                {{setContextVar ../this 'hasJs' true}}
             {{/fileExist}}
             {{#fileExist 'source/components/$componentName/$componentName.lazy.js'}}
-                {{setContextVar .. 'hasJs' true}}
+                {{setContextVar ../this 'hasJs' true}}
             {{/fileExist}}
             {{#fileExist 'source/components/$componentName/$componentName.customlazy.js'}}
-                {{setContextVar .. 'hasJs' true}}
+                {{setContextVar ../this 'hasJs' true}}
             {{/fileExist}}
 
             {{#with this}}
