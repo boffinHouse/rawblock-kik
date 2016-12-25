@@ -1,5 +1,5 @@
 const rb = window.rb;
-const $ = rb.$;
+//const $ = rb.$;
 
 /**
  * Class component to create a {Name}.

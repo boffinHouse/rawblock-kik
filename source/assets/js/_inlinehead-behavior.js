@@ -37,11 +37,11 @@
         var arrayProto = Array.prototype;
 
         if (!Object.assign || !docElem.prepend || !docElem.after || !arrayProto.includes || !String.prototype.includes || !window.cancelAnimationFrame || !Array.from || !arrayProto.find) {
-            loadJs(ASSETBASEPATH + 'assets/js/_polyfills.js', true);
+            loadJs(ASSETBASEPATH + 'js/_polyfills.js', true);
         }
 
-        loadJs(ASSETBASEPATH + 'assets/js/_crucial-behavior.js', true);
-        loadJs(ASSETBASEPATH + 'assets/js/_main-behavior.js', true);
+        loadJs(ASSETBASEPATH + 'js/_crucial-behavior.js', true);
+        loadJs(ASSETBASEPATH + 'js/_main-behavior.js', true);
     });
 
     if (document.fonts && document.fonts.forEach) {

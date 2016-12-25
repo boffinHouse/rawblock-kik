@@ -1,4 +1,5 @@
-import './modules/utils/flush-lazysizes';
+import './main-modules/utils/flush-lazysizes';
+
 import 'rawblock/_$';
 import rb from 'rawblock/_main';
 import BezierEasing from 'bezier-easing';
