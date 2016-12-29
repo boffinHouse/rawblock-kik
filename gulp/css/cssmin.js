@@ -15,9 +15,9 @@ module.exports = function(paths, gulp, plugins) {
             .pipe(plugins.cleanCss({
                 keepSpecialComments: false,
             }))
-            .pipe(plugins.extname({
-                ext: '.min.css'
-            }))
+            // .pipe(plugins.extname({
+            //     ext: '.min.css'
+            // }))
             .pipe(gulp.dest(plugins.path.join(paths.devAssets, 'css')))
         ;
     };

@@ -64,7 +64,7 @@ const files = [
     },
     {
         groupId: 'js',
-        file: '{fullUnderscoreName}.async.js',
+        file: '{fullUnderscoreName}.lazy.js',
         onlyIfJs: true,
         createAsync: true,
     },

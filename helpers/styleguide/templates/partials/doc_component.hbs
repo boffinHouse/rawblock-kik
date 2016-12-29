@@ -16,28 +16,68 @@
 
         <div class="doc-articlemain-box">
 
-            <div class="doc-tabs">
-                <ul class="doc-tabs-nav doc-tabs-btn-wrapper">
-                    <li class="doc-tabs-nav-item"><button type="button" class="doc-tabs-btn" aria-expanded="true">Markup</button></li>
-                    <li class="doc-tabs-nav-item"><button type="button" class="doc-tabs-btn">SCSS</button></li>
-                </ul>
-                <div class="doc-tabs-panel-wrapper">
-                    <div class="doc-tabs-panel is-open">
-                        <div class="doc-tabs-content">
-                            {{#fileExist 'source/components/$componentName/$componentName.hbs'}}
-                                <pre class="doc_code hljs"><code>{{{codeExample 'source/components/$componentName/$componentName.hbs'}}}</code></pre>
-                            {{/fileExist}}
+            {{#fileExist 'source/components/$componentName/$componentName.hbs'}}
+                {{setContextVar ../this 'hasHbs' true}}
+            {{/fileExist}}
+            {{#fileExist 'source/components/$componentName/_$componentName.scss'}}
+                {{setContextVar ../this 'hasScss' true}}
+            {{/fileExist}}
+            {{#fileExist 'source/components/$componentName/$componentName.js'}}
+                {{setContextVar ../this 'hasJs' true}}
+            {{/fileExist}}
+            {{#fileExist 'source/components/$componentName/$componentName.lazy.js'}}
+                {{setContextVar ../this 'hasJs' true}}
+            {{/fileExist}}
+            {{#fileExist 'source/components/$componentName/$componentName.customlazy.js'}}
+                {{setContextVar ../this 'hasJs' true}}
+            {{/fileExist}}
+
+            {{#with this}}
+                <div class="doc-tabs">
+                    <ul class="doc-tabs-nav doc-tabs-btn-wrapper">
+                        <li class="doc-tabs-nav-item"><button type="button" class="doc-tabs-btn" aria-expanded="true">Markup</button></li>
+                    {{#if hasScss}}
+                        <li class="doc-tabs-nav-item"><button type="button" class="doc-tabs-btn">SCSS</button></li>
+                    {{/if}}
+                        {{#if hasJs}}
+                            <li class="doc-tabs-nav-item"><button type="button" class="doc-tabs-btn">JS</button></li>
+                        {{/if}}
+                    </ul>
+                    <div class="doc-tabs-panel-wrapper">
+                        <div class="doc-tabs-panel is-open">
+                            <div class="doc-tabs-content">
+                                {{#if hasHbs}}
+                                    <pre class="doc_code hljs"><code>{{{codeExample 'source/components/$componentName/$componentName.hbs'}}}</code></pre>
+                                {{/if}}
+                            </div>
                         </div>
-                    </div>
-                    <div class="doc-tabs-panel">
-                        <div class="doc-tabs-content">
-                            {{#fileExist 'source/components/$componentName/_$componentName.scss'}}
-                                <pre class="doc_code hljs"><code>{{{codeExample 'source/components/$componentName/_$componentName.scss'}}}</code></pre>
-                            {{/fileExist}}
-                        </div>
+                        {{#if hasScss}}
+                            <div class="doc-tabs-panel">
+                                <div class="doc-tabs-content">
+                                    <pre class="doc_code hljs"><code>{{{codeExample 'source/components/$componentName/_$componentName.scss'}}}</code></pre>
+                                </div>
+                            </div>
+                        {{/if}}
+                        {{#if hasJs}}
+                            <div class="doc-tabs-panel">
+                                <div class="doc-tabs-content">
+                                    {{#fileExist 'source/components/$componentName/$componentName.js'}}
+                                            <pre class="doc_code hljs"><code>{{{codeExample 'source/components/$componentName/$componentName.js'}}}</code></pre>
+                                    {{/fileExist}}
+                                    {{#fileExist 'source/components/$componentName/$componentName.lazy.js'}}
+                                        <pre class="doc_code hljs"><code>{{{codeExample 'source/components/$componentName/$componentName.lazy.js'}}}</code></pre>
+                                    {{/fileExist}}
+                                    {{#fileExist 'source/components/$componentName/$componentName.customlazy.js'}}
+                                        <pre class="doc_code hljs"><code>{{{codeExample 'source/components/$componentName/$componentName.customlazy.js'}}}</code></pre>
+                                    {{/fileExist}}
+                                </div>
+                            </div>
+                        {{/if}}
                     </div>
                 </div>
-            </div>
+            {{/with}}
+
+
 
             <div class="doc-richtext">
                 {{#fileExist 'source/components/$componentName/README.md'}}

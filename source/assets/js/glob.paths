@@ -1,5 +1,5 @@
 ../../components/**/*.js
-../modules/**/*.js
-!./**/*.lazy.js
-!./**/*.customlazy.js
-!./**/tests/**/*.js
+./main-modules/**/*.js
+!../../**/*.lazy.js
+!../../**/*.customlazy.js
+!../../**/tests/**/*.js

@@ -12,7 +12,9 @@
 
         script.src = src;
         script.async = !ordered;
+
         document.head.appendChild(script);
+
         return script;
     };
     /*ES6 support detection */
@@ -34,12 +36,12 @@
     setTimeout(function(){
         var arrayProto = Array.prototype;
 
-        if (!Object.assign || !docElem.closest || !arrayProto.includes || !String.prototype.includes || !window.cancelAnimationFrame || !Array.from || !arrayProto.find) {
-            loadJs(ASSETBASEPATH + 'assets/js/_polyfills.js', true);
+        if (!Object.assign || !docElem.prepend || !docElem.after || !arrayProto.includes || !String.prototype.includes || !window.cancelAnimationFrame || !Array.from || !arrayProto.find) {
+            loadJs(ASSETBASEPATH + 'js/_polyfills.js', true);
         }
 
-        loadJs(ASSETBASEPATH + 'assets/js/_crucial-behavior.js', true);
-        loadJs(ASSETBASEPATH + 'assets/js/_main-behavior.js', true);
+        loadJs(ASSETBASEPATH + 'js/_crucial-behavior.js', true);
+        loadJs(ASSETBASEPATH + 'js/_main-behavior.js', true);
     });
 
     if (document.fonts && document.fonts.forEach) {
