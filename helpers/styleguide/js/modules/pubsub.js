@@ -7,7 +7,7 @@ const wait = window.Promise ?
     }
 ;
 
-export default function(){
+export default function() {
     let store;
     const fns = [];
 
@@ -37,5 +37,5 @@ export default function(){
         }
     };
 
-    return {subscribe, unsubscribe, publish}
-};
+    return {subscribe, unsubscribe, publish};
+}
