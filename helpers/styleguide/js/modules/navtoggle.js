@@ -14,3 +14,4 @@ function navToggle(event) {
 if(nav) {
     nav.addEventListener('click', navToggle, false);
 }
+
