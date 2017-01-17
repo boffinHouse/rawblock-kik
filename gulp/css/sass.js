@@ -11,6 +11,9 @@ module.exports = function(paths, gulp, plugins) {
 
     const autoprefixer = require('autoprefixer');
     const postcssImport = require('postcss-import');
+    const postcssAssets = require('postcss-assets');
+    const postcssInlineSVG = require('postcss-inline-svg');
+    const postcssSVGO = require('postcss-svgo');
     
     function createCSS(files, dest) {
         const isProduction = plugins.util.env.type == 'production';
@@ -35,6 +38,18 @@ module.exports = function(paths, gulp, plugins) {
                            remove: true,
                        }),
                        postcssImport(),
+                      
+                       postcssInlineSVG(
+                           {
+                               path: plugins.path.join(paths.assets.media, 'svg-sprite'),
+                           }
+                       ),
+                       postcssSVGO({
+                           plugins: require('./svgmin-config'),
+                       }),
+                       // postcssAssets({
+                       //     //loadPaths: [plugins.path.join(paths.assets.media, 'svg-sprite')],
+                       // }),
                    ]))
                    .pipe(plugins.sourcemaps.write('.'))
                    .pipe(gulp.dest(dest))
