@@ -18,16 +18,16 @@ module.exports = (paths, gulp, plugins) => {
         const matchName = /(\$componentName)/g;
 
         docLayout = fs.readFileSync(plugins.path.join(paths.helpers, 'styleguide/templates/partials/doc_component.hbs'), 'utf8');
-        docLayout = docLayout.replace(matchName, componentName)
+        docLayout = docLayout.replace(matchName, componentName);
 
         file.contents = new Buffer(docLayout);
     };
-    
+
     function createHTML(pages, dest, isDocs) {
-        
+
         assemble.engine('hbs', engine);
         assemble.helpers(layouts(engine.Handlebars));
-        
+
         //Layouts
         assemble.layouts( plugins.path.join(paths.html, 'layouts/**/*.hbs'));
         assemble.layouts( plugins.path.join(paths.helpers, 'styleguide/templates/layouts/**/*.hbs'));
@@ -36,12 +36,12 @@ module.exports = (paths, gulp, plugins) => {
         assemble.partials(plugins.path.join(paths.html, 'partials/**/*.hbs'));
         assemble.partials(plugins.path.join(paths.components, '**/*.{hbs, md}'));
         assemble.partials(plugins.path.join(paths.helpers, 'styleguide/**/*.hbs'));
-        
+
         //Helpers
         assemble.helpers(require('handlebars-helpers')());
         assemble.helper('markdown', require('helper-markdown'));
         assemble.helpers(require(plugins.path.join(paths.base, 'helpers/handlebars/index.js'))());
-        
+
         //Data
         assemble.data(plugins.path.join(paths.html, 'data/**/*.{js,json}'));
         assemble.data(plugins.path.join(paths.components, '**/*.{json, js}'));

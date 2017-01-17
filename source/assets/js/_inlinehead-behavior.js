@@ -1,53 +1,38 @@
-(function(window){
-    'use strict';
-    var document = window.document;
-    var ASSETBASEPATH = window.appGlobals && appGlobals.basePath || '';
-    var docElem = document.documentElement;
-    var loadJs = function( src, ordered, cb ){
-        var script = document.createElement('script');
+// import 'rawblock/utils/global-rb';
+import loadJs from './modules/loadjs-simple';
 
-        if(cb){
-            script.addEventListener('load', cb);
-        }
+const document = window.document;
+const ASSETBASEPATH = window.appGlobals && appGlobals.basePath || '';
+const docElem = document.documentElement;
 
-        script.src = src;
-        script.async = !ordered;
+/*ES6 support detection */
+// var es6support = (function(){
+//    var support = false;
+//    try {
+//        support = eval('(function(x=1){try{eval("((a=a)=>{}())");return !1;}catch(e){}try{eval("((a=b,b)=>{}())");return !1;}catch(e){}return !0;}())')
+//    } catch(e){}
+//    return support;
+// })();
 
-        document.head.appendChild(script);
+if(docElem.classList){
+    docElem.classList.remove('no-js');
+    docElem.classList.add('js');
+}
 
-        return script;
-    };
-    /*ES6 support detection */
-    //var es6support = (function(){
-    //    var support = false;
-    //    try {
-    //        support = eval('(function(x=1){try{eval("((a=a)=>{}())");return !1;}catch(e){}try{eval("((a=b,b)=>{}())");return !1;}catch(e){}return !0;}())')
-    //    } catch(e){}
-    //    return support;
-    //})();
+setTimeout(()=> {
+    const arrayProto = Array.prototype;
 
-    if(docElem.classList){
-        docElem.classList.remove('no-js');
-        docElem.classList.add('js');
+    if (!Object.assign || !docElem.prepend || !docElem.after || !arrayProto.includes || !String.prototype.includes || !window.cancelAnimationFrame || !Array.from || !arrayProto.find) {
+        loadJs(ASSETBASEPATH + 'js/_polyfills.js', true);
     }
 
+    loadJs(ASSETBASEPATH + 'js/_crucial-behavior.js', true);
+    loadJs(ASSETBASEPATH + 'js/_main-behavior.js', true);
+});
 
-
-    setTimeout(function(){
-        var arrayProto = Array.prototype;
-
-        if (!Object.assign || !docElem.prepend || !docElem.after || !arrayProto.includes || !String.prototype.includes || !window.cancelAnimationFrame || !Array.from || !arrayProto.find) {
-            loadJs(ASSETBASEPATH + 'js/_polyfills.js', true);
-        }
-
-        loadJs(ASSETBASEPATH + 'js/_crucial-behavior.js', true);
-        loadJs(ASSETBASEPATH + 'js/_main-behavior.js', true);
+if (document.fonts && document.fonts.forEach) {
+    document.fonts.forEach(function(font){
+        font.load();
     });
+}
 
-    if (document.fonts && document.fonts.forEach) {
-        document.fonts.forEach(function(font){
-            font.load();
-        });
-    }
-
-})(window);

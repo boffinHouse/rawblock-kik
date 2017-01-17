@@ -16,7 +16,7 @@ if(window.lazySizes){
     setTimeout(()=>{
         if(window.lazySizesConfig.loadMode < 2 && window.rb && rb.ready){
             rb.ready.then(()=>{
-                setTimeout(setLoadPriority, 2000);
+                setTimeout(setLoadPriority, 1500);
             });
         }
     }, 9);

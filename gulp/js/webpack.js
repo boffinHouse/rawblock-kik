@@ -110,8 +110,9 @@ module.exports = function(paths, gulp, plugins) {
         plugins.eventStream.merge([
            createJS(
                {
-                   '_main-behavior': plugins.path.join(paths.assets.js, '_main-behavior.js'),
+                   '_inlinehead-behavior': plugins.path.join(paths.assets.js, '_inlinehead-behavior.js'),
                    '_crucial-behavior': plugins.path.join(paths.assets.js, '_crucial-behavior.js'),
+                   '_main-behavior': plugins.path.join(paths.assets.js, '_main-behavior.js'),
                    '_polyfills': plugins.path.join(paths.assets.js, '_polyfills.js'),
                },
                plugins.path.join(paths.devAssets, 'js')
