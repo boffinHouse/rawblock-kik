@@ -1,78 +1,58 @@
-// Get target to update (This example iframe)
-// Get URL to update
-// Update url with like your-basic?url=button
+import iframePubSub from './iframe-ready';
 // Update document title
-// Create forward/back history
 // Add class to active anchor and
+let currentUrl;
+const baseUrl = location.href.split('?')[0];
+const iframe = document.querySelector('#iframe');
+const regUrl = /url=(.+)[#&]/;
 
-//actionElement
-//target
-//popstate, replaceUrl
-function test() {
+
+function getUrlTarget(url) {
+    return url.replace(location.origin + '/', '');
+}
+
+function changeIframeSrc(path)  {
+    iframe.contentWindow.location.replace(path);
     
 }
 
-document.addEventListener('click', (e) => {
+function getUrlFragment() {
+    const fragment = (location.search + '&').match(regUrl);
+   
+    return fragment ? decodeURIComponent(fragment[1]) : getUrlTarget(iframe.src);
+}
+
+function pushUrl(page) {
+    const currentUrl = baseUrl + '?url=' + (encodeURIComponent(page));
+    history.pushState(null, '', currentUrl);
+}
+
+function updatePage(href) {
+    href = href ? getUrlTarget(href) : getUrlFragment();
     
-    if(!e.preventDefault && e.target == 'a[href]') {
-        console.log('hello');
+    currentUrl = href;
+    
+    changeIframeSrc(href);
+    
+    return href;
+}
+
+export default function pushState(url){
+    url =updatePage(url);
+    pushUrl(url);
+}
+
+iframePubSub.subscribe((data)=>{
+    const currentLoadedUrl = getUrlTarget(data.window.location.href);
+    
+    if(currentLoadedUrl != currentUrl){
+        currentUrl = currentLoadedUrl;
+        history.replaceState(null, '', baseUrl + '?url=' + (encodeURIComponent(currentLoadedUrl)));
     }
-    console.log(e.target != e.currentTarget);
-    e.preventDefault();
-    
 });
 
+window.addEventListener('popstate', () => {
+    updatePage();
+});
 
-// const clearSlashes = (path) => {
-//     return path.toString().replace(/\/$/, '').replace(/^\//, '');
-// };
-//
-// const getURL = (event) => {
-//     let root = clearSlashes(location.path);
-//     console.log(root);
-// };
-
-//window.addEventListener('DOMContentLoaded', getURL);
-
-// const router = {
-
-//
-//     getPage: (event) => {
-//         //const target = event.target;
-//         //const pathName = this.getFragment();
-//
-//         this.addPage();
-//
-//         event.preventDefault();
-//     },
-//
-//     // clearSlashes(path) {
-//     //     return path.toString().replace(/\/$/, '').replace(/^\//, '');
-//     // }
-//
-//     getFragment: () => {
-//         const name = location.search.match(/[^\?]+$/);
-//         return name ? name[0] : 'index';
-//     },
-//
-//     addPage: () => {
-//         console.log('hello');
-//     },
-//
-//     removePage: () => {
-//
-//     },
-//
-//     // changePage(event) {
-//     //     const pageURL = event.target.getAttribute('href');
-//     //     const currentURL = rootPath + '?' + pageURL.replace(/\.[^.$]+$/, '');
-//     //
-//     //     if(event.target != event.currentTarget && currentURL) {
-//     //         // history.replaceState(null, null, currentURL);
-//     //         iframe.contentWindow.location.replace(pageURL);
-//     //     }
-//     // }
-// };
-//
-// export default router.init();
-
+updatePage();
