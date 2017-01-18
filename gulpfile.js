@@ -75,12 +75,6 @@ gulp.task('clean', (fn) => {
     ], fn);
 });
 
-gulp.task('uglify:inline', function() {
-    gulp.src(plugins.path.join(paths.assets.js, '_inlinehead-behavior.js'))
-        .pipe(plugins.uglify())
-        .pipe(gulp.dest(plugins.path.join(paths.devAssets, 'js')));
-});
-
 /**
  * Main tasks
  */
@@ -89,21 +83,23 @@ gulp.task('uglify:inline', function() {
 gulp.task('lint', ['eslint']);
 gulp.task('test', ['jstest']);
 
-gulp.task('default',  (fn) => {
-    plugins.util.env.type = 'production';
-    plugins.runSequence(['build'], ['cssmin'], fn);
-});
-
 gulp.task('dev', (fn) => {
     plugins.util.env.type = 'development';
-    plugins.runSequence('build', ['watch', 'browser-sync'], fn);
+    plugins.runSequence('mainbuild', ['watch', 'browser-sync'], fn);
 });
 
 gulp.task('testing', (fn) => {
     plugins.util.env.type = 'testing';
-    plugins.runSequence('build', ['watch', 'browser-sync'], fn);
+    plugins.runSequence('mainbuild', ['watch', 'browser-sync'], fn);
 });
 
-gulp.task('build', ['clean'], (fn) => {
-    plugins.runSequence( ['copy', 'css', 'eslint', 'uglify:inline', 'js'], ['html', 'jsdoc'], fn);
+gulp.task('build', (fn) => {
+    plugins.util.env.type = 'production';
+    plugins.runSequence( ['mainbuild'], ['cssmin'], fn);
+});
+
+gulp.task('default',  ['build']);
+
+gulp.task('mainbuild', ['clean'], (fn) => {
+    plugins.runSequence( ['copy', 'css', 'eslint', 'js'], ['html', 'jsdoc'], fn);
 });

@@ -28,13 +28,6 @@ module.exports = function(paths, gulp, plugins) {
         ], function() {
             gulp.start('html');
         });
-    
-        //Watch for inline JS changes
-        plugins.watch([
-            plugins.path.join(paths.assets.js, '_inlinehead-behavior.js'),
-        ], function() {
-            gulp.start('uglify:inline');
-        });
 
         //Watch for media changes
         plugins.watch([

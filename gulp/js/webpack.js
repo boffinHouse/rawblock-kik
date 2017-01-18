@@ -11,7 +11,7 @@ module.exports = function(paths, gulp, plugins) {
     'use strict';
 
     const webpack = require('webpack');
-    const gulpWebpack = require('webpack-stream');
+    const gulpWebpack = require('gulp-webpack');
 
     function createJS(entry, dest) {
         const isProduction = plugins.util.env.type == 'production';
@@ -96,11 +96,15 @@ module.exports = function(paths, gulp, plugins) {
         };
 
         return gulp.src([plugins.path.join(paths.assets.js, '_*.js')])
-            .pipe(gulpWebpack(config).on('error', function swallowError (error) {
-                /* eslint-disable */
-                console.log(error.toString());
-                this.emit('end');
-            }))
+            .pipe(
+                gulpWebpack(config, webpack)
+                    .on('error', function swallowError (error) {
+                        /* eslint-disable */
+                        console.log(error.toString());
+                        this.emit('end');
+                    }
+                )
+            )
             // .pipe(isProduction ? plugins.rename({suffix: '.min'}) : plugins.util.noop())
             .pipe(gulp.dest(dest))
         ;
@@ -110,8 +114,9 @@ module.exports = function(paths, gulp, plugins) {
         plugins.eventStream.merge([
            createJS(
                {
-                   '_main-behavior': plugins.path.join(paths.assets.js, '_main-behavior.js'),
+                   '_inlinehead-behavior': plugins.path.join(paths.assets.js, '_inlinehead-behavior.js'),
                    '_crucial-behavior': plugins.path.join(paths.assets.js, '_crucial-behavior.js'),
+                   '_main-behavior': plugins.path.join(paths.assets.js, '_main-behavior.js'),
                    '_polyfills': plugins.path.join(paths.assets.js, '_polyfills.js'),
                },
                plugins.path.join(paths.devAssets, 'js')
