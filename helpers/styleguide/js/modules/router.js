@@ -6,14 +6,12 @@ const baseUrl = location.href.split('?')[0];
 const iframe = document.querySelector('#iframe');
 const regUrl = /url=(.+)[#&]/;
 
-
 function getUrlTarget(url) {
     return url.replace(location.origin + '/', '');
 }
 
-function changeIframeSrc(path)  {
-    iframe.contentWindow.location.replace(path);
-    
+function changeIframeSrc(url)  {
+    iframe.contentWindow.location.replace(url);
 }
 
 function getUrlFragment() {
@@ -22,23 +20,23 @@ function getUrlFragment() {
     return fragment ? decodeURIComponent(fragment[1]) : getUrlTarget(iframe.src);
 }
 
-function pushUrl(page) {
-    const currentUrl = baseUrl + '?url=' + (encodeURIComponent(page));
+function pushUrl(url) {
+    const currentUrl = baseUrl + '?url=' + (encodeURIComponent(url));
     history.pushState(null, '', currentUrl);
 }
 
-function updatePage(href) {
-    href = href ? getUrlTarget(href) : getUrlFragment();
+function updatePage(url) {
+    url = url ? getUrlTarget(url) : getUrlFragment();
     
-    currentUrl = href;
+    currentUrl = url;
     
-    changeIframeSrc(href);
+    changeIframeSrc(url);
     
-    return href;
+    return url;
 }
 
 export default function pushState(url){
-    url =updatePage(url);
+    url = updatePage(url);
     pushUrl(url);
 }
 
