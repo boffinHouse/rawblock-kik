@@ -10,11 +10,6 @@ function changeScreensize(event) {
     }
 }
 
-window.addEventListener('popstate', (event) => {
-    console.log(event);
-});
-
-
-screensize.addEventListener('click', changeScreensize, false);
+screensize.addEventListener('click', changeScreensize);
 
 

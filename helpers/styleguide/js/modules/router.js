@@ -1,56 +1,56 @@
+import iframePubSub from './iframe-ready';
+// Update document title
+// Add class to active anchor and
+let currentUrl;
+const baseUrl = location.href.split('?')[0];
+const iframe = document.querySelector('#iframe');
+const regUrl = /url=(.+)[#&]/;
 
-//const rootPath = iframe.getAttribute('data-location');
-// const cacheBackward = [];
-// const cacheForward = [];
-
-export default class Router {
-    constructor() {
-        this.nav = document.querySelector('.doc-navmain');
-        this.iframe = document.querySelector('.doc-page-iframe');
-        
-        this.getEvent();
-    }
-    
-    getEvent() {
-        window.addEventListener('DOMContentLoaded', this.getPage);
-        this.nav.addEventListener('click', this.getPage);
-    }
-    
-    getPage(event) {
-        const target = event.target;
-        //const pathName = this.getFragment();
-       
-        this.addPage();
-        
-        event.preventDefault();
-    }
-    
-    // clearSlashes(path) {
-    //     return path.toString().replace(/\/$/, '').replace(/^\//, '');
-    // }
-    
-    getFragment() {
-        const name = location.search.match(/[^\?]+$/);
-        return name ? name[0] : 'index';
-    }
-    
-    addPage() {
-        console.log('hello');
-    }
-    
-    removePage() {
-        
-    }
-    
-    // changePage(event) {
-    //     const pageURL = event.target.getAttribute('href');
-    //     const currentURL = rootPath + '?' + pageURL.replace(/\.[^.$]+$/, '');
-    //
-    //     if(event.target != event.currentTarget && currentURL) {
-    //         // history.replaceState(null, null, currentURL);
-    //         iframe.contentWindow.location.replace(pageURL);
-    //     }
-    // }
+function getUrlTarget(url) {
+    return url.replace(location.origin + '/', '');
 }
 
+function changeIframeSrc(url)  {
+    iframe.contentWindow.location.replace(url);
+}
 
+function getUrlFragment() {
+    const fragment = (location.search + '&').match(regUrl);
+   
+    return fragment ? decodeURIComponent(fragment[1]) : getUrlTarget(iframe.src);
+}
+
+function pushUrl(url) {
+    const currentUrl = baseUrl + '?url=' + (encodeURIComponent(url));
+    history.pushState(null, '', currentUrl);
+}
+
+function updatePage(url) {
+    url = url ? getUrlTarget(url) : getUrlFragment();
+    
+    currentUrl = url;
+    
+    changeIframeSrc(url);
+    
+    return url;
+}
+
+export default function pushState(url){
+    url = updatePage(url);
+    pushUrl(url);
+}
+
+iframePubSub.subscribe((data)=>{
+    const currentLoadedUrl = getUrlTarget(data.window.location.href);
+    
+    if(currentLoadedUrl != currentUrl){
+        currentUrl = currentLoadedUrl;
+        history.replaceState(null, '', baseUrl + '?url=' + (encodeURIComponent(currentLoadedUrl)));
+    }
+});
+
+window.addEventListener('popstate', () => {
+    updatePage();
+});
+
+updatePage();

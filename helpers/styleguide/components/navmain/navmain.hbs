@@ -3,7 +3,7 @@
         <ul class="doc-navmain-list">
             {{#isnt ../title "Index"}}
                 <li class="doc-navmain-item is-level-1">
-                    <a href="index.html" class="doc-navmain-link">Index</a>
+                    <a href="index.html" class="doc-navmain-link" data-target="#iframe">Index</a>
                 </li>
             {{/isnt}}
             {{#each this}}
@@ -12,14 +12,14 @@
                     <ul class="doc-nav">
                         {{#each this.items}}
                             <li class="doc-navmain-item">
-                                <a href="{{ href }}" class="doc-navmain-link">{{ title }}</a>
+                                <a href="{{ href }}" class="doc-navmain-link" data-target="#iframe">{{ title }}</a>
                             </li>
                         {{/each}}
                     </ul>
                 </li>
             {{/each}}
             <li class="doc-navmain-item is-level-1">
-                <a href="docs/jsdocs/index.html" class="doc-navmain-link">JS Documentation</a>
+                <a href="docs/jsdocs/index.html" class="doc-navmain-link" data-target="#iframe">JS Documentation</a>
             </li>
         </ul>
     </nav>
