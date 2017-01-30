@@ -50,7 +50,10 @@ module.exports = function(paths, gulp, plugins) {
         ];
 
         if(isProduction){
-            webpackPlugins = [new webpack.optimize.UglifyJsPlugin()].concat(webpackPlugins);
+            webpackPlugins = [
+                new webpack.LoaderOptionsPlugin({debug: true}),
+                new webpack.optimize.UglifyJsPlugin(),
+            ].concat(webpackPlugins);
         }
 
         const config = {
