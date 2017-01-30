@@ -50,7 +50,7 @@ module.exports = function(paths, gulp, plugins) {
         ];
 
         if(isProduction){
-            webpackPlugins = [new webpack.optimize.DedupePlugin(), new webpack.optimize.UglifyJsPlugin()].concat(webpackPlugins);
+            webpackPlugins = [new webpack.optimize.UglifyJsPlugin()].concat(webpackPlugins);
         }
 
         const config = {
@@ -61,37 +61,39 @@ module.exports = function(paths, gulp, plugins) {
                 chunkFilename: '[chunkhash].js',
             },
             module: {
-                loaders: [
+                rules: [
                     {
                         test: /\.jsx?$|\.es6$|\.es2015/,
                         exclude: /node_modules\/(?!(rawblock)\/).*/,
-                        loader: 'babel-loader',
-                        query: {
-                            compact: true,
-                            plugins: [
-                                ['transform-runtime', {
-                                    polyfill: false,
-                                }],
-                            ],
-                            presets: ['es2015-loose', 'es2016', 'es2017'],
+                        use: {
+                            loader: 'babel-loader',
+                            options: {
+                                compact: true,
+                                plugins: [
+                                    ['transform-runtime', {
+                                        polyfill: false,
+                                    }],
+                                ],
+                                presets: [['es2015', { loose: true, modules: false }], 'es2016', 'es2017'],
+                            },
                         },
                     },
                     {
                         test: /\.css$/,
-                        loader: 'style-loader!css-loader',
+                        use: ['style-loader', 'css-loader'],
                     },
                     {
                         test: /\.ejs/,
-                        loader: 'rb_template-loader',
+                        use: 'rb_template-loader',
                     },
                 ],
             },
-            resolve: {
-                alias: {},
-            },
+            // resolve: {
+            //     alias: {},
+            // },
             devtool: isProduction ? '' : 'source-map',
             watch: !isProduction,
-            debug: !isProduction,
+            // debug: !isProduction,
             plugins: webpackPlugins,
         };
 

@@ -38,7 +38,7 @@ module.exports = function (content, _sourceMap) {
         extendModuleNames(dirName, moduleNames);
 
         return 'addImportHook(' + JSON.stringify(moduleNames) +', function(){\n' +
-            "    require('bundle!"  + file.replace(/\.js$/, '') + "');\n" +
+            "    require('bundle-loader!"  + file.replace(/\.js$/, '') + "');\n" +
             '});'
         ;
     });
