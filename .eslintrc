@@ -4,9 +4,14 @@
         "ecmaVersion": 8,
         "modules": true,
         "ecmaFeatures": {
-            "impliedStrict": true
+            "impliedStrict": true,
+            "jsx": true,
+            "experimentalObjectRestSpread": true
         }
     },
+    "plugins": [
+        "react"
+    ],
     "env": {
         "browser": true,
         "shared-node-browser": true,
@@ -22,7 +27,7 @@
         "__webpack_public_path__": true,
         "process": false
     },
-    "extends": ["eslint:recommended"],
+    "extends": ["eslint:recommended", "plugin:react/recommended"],
     "rules": {
         "block-scoped-var": [2],
         "default-case": [2],
@@ -43,6 +48,7 @@
         "no-useless-escape": [2],
         "no-useless-concat": [2],
         "no-useless-call": [2],
-        "semi": [2]
+        "semi": [2],
+        "react/prop-types": [1]
     }
 }

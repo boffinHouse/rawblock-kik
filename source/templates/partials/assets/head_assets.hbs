@@ -5,7 +5,17 @@
     };
 </script>
 
+<script>
+    (function(){
+        var arrayProto = Array.prototype, docElem = document.documentElement;
+        if (!Object.assign || !docElem.prepend || !docElem.after || !arrayProto.includes || !String.prototype.includes || !window.cancelAnimationFrame || !Array.from || !arrayProto.find) {
+            document.write('<script src="' + appGlobals.basePath + 'js/_polyfills.js"><\/script>');
+        }
+    })();
+</script>
+
 <!-- include crucial font definition before following inline script -->
+
 <script>
      {{{includeraw 'dev/assets/js/_inlinehead-behavior.js'}}}
 </script>

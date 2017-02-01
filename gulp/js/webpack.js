@@ -77,7 +77,7 @@ module.exports = function(paths, gulp, plugins) {
                                         polyfill: false,
                                     }],
                                 ],
-                                presets: [['es2015', { loose: true, modules: false }], 'es2016', 'es2017'],
+                                presets: [['es2015', { loose: true, modules: false }], 'es2016', 'es2017', 'react'],
                             },
                         },
                     },
@@ -96,7 +96,6 @@ module.exports = function(paths, gulp, plugins) {
             // },
             devtool: isProduction ? '' : 'source-map',
             watch: !isProduction,
-            // debug: !isProduction,
             plugins: webpackPlugins,
         };
 
@@ -119,10 +118,8 @@ module.exports = function(paths, gulp, plugins) {
         plugins.eventStream.merge([
            createJS(
                {
-                   '_inlinehead-behavior': plugins.path.join(paths.assets.js, '_inlinehead-behavior.js'),
-                   '_crucial-behavior': plugins.path.join(paths.assets.js, '_crucial-behavior.js'),
-                   '_main-behavior': plugins.path.join(paths.assets.js, '_main-behavior.js'),
                    '_polyfills': plugins.path.join(paths.assets.js, '_polyfills.js'),
+                   '_inlinehead-behavior': plugins.path.join(paths.assets.js, '_inlinehead-behavior.js'),
                },
                plugins.path.join(paths.devAssets, 'js')
            ),

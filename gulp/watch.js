@@ -25,6 +25,7 @@ module.exports = function(paths, gulp, plugins) {
             plugins.path.join(paths.html, '**/*.{hbs,md,json}'),
             plugins.path.join(paths.components, '**/*.{hbs,md,json}'),
             plugins.path.join(paths.helpers, 'styleguide/**/*.{hbs,md,json}'),
+            plugins.path.join(paths.devAssets, 'js/_inlinehead-behavior.js'),
         ], function() {
             gulp.start('html');
         });
