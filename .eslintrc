@@ -25,12 +25,13 @@
         "appGlobals": true,
         "lazySizes": false,
         "__webpack_public_path__": true,
-        "process": false
+        "process": false,
+        "System": false
     },
     "extends": ["eslint:recommended", "plugin:react/recommended"],
     "rules": {
         "block-scoped-var": [2],
-        "default-case": [2],
+        "default-case": [0],
         "no-caller": [2],
         "no-unsafe-negation": [2],
         "no-eval": [2],

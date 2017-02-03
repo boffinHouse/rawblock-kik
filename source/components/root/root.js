@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {Provider} from 'react-redux';
-import Location from '../location/location';
+import Location from '../location/Location';
 
 const Root = ({store}) => (
     <Provider store={store}>

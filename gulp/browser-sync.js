@@ -12,6 +12,7 @@ module.exports = function(paths, gulp, plugins) {
 
     return function() {
         const isTesting = plugins.util.env.type == 'testing';
+        const history = require('connect-history-api-fallback');
 
         return plugins.browserSync({
             browser: !isTesting ? '' : [
@@ -25,6 +26,7 @@ module.exports = function(paths, gulp, plugins) {
             port: 7000,
             startPath: '/app.html',
             server: { baseDir: paths.dev },
+            middleware: [history({index: '/index.html'})],
         });
     };
 };
