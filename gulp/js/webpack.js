@@ -51,7 +51,11 @@ module.exports = function(paths, gulp, plugins) {
 
         if(isProduction){
             webpackPlugins = [
-                new webpack.LoaderOptionsPlugin({debug: true}),
+                new webpack.DefinePlugin({
+                    'process.env': {
+                        'NODE_ENV': '"production"',
+                    },
+                }),
                 new webpack.optimize.UglifyJsPlugin(),
             ].concat(webpackPlugins);
         }
